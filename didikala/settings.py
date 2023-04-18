@@ -29,7 +29,7 @@ INSTALLED_APPS = [
     "django.contrib.staticfiles",
     'django.contrib.humanize',
 
-    # Django-cleanUp app
+    # Django-cleanup app
     'django_cleanup.apps.CleanupConfig',
 
     # Created apps

@@ -1,0 +1,27 @@
+{% load static %}
+
+<!DOCTYPE html>
+<html lang="fa">
+
+<head>
+    <title>{% block title %} {% endblock %}</title>
+    {% include 'includes/head_references.html' %}
+</head>
+
+<div class="wrapper">
+    <!-- Start header -->
+    {% include 'includes/header.html' %}
+    <!-- End header -->
+
+    {% block content %}
+    {% endblock %}
+
+    <!-- Start footer -->
+    {% include 'includes/footer.html' %}
+    <!-- End footer -->
+</div>
+
+<!-- Core JS Files -->
+{% include 'includes/footer_references.html' %}
+
+</html>
