@@ -5,14 +5,14 @@ from django.db import models
 from .enums import *
 
 
-# ReCreate user model
+# ReCreate User model
 class User(AbstractBaseUser):
     AccessLevel = UserAccessLevel
 
+    # Model Fields
     email = models.EmailField(_('Email address'), max_length=255, null=True, blank=True)
     mobile = models.CharField(_('Mobile number'), max_length=11, null=False, unique=True)
-    access_level = models.CharField(_('Access level'), max_length=32, choices=UserAccessLevel.choices,
-                                    default=UserAccessLevel.choices[0])
+    access_level = models.CharField(_('Access level'), max_length=32, choices=AccessLevel.choices, default=AccessLevel.choices[0])
     is_active = models.BooleanField(_('Active'), default=True)
     is_admin = models.BooleanField(_('Admin'), default=False)
 
