@@ -2,12 +2,17 @@ from django.contrib.auth.models import AbstractBaseUser
 from django.utils.translation import gettext_lazy as _
 from .managers import UserManager
 from django.db import models
+from .enums import *
 
 
 # ReCreate user model
 class User(AbstractBaseUser):
-    email = models.EmailField(_('Email Address'), max_length=255, null=True, blank=True)
-    mobile = models.CharField(_('Mobile Number'), max_length=11, null=False, unique=True)
+    AccessLevel = UserAccessLevel
+
+    email = models.EmailField(_('Email address'), max_length=255, null=True, blank=True)
+    mobile = models.CharField(_('Mobile number'), max_length=11, null=False, unique=True)
+    access_level = models.CharField(_('Access level'), max_length=32, choices=UserAccessLevel.choices,
+                                    default=UserAccessLevel.choices[0])
     is_active = models.BooleanField(_('Active'), default=True)
     is_admin = models.BooleanField(_('Admin'), default=False)
 

@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2023-04-20 16:15+0330\n"
+"POT-Creation-Date: 2023-04-20 22:40+0330\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -19,10 +19,8 @@ msgstr ""
 "Plural-Forms: nplurals=2; plural=(n > 1);\n"
 
 #: .\apps\account\admin.py:23
-#, fuzzy
-#| msgid "Persian"
 msgid "Personal info"
-msgstr "فارسی"
+msgstr "اطلاعات شخصی"
 
 #: .\apps\account\admin.py:24
 msgid "Permissions"
@@ -32,6 +30,30 @@ msgstr "مجوزها"
 msgid "Accounts Section"
 msgstr "بخش حساب های کاربری"
 
+#: .\apps\account\enums.py:7
+msgid "User"
+msgstr "کاربر"
+
+#: .\apps\account\enums.py:8
+msgid "Seller"
+msgstr "فروشنده"
+
+#: .\apps\account\enums.py:9
+msgid "Manager"
+msgstr "مدیریت"
+
+#: .\apps\account\enums.py:10
+msgid "Creator"
+msgstr "سازنده محتوا"
+
+#: .\apps\account\enums.py:15
+msgid "Male"
+msgstr "مرد"
+
+#: .\apps\account\enums.py:16
+msgid "Female"
+msgstr "زن"
+
 #: .\apps\account\forms.py:12 .\apps\account\forms.py:45
 msgid "Password"
 msgstr "گذرواژه"
@@ -40,7 +62,7 @@ msgstr "گذرواژه"
 msgid "Password repeat"
 msgstr "تکرار گذرواژه"
 
-#: .\apps\account\forms.py:14
+#: .\apps\account\forms.py:14 .\apps\account\models.py:13
 msgid "Mobile number"
 msgstr "شماره موبایل"
 
@@ -48,27 +70,28 @@ msgstr "شماره موبایل"
 msgid "Passwords are not match!"
 msgstr "گذرواژه یکسان نمیباشد!"
 
-#: .\apps\account\models.py:9
-msgid "Email Address"
+#: .\apps\account\models.py:12
+#: .\venv\Lib\site-packages\django\db\models\fields\__init__.py:1847
+msgid "Email address"
 msgstr "آدرس ایمیل"
 
-#: .\apps\account\models.py:10
-msgid "Mobile Number"
-msgstr "شماره موبایل"
+#: .\apps\account\models.py:14
+msgid "Access level"
+msgstr "سطح دسترسی"
 
-#: .\apps\account\models.py:11
+#: .\apps\account\models.py:15
 msgid "Active"
 msgstr "فعال"
 
-#: .\apps\account\models.py:12
+#: .\apps\account\models.py:16
 msgid "Admin"
 msgstr "ادمین"
 
-#: .\apps\account\models.py:21
+#: .\apps\account\models.py:25
 msgid "User account"
 msgstr "حساب کاربری"
 
-#: .\apps\account\models.py:22
+#: .\apps\account\models.py:26
 msgid "Users accounts"
 msgstr "حساب های کاربران"
 
@@ -389,10 +412,6 @@ msgstr ""
 
 #: .\venv\Lib\site-packages\django\db\models\fields\__init__.py:1795
 msgid "Duration"
-msgstr ""
-
-#: .\venv\Lib\site-packages\django\db\models\fields\__init__.py:1847
-msgid "Email address"
 msgstr ""
 
 #: .\venv\Lib\site-packages\django\db\models\fields\__init__.py:1872
@@ -1302,6 +1321,12 @@ msgstr ""
 #: .\venv\Lib\site-packages\django\views\templates\default_urlconf.html:249
 msgid "Connect, get help, or contribute"
 msgstr ""
+
+#~ msgid "Email Address"
+#~ msgstr "آدرس ایمیل"
+
+#~ msgid "Mobile Number"
+#~ msgstr "شماره موبایل"
 
 #~ msgid "hello"
 #~ msgstr "سلام"
