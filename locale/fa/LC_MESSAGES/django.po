@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2023-04-19 00:48+0330\n"
+"POT-Creation-Date: 2023-04-20 16:15+0330\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -18,15 +18,81 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=(n > 1);\n"
 
+#: .\apps\account\admin.py:23
+#, fuzzy
+#| msgid "Persian"
+msgid "Personal info"
+msgstr "فارسی"
+
+#: .\apps\account\admin.py:24
+msgid "Permissions"
+msgstr "مجوزها"
+
+#: .\apps\account\apps.py:8
+msgid "Accounts Section"
+msgstr "بخش حساب های کاربری"
+
+#: .\apps\account\forms.py:12 .\apps\account\forms.py:45
+msgid "Password"
+msgstr "گذرواژه"
+
+#: .\apps\account\forms.py:13
+msgid "Password repeat"
+msgstr "تکرار گذرواژه"
+
+#: .\apps\account\forms.py:14
+msgid "Mobile number"
+msgstr "شماره موبایل"
+
+#: .\apps\account\forms.py:26
+msgid "Passwords are not match!"
+msgstr "گذرواژه یکسان نمیباشد!"
+
+#: .\apps\account\models.py:9
+msgid "Email Address"
+msgstr "آدرس ایمیل"
+
+#: .\apps\account\models.py:10
+msgid "Mobile Number"
+msgstr "شماره موبایل"
+
+#: .\apps\account\models.py:11
+msgid "Active"
+msgstr "فعال"
+
+#: .\apps\account\models.py:12
+msgid "Admin"
+msgstr "ادمین"
+
+#: .\apps\account\models.py:21
+msgid "User account"
+msgstr "حساب کاربری"
+
+#: .\apps\account\models.py:22
+msgid "Users accounts"
+msgstr "حساب های کاربران"
+
 #: .\apps\main\templates\main\index.html:6
 msgid "didikala"
 msgstr "دیدیکالا"
 
-#: .\didikala\settings.py:125
+#: .\didikala\settings.py:129
 msgid "Persian"
 msgstr "فارسی"
 
-#: .\templates\admin\base_site.html:7
+#: .\didikala\urls.py:8 .\didikala\urls.py:9
+msgid "Shop Management"
+msgstr "مدیریت فروشگاه"
+
+#: .\didikala\urls.py:10
+msgid "Admin Panel"
+msgstr "پنل ادمین"
+
+#: .\templates\admin\base_site.html:5
+msgid "Admin Site"
+msgstr "صفحه مدیریت"
+
+#: .\templates\admin\base_site.html:8
 msgid "Django administration"
 msgstr "مدیریت جنگو"
 

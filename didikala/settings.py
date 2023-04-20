@@ -27,11 +27,12 @@ INSTALLED_APPS = [
     "django.contrib.staticfiles",
     'django.contrib.humanize',
 
-    # Django-cleanup app
-    'django_cleanup.apps.CleanupConfig',
-
     # Created apps
     'apps.main.apps.MainConfig',
+    'apps.account.apps.AccountConfig',
+
+    # Django-cleanup module
+    'django_cleanup.apps.CleanupConfig',
 ]
 
 MIDDLEWARE = [
@@ -119,6 +120,9 @@ MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
 # https://docs.djangoproject.com/en/4.2/ref/settings/#default-auto-field
 
 DEFAULT_AUTO_FIELD = "django.db.models.BigAutoField"
+
+# Custom user model
+AUTH_USER_MODEL = 'account.User'
 
 # Add farsi language for Internationalization
 LANGUAGES = (

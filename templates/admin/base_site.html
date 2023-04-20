@@ -1,7 +1,8 @@
 {% extends "admin/base.html" %}
+{% load i18n %}
 {% load static %}
 
-{% block title %}مدیریت فروشگاه{% endblock %}
+{% block title %} {% trans 'Admin Site' %} {% endblock %}
 
 {% block branding %}
 <h1 id="site-name"><a href="{% url 'admin:index' %}">{{ site_header|default:_('Django administration') }}</a></h1>
