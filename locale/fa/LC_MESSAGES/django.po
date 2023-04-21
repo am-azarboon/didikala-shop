@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2023-04-20 22:40+0330\n"
+"POT-Creation-Date: 2023-04-21 23:35+0330\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -18,11 +18,23 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=(n > 1);\n"
 
+#: .\apps\account\admin.py:21
+msgid "Additional info"
+msgstr "اطلاعات بیشتر"
+
+#: .\apps\account\admin.py:22
+msgid "Confirmations"
+msgstr "تاییده ها"
+
 #: .\apps\account\admin.py:23
+msgid "Register info"
+msgstr "اطلاعات ثبت"
+
+#: .\apps\account\admin.py:45
 msgid "Personal info"
 msgstr "اطلاعات شخصی"
 
-#: .\apps\account\admin.py:24
+#: .\apps\account\admin.py:46
 msgid "Permissions"
 msgstr "مجوزها"
 
@@ -30,7 +42,7 @@ msgstr "مجوزها"
 msgid "Accounts Section"
 msgstr "بخش حساب های کاربری"
 
-#: .\apps\account\enums.py:7
+#: .\apps\account\enums.py:7 .\apps\account\models.py:55
 msgid "User"
 msgstr "کاربر"
 
@@ -62,7 +74,7 @@ msgstr "گذرواژه"
 msgid "Password repeat"
 msgstr "تکرار گذرواژه"
 
-#: .\apps\account\forms.py:14 .\apps\account\models.py:13
+#: .\apps\account\forms.py:14 .\apps\account\models.py:16
 msgid "Mobile number"
 msgstr "شماره موبایل"
 
@@ -70,36 +82,88 @@ msgstr "شماره موبایل"
 msgid "Passwords are not match!"
 msgstr "گذرواژه یکسان نمیباشد!"
 
-#: .\apps\account\models.py:12
+#: .\apps\account\models.py:15
 #: .\venv\Lib\site-packages\django\db\models\fields\__init__.py:1847
 msgid "Email address"
 msgstr "آدرس ایمیل"
 
-#: .\apps\account\models.py:14
+#: .\apps\account\models.py:17
 msgid "Access level"
 msgstr "سطح دسترسی"
 
-#: .\apps\account\models.py:15
+#: .\apps\account\models.py:18
 msgid "Active"
 msgstr "فعال"
 
-#: .\apps\account\models.py:16
+#: .\apps\account\models.py:19
 msgid "Admin"
 msgstr "ادمین"
 
-#: .\apps\account\models.py:25
+#: .\apps\account\models.py:28
 msgid "User account"
 msgstr "حساب کاربری"
 
-#: .\apps\account\models.py:26
+#: .\apps\account\models.py:29
 msgid "Users accounts"
 msgstr "حساب های کاربران"
+
+#: .\apps\account\models.py:56
+msgid "First name"
+msgstr "نام"
+
+#: .\apps\account\models.py:57
+msgid "Last name"
+msgstr "نام خانوادگی"
+
+#: .\apps\account\models.py:58
+msgid "Gender"
+msgstr "جنسیت"
+
+#: .\apps\account\models.py:59
+msgid "Melli code"
+msgstr "کد ملی"
+
+#: .\apps\account\models.py:62
+msgid "Date of birth"
+msgstr "تاریخ تولد"
+
+#: .\apps\account\models.py:63
+msgid "I'm foreign citizen"
+msgstr "تبعه خارجی هستم"
+
+#: .\apps\account\models.py:64
+msgid "Subscribe"
+msgstr "مشترک خبرنامه"
+
+#: .\apps\account\models.py:65
+msgid "Profile image"
+msgstr "تصویر پروفایل"
+
+#: .\apps\account\models.py:68
+msgid "Created time"
+msgstr "تاریخ ایجاد"
+
+#: .\apps\account\models.py:69
+msgid "Updated time"
+msgstr "تاریخ تغییر"
+
+#: .\apps\account\models.py:72
+msgid "User profile"
+msgstr "پروفایل کاربر"
+
+#: .\apps\account\models.py:73
+msgid "Users profiles"
+msgstr "پروفایل ها کاربران"
+
+#: .\apps\account\validators.py:16
+msgid "Invalid melli code"
+msgstr "کد ملی نامعتبر"
 
 #: .\apps\main\templates\main\index.html:6
 msgid "didikala"
 msgstr "دیدیکالا"
 
-#: .\didikala\settings.py:129
+#: .\didikala\settings.py:130
 msgid "Persian"
 msgstr "فارسی"
 
@@ -129,7 +193,7 @@ msgstr ""
 
 #: .\venv\Lib\site-packages\django\contrib\staticfiles\apps.py:9
 msgid "Static Files"
-msgstr ""
+msgstr "فایل های ثابت"
 
 #: .\venv\Lib\site-packages\django\contrib\syndication\apps.py:7
 msgid "Syndication"
@@ -373,6 +437,7 @@ msgid ""
 msgstr ""
 
 #: .\venv\Lib\site-packages\django\db\models\fields\__init__.py:1362
+#: .\venv\Lib\site-packages\django_jalali\db\models.py:63
 msgid "Date (without time)"
 msgstr ""
 
@@ -391,6 +456,7 @@ msgid ""
 msgstr ""
 
 #: .\venv\Lib\site-packages\django\db\models\fields\__init__.py:1502
+#: .\venv\Lib\site-packages\django_jalali\db\models.py:233
 msgid "Date (with time)"
 msgstr ""
 
@@ -577,6 +643,7 @@ msgstr ""
 
 #: .\venv\Lib\site-packages\django\forms\fields.py:467
 #: .\venv\Lib\site-packages\django\forms\fields.py:1238
+#: .\venv\Lib\site-packages\django_jalali\forms\__init__.py:15
 msgid "Enter a valid date."
 msgstr ""
 
@@ -586,6 +653,7 @@ msgid "Enter a valid time."
 msgstr ""
 
 #: .\venv\Lib\site-packages\django\forms\fields.py:517
+#: .\venv\Lib\site-packages\django_jalali\forms\__init__.py:54
 msgid "Enter a valid date/time."
 msgstr ""
 
@@ -1321,6 +1389,55 @@ msgstr ""
 #: .\venv\Lib\site-packages\django\views\templates\default_urlconf.html:249
 msgid "Connect, get help, or contribute"
 msgstr ""
+
+#: .\venv\Lib\site-packages\django_jalali\admin\filters.py:38
+#: .\venv\Lib\site-packages\django_jalali\admin\filterspecs.py:39
+msgid "Any date"
+msgstr ""
+
+#: .\venv\Lib\site-packages\django_jalali\admin\filters.py:40
+#: .\venv\Lib\site-packages\django_jalali\admin\filterspecs.py:40
+msgid "Today"
+msgstr ""
+
+#: .\venv\Lib\site-packages\django_jalali\admin\filters.py:47
+#: .\venv\Lib\site-packages\django_jalali\admin\filterspecs.py:42
+msgid "Past 7 days"
+msgstr ""
+
+#: .\venv\Lib\site-packages\django_jalali\admin\filters.py:56
+#: .\venv\Lib\site-packages\django_jalali\admin\filterspecs.py:49
+msgid "This month"
+msgstr ""
+
+#: .\venv\Lib\site-packages\django_jalali\admin\filters.py:65
+#: .\venv\Lib\site-packages\django_jalali\admin\filterspecs.py:60
+msgid "This year"
+msgstr ""
+
+#: .\venv\Lib\site-packages\django_jalali\admin\widgets.py:53
+msgid "Date:"
+msgstr ""
+
+#: .\venv\Lib\site-packages\django_jalali\admin\widgets.py:55
+msgid "Time:"
+msgstr ""
+
+#: .\venv\Lib\site-packages\django_jalali\db\models.py:66
+msgid "Enter a valid date in YYYY-MM-DD format."
+msgstr ""
+
+#: .\venv\Lib\site-packages\django_jalali\db\models.py:67
+#, python-format
+msgid "Invalid date: %s"
+msgstr ""
+
+#: .\venv\Lib\site-packages\django_jalali\db\models.py:230
+msgid "Enter a valid date/time in YYYY-MM-DD HH:MM[:ss[.uuuuuu]] format."
+msgstr ""
+
+#~ msgid "Only displayed"
+#~ msgstr "مشخصات ثبت"
 
 #~ msgid "Email Address"
 #~ msgstr "آدرس ایمیل"

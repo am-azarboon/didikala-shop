@@ -1,7 +1,7 @@
 from django.contrib.auth.forms import ReadOnlyPasswordHashField
 from django.utils.translation import gettext_lazy as _
 from django.core.exceptions import ValidationError
-from .models import User
+from .models import User, Profile
 from django import forms
 
 
@@ -47,3 +47,13 @@ class UserChangeForm(forms.ModelForm):
     class Meta:
         model = User
         fields = ('email', 'password', 'mobile', 'access_level', 'is_active', 'is_admin')
+
+
+# UserProfile form
+class UserProfileForm(forms.ModelForm):
+    class Meta:
+        model = Profile
+        fields = '__all__'
+        widgets = {
+            'melli_code': forms.TextInput(attrs={'size': 18})
+        }

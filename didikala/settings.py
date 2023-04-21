@@ -33,6 +33,9 @@ INSTALLED_APPS = [
 
     # Django-cleanup module
     'django_cleanup.apps.CleanupConfig',
+
+    # Jalali calender module
+    'django_jalali',
 ]
 
 MIDDLEWARE = [
