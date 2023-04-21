@@ -1,7 +1,7 @@
-from .forms import UserCreationForm, UserChangeForm, UserProfileForm
 from django.contrib.auth.admin import UserAdmin as BaseUserAdmin
 from django_jalali.admin.filters import JDateFieldListFilter
 from django.utils.translation import gettext_lazy as _
+from .forms import UserCreationForm, UserChangeForm
 from django.contrib.auth.models import Group
 from .models import User, Profile
 from django.contrib import admin
@@ -10,8 +10,6 @@ from django.contrib import admin
 # Register the Profile model with custom ProfileAdmin to admin site
 @admin.register(Profile)
 class ProfileAdmin(admin.ModelAdmin):
-    form = UserProfileForm
-
     list_filter = (('date_of_birth', JDateFieldListFilter), 'created_at',)
     readonly_fields = ('created_at', 'updated_at',)
     list_display = ('user', 'firstname', 'lastname', 'melli_code', 'date_of_birth',)

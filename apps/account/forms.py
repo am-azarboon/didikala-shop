@@ -47,13 +47,3 @@ class UserChangeForm(forms.ModelForm):
     class Meta:
         model = User
         fields = ('email', 'password', 'mobile', 'access_level', 'is_active', 'is_admin')
-
-
-# UserProfile form
-class UserProfileForm(forms.ModelForm):
-    class Meta:
-        model = Profile
-        fields = '__all__'
-        widgets = {
-            'melli_code': forms.TextInput(attrs={'size': 18})
-        }
