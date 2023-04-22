@@ -1,0 +1,90 @@
+{% load static %}
+
+<!DOCTYPE html>
+<html lang="fa">
+
+<head>
+    <title>ورود کاربر</title>
+    {% include 'includes/head_references.html' %}
+</head>
+
+<body>
+<div class="wrapper">
+    <!-- Start main-content -->
+    <main class="main-content dt-sl mt-4 mb-3">
+        <div class="container main-container">
+            <div class="row">
+                <div class="col-xl-4 col-lg-5 col-md-7 col-12 mx-auto">
+                    <div class="logo-area text-center mb-3">
+                        <a href="{% url 'main:index' %}"><img src="{% static 'img/logo.png' %}" class="img-fluid"
+                                                              alt="logo"></a>
+                    </div>
+                    <div class="auth-wrapper form-ui border pt-4">
+                        <div class="section-title title-wide mb-1 no-after-title-wide">
+                            <h2 class="font-weight-bold">ورود</h2>
+                        </div>
+
+                        <form method="POST" action="">
+                            {% csrf_token %}
+
+                            <!-- form errors display block -->
+                            {% if form.errors %}
+                                <div class="alert alert-danger">
+                                    {% for field, errors in form.errors.items %}
+                                        {% for error in errors %}
+                                            <p>{{ error }}</p>
+                                        {% endfor %}
+                                    {% endfor %}
+                                </div>
+                            {% endif %}
+
+                            <div class="form-row-title">
+                                <h3>ایمیل یا شماره موبایل</h3>
+                            </div>
+                            <div class="form-row with-icon">
+                                {{ form.username }}
+                                <i class="mdi mdi-account-circle-outline"></i>
+                            </div>
+                            <div class="form-row-title">
+                                <h3>رمز عبور</h3>
+                            </div>
+                            <div class="form-row with-icon">
+                                {{ form.password }}
+                                <i class="mdi mdi-lock-open-variant-outline"></i>
+                            </div>
+                            <div class="form-row mt-3">
+                                <button class="btn-primary-cm btn-with-icon mx-auto w-100" type="submit">
+                                    <i class="mdi mdi-login-variant"></i>
+                                    ورود به دیدیکالا
+                                </button>
+                            </div>
+                        </form>
+                        <div class="form-footer mt-3">
+                            <div>
+                                <span class="font-weight-bold">رمز عبور را فراموش کردید؟</span>
+                                <a href="{% url 'account:mobile' %}" class="mr-3 mt-2">ورود با پیامک</a>
+                            </div>
+                        </div>
+                        <div class="form-footer mt-1">
+                            <div>
+                                <span class="font-weight-bold">کاربر جدید هستید؟</span>
+                                <a href="{% url 'account:register' %}" class="mr-3 mt-2">ثبت نام در دیدیکالا</a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </main>
+    <!-- End main-content -->
+
+    <!-- Start mini-footer -->
+    {% include 'includes/mini_footer.html' %}
+    <!-- End mini-footer -->
+</div>
+
+<!-- Core JS Files -->
+{% include 'includes/footer_references.html' %}
+</body>
+
+</html>

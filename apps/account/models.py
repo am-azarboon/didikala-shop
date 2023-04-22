@@ -56,7 +56,7 @@ class Profile(models.Model):
     firstname = models.CharField(_('First name'), max_length=64, null=True, blank=True)
     lastname = models.CharField(_('Last name'), max_length=64, null=True, blank=True)
     gender = models.CharField(_('Gender'), max_length=8, null=True, blank=True, choices=Gender.choices)
-    melli_code = models.CharField(_('Melli code'), max_length=10, null=True, blank=True, validators=[positive_number_valid])
+    melli_code = models.CharField(_('Melli code'), max_length=10, null=True, blank=True, validators=[arithmetic_numbers])
 
     # Additional info
     date_of_birth = Jmodels.jDateField(_('Date of birth'), null=True, blank=True)

@@ -48,36 +48,36 @@
                 </div>
                 <div class="col-md-4 col-6 topbar-left">
                     <ul class="nav float-left">
-{#                        {% if request.user.is_authenticated %}#}
-{#                            <li class="nav-item account dropdown">#}
-{#                                <a class="nav-link" href="#" data-toggle="dropdown" aria-haspopup="true"#}
-{#                                   aria-expanded="false">#}
-{#                                    <span class="label-dropdown">حساب کاربری</span>#}
-{#                                    <i class="mdi mdi-account-circle-outline"></i>#}
-{#                                </a>#}
-{#                                <div class="dropdown-menu dropdown-menu-sm dropdown-menu-left">#}
-{#                                    <a class="dropdown-item" href="#">#}
-{#                                        <i class="mdi mdi-account-card-details-outline"></i>پروفایل#}
-{#                                    </a>#}
-{#                                    <a class="dropdown-item" href="#">#}
-{#                                        <span class="float-left badge badge-dark">0</span>#}
-{#                                        <i class="mdi mdi-comment-text-outline"></i>پیغام ها#}
-{#                                    </a>#}
-{#                                    <div class="dropdown-divider" role="presentation"></div>#}
-{#                                    <a class="dropdown-item" href="{% url 'account:user_logout' %}">#}
-{#                                        <i class="mdi mdi-logout-variant"></i>خروج#}
-{#                                    </a>#}
-{#                                </div>#}
-{#                            </li>#}
-{#                        {% else %}#}
-{#                            <li class="nav-item account dropdown">#}
-{#                                <a class="nav-link" href="{% url 'account:user_login' %}"#}
-{#                                   aria-expanded="false">#}
-{#                                    <span class="label-dropdown mt-1">ورود | ثبت نام</span>#}
-{#                                    <i class="mdi mdi-account-circle-outline"></i>#}
-{#                                </a>#}
-{#                            </li>#}
-{#                        {% endif %}#}
+                        {% if request.user.is_authenticated %}
+                            <li class="nav-item account dropdown">
+                                <a class="nav-link" href="#" data-toggle="dropdown" aria-haspopup="true"
+                                   aria-expanded="false">
+                                    <span class="label-dropdown">حساب کاربری</span>
+                                    <i class="mdi mdi-account-circle-outline"></i>
+                                </a>
+                                <div class="dropdown-menu dropdown-menu-sm dropdown-menu-left">
+                                    <a class="dropdown-item" href="#">
+                                        <i class="mdi mdi-account-card-details-outline"></i>پروفایل
+                                    </a>
+                                    <a class="dropdown-item" href="#">
+                                        <span class="float-left badge badge-dark">0</span>
+                                        <i class="mdi mdi-comment-text-outline"></i>پیغام ها
+                                    </a>
+                                    <div class="dropdown-divider" role="presentation"></div>
+                                    <a class="dropdown-item" href="{% url 'account:logout' %}">
+                                        <i class="mdi mdi-logout-variant"></i>خروج
+                                    </a>
+                                </div>
+                            </li>
+                        {% else %}
+                            <li class="nav-item account dropdown">
+                                <a class="nav-link" href="{% url 'account:login' %}"
+                                   aria-expanded="false">
+                                    <span class="label-dropdown mt-1">ورود | ثبت نام</span>
+                                    <i class="mdi mdi-account-circle-outline"></i>
+                                </a>
+                            </li>
+                        {% endif %}
                     </ul>
                 </div>
             </div>

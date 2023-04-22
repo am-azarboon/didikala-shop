@@ -1,0 +1,90 @@
+{% load static %}
+
+<!DOCTYPE html>
+<html lang="fa">
+
+<head>
+    <title>تایید موبایل</title>
+    {% include 'includes/head_references.html' %}
+</head>
+
+<body>
+<div class="wrapper">
+    <!-- Start main-content -->
+    <main class="main-content dt-sl mt-4 mb-3">
+        <div class="container main-container">
+            <div class="row">
+                <div class="col-xl-4 col-lg-5 col-md-7 col-12 mx-auto">
+                    <div class="logo-area text-center mb-3">
+                        <a href="{% url 'main:index' %}"><img src="{% static 'img/logo.png' %}" class="img-fluid" alt="logo"></a>
+                    </div>
+                    <div class="auth-wrapper form-ui border pt-4">
+                        <div class="section-title title-wide mb-1 no-after-title-wide">
+                            <h2 class="font-weight-bold">تایید شماره</h2>
+                        </div>
+                        <div class="message-light">
+                            برای شماره همراه {{ mobile }} کد تایید ارسال گردید
+                            <a href="{{ url }}" class="btn-link-border">
+                                ویرایش شماره
+                            </a>
+                        </div>
+                        <form method="POST" action="">
+                            {% csrf_token %}
+
+                            <!-- form errors display block -->
+                            {% if form.errors %}
+                                <div class="alert alert-danger" role="alert">
+                                    {% for field, errors in form.errors.items %}
+                                        {% for error in errors %}
+                                            <p>{{ error }}</p>
+                                        {% endfor %}
+                                    {% endfor %}
+                                </div>
+                            {% endif %}
+
+                            <div class="form-row-title">
+                                <h3>کد تایید را وارد کنید</h3>
+                            </div>
+                            <div class="form-row">
+                                <div class="numbers-verify">
+                                    <div class="lines-number-input">
+                                        {{ form.number_one }}
+                                        {{ form.number_two }}
+                                        {{ form.number_three }}
+                                        {{ form.number_four }}
+                                        {{ form.number_five }}
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="form-row mt-3">
+                                <div class="d-flex align-items-center">
+                                    <span class="text-primary btn-link-border ml-1">دریافت مجدد کد تایید</span>
+                                    <span>(</span>
+                                    <p id="countdown-verify-end"></p>
+                                    <span>)</span>
+                                </div>
+                            </div>
+                            <div class="form-row mt-3">
+                                <button class="btn-primary-cm btn-with-icon mx-auto w-100" type="submit">
+                                    <i class="fad fa-arrow-right"></i>
+                                    تایید و ادامه
+                                </button>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </main>
+    <!-- End main-content -->
+
+    <!-- Start mini-footer -->
+    {% include 'includes/mini_footer.html' %}
+    <!-- End mini-footer -->
+</div>
+
+<!-- Core JS Files -->
+{% include 'includes/footer_references.html' %}
+</body>
+
+</html>

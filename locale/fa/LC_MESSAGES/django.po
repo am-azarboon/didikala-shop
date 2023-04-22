@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2023-04-21 23:35+0330\n"
+"POT-Creation-Date: 2023-04-22 22:35+0330\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -18,23 +18,23 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=(n > 1);\n"
 
-#: .\apps\account\admin.py:21
+#: .\apps\account\admin.py:19
 msgid "Additional info"
 msgstr "اطلاعات بیشتر"
 
-#: .\apps\account\admin.py:22
+#: .\apps\account\admin.py:20
 msgid "Confirmations"
 msgstr "تاییده ها"
 
-#: .\apps\account\admin.py:23
+#: .\apps\account\admin.py:21
 msgid "Register info"
 msgstr "اطلاعات ثبت"
 
-#: .\apps\account\admin.py:45
+#: .\apps\account\admin.py:39
 msgid "Personal info"
 msgstr "اطلاعات شخصی"
 
-#: .\apps\account\admin.py:46
+#: .\apps\account\admin.py:40
 msgid "Permissions"
 msgstr "مجوزها"
 
@@ -66,21 +66,65 @@ msgstr "مرد"
 msgid "Female"
 msgstr "زن"
 
-#: .\apps\account\forms.py:12 .\apps\account\forms.py:45
+#: .\apps\account\forms.py:15 .\apps\account\forms.py:48
 msgid "Password"
 msgstr "گذرواژه"
 
-#: .\apps\account\forms.py:13
+#: .\apps\account\forms.py:16
 msgid "Password repeat"
 msgstr "تکرار گذرواژه"
 
-#: .\apps\account\forms.py:14 .\apps\account\models.py:16
+#: .\apps\account\forms.py:17 .\apps\account\models.py:16
 msgid "Mobile number"
 msgstr "شماره موبایل"
 
-#: .\apps\account\forms.py:26
+#: .\apps\account\forms.py:29
 msgid "Passwords are not match!"
 msgstr "گذرواژه یکسان نمیباشد!"
+
+#: .\apps\account\forms.py:57
+msgid "Enter your mobile or email address"
+msgstr "شماره موبایل یا ایمیل خود را وارد کنید"
+
+#: .\apps\account\forms.py:58
+msgid "Enter your password"
+msgstr "گذرواژه خود را وارد کنید"
+
+#: .\apps\account\forms.py:66
+msgid "Mobile or email address is not correct"
+msgstr "شماره موبایل یا آدرس ایمیل صحیح نمی باشد"
+
+#: .\apps\account\forms.py:71
+msgid "Username or password is not correct"
+msgstr "اطلاعات وارد شده صحیح نمیباشد"
+
+#: .\apps\account\forms.py:79 .\apps\account\forms.py:109
+msgid "Enter your mobile number"
+msgstr "شماره موبایل خود را وارد کنید"
+
+#: .\apps\account\forms.py:81
+msgid "Enter password"
+msgstr "گذرواژه را وارد کنید"
+
+#: .\apps\account\forms.py:83
+msgid "Repeat password"
+msgstr "تکرار گذرواژه"
+
+#: .\apps\account\forms.py:91 .\apps\account\forms.py:114
+msgid "Mobile number is not correct"
+msgstr "شماره موبایل صحیح نمی باشد"
+
+#: .\apps\account\forms.py:95
+msgid "User with this mobile is already exists"
+msgstr "کاربر با این شماره موبایل موجود میباشد"
+
+#: .\apps\account\forms.py:102
+msgid "Passwords are not match"
+msgstr "گذرواژه یکسان نمیباشد!"
+
+#: .\apps\account\forms.py:118
+msgid "Mobile number is not exists"
+msgstr "شماره موبایل موجود نمی باشد"
 
 #: .\apps\account\models.py:15
 #: .\venv\Lib\site-packages\django\db\models\fields\__init__.py:1847
@@ -155,15 +199,19 @@ msgstr "پروفایل کاربر"
 msgid "Users profiles"
 msgstr "پروفایل ها کاربران"
 
-#: .\apps\account\validators.py:16
-msgid "Invalid melli code"
-msgstr "کد ملی نامعتبر"
+#: .\apps\account\validators.py:12
+msgid "Invalid input"
+msgstr "اطلاعات نادرست"
+
+#: .\apps\account\views.py:134
+msgid "Entered code is not correct"
+msgstr "کد وارد شده صحیح نمی باشد"
 
 #: .\apps\main\templates\main\index.html:6
 msgid "didikala"
 msgstr "دیدیکالا"
 
-#: .\didikala\settings.py:130
+#: .\didikala\settings.py:133
 msgid "Persian"
 msgstr "فارسی"
 
@@ -189,7 +237,7 @@ msgstr "پیام ها"
 
 #: .\venv\Lib\site-packages\django\contrib\sitemaps\apps.py:8
 msgid "Site Maps"
-msgstr ""
+msgstr "نقشه سایت"
 
 #: .\venv\Lib\site-packages\django\contrib\staticfiles\apps.py:9
 msgid "Static Files"
@@ -1435,6 +1483,15 @@ msgstr ""
 #: .\venv\Lib\site-packages\django_jalali\db\models.py:230
 msgid "Enter a valid date/time in YYYY-MM-DD HH:MM[:ss[.uuuuuu]] format."
 msgstr ""
+
+#~ msgid "Mobile number is incorrect"
+#~ msgstr "شماره موبایل صحیح نمی باشد"
+
+#~ msgid "Invalid melli code"
+#~ msgstr "کد ملی نامعتبر"
+
+#~ msgid "User with this mobile is not exists"
+#~ msgstr "کاربر با این شماره موبایل موجود نمی باشد"
 
 #~ msgid "Only displayed"
 #~ msgstr "مشخصات ثبت"

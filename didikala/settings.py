@@ -125,6 +125,9 @@ DEFAULT_AUTO_FIELD = "django.db.models.BigAutoField"
 # Custom user model
 AUTH_USER_MODEL = 'account.User'
 
+# Django auth backends
+AUTHENTICATION_BACKENDS = ['django.contrib.auth.backends.ModelBackend', 'apps.account.auth.EmailAuthenticationBackend', ]
+
 # Add farsi language for Internationalization
 LANGUAGES = (
     ('fa', _('Persian')),

@@ -1,23 +1,16 @@
 from django.utils.translation import gettext_lazy as _
 from django.core.exceptions import ValidationError
 from django.core.validators import validate_email
-import random
 import re
 
 
-# Number Only validator
-def positive_number_valid(value):
+# Arithmetic numbers only
+def arithmetic_numbers(value):
+    numbers = ['0', '1', '2', '3', '4', '5', '6', '7', '8', '9']
     for num in value:
-        global flag
-        flag = False
-
-        for i in range(0, 10):
-            if num == str(i):
-                flag = True
-                break
-
-        if flag is False:
-            raise ValidationError(_('Invalid melli code'), code='invalid_melli_code')
+        if num not in numbers:
+            error = _('Invalid input')
+            raise ValidationError(error, code='invalid_melli_code')
 
 
 # Check mobile number format(Iran)
