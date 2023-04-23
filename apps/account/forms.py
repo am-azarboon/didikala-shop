@@ -71,3 +71,30 @@ class LoginForm(forms.Form):
             raise ValidationError(_('Username or password is not correct'), code='USER-NOT-FOUND')
 
         return self.cleaned_data
+
+
+# Register Form
+class RegisterForm(forms.Form):
+    mobile = forms.CharField(max_length=11, required=True, widget=forms.TextInput(attrs={'class': 'input-ui pr-2', 'placeholder': _('Enter your mobile number')}))
+    password1 = forms.CharField(max_length=128, required=True, widget=forms.PasswordInput(attrs={'class': 'input-ui pr-2', 'placeholder': _('Enter password')}))
+    password2 = forms.CharField(max_length=128, required=True, widget=forms.PasswordInput(attrs={'class': 'input-ui pr-2', 'placeholder': _('Repeat password')}))
+    checkbox = forms.BooleanField(required=True, widget=forms.CheckboxInput(attrs={'class': 'custom-control-input'}))
+
+    def clean(self):
+        mobile = self.cleaned_data.get('mobile')
+        password1 = self.cleaned_data.get('password1')
+        password2 = self.cleaned_data.get('password2')
+
+        # Checking mobile format
+        if not mobile_format_check(mobile):
+            raise ValidationError(_('Enter a valid mobile number'), code='INVALID-MOBILE')
+
+        # Checking passwords
+        if password1 != password2:
+            raise ValidationError(_('Passwords are not match'), code='PASSWORDS-MATCHING')
+
+        # Checking user existence
+        if User.objects.filter(mobile=mobile).exists():
+            raise ValidationError(_('User with this mobile number is already exists'), code='USER-EXISTS')
+
+        return self.cleaned_data
