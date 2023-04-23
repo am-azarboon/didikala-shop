@@ -52,7 +52,7 @@ class UserChangeForm(forms.ModelForm):
         fields = ('email', 'password', 'mobile', 'access_level', 'is_active', 'is_admin')
 
 
-# Login Form
+# Login form
 class LoginForm(forms.Form):
     username = forms.CharField(max_length=128, required=True, widget=forms.TextInput(attrs={'class': 'input-ui pr-2', 'placeholder': _('Enter your mobile or email address')}))
     password = forms.CharField(max_length=128, required=True, widget=forms.PasswordInput(attrs={'class': 'input-ui pr-2', 'placeholder': _('Enter your password')}))
@@ -63,7 +63,7 @@ class LoginForm(forms.Form):
 
         # Checking username format(email or mobile)
         if not mobile_format_check(username) and not email_format_check(username):
-            raise ValidationError(_('Please Enter a valid mobile or email address'), code='INVALID-USERNAME')
+            raise ValidationError(_('Mobile or email address is not valid'), code='INVALID-USERNAME')
 
         # Checking user existence
         user = authenticate(username=username, password=password)
@@ -73,7 +73,7 @@ class LoginForm(forms.Form):
         return self.cleaned_data
 
 
-# Register Form
+# Register form
 class RegisterForm(forms.Form):
     mobile = forms.CharField(max_length=11, required=True, widget=forms.TextInput(attrs={'class': 'input-ui pr-2', 'placeholder': _('Enter your mobile number')}))
     password1 = forms.CharField(max_length=128, required=True, widget=forms.PasswordInput(attrs={'class': 'input-ui pr-2', 'placeholder': _('Enter password')}))
@@ -87,7 +87,7 @@ class RegisterForm(forms.Form):
 
         # Checking mobile format
         if not mobile_format_check(mobile):
-            raise ValidationError(_('Enter a valid mobile number'), code='INVALID-MOBILE')
+            raise ValidationError(_('Mobile number is not valid'), code='INVALID-MOBILE')
 
         # Checking passwords
         if password1 != password2:

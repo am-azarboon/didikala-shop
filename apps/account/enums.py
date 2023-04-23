@@ -5,8 +5,8 @@ from django.db.models import TextChoices
 # UserAccessLevel Choices
 class UserAccessLevel(TextChoices):
     USER = 'user', _('User')
-    SELLER = 'seller', _('Seller')
     MANAGER = 'manager', _('Manager')
+    SELLER = 'seller', _('Seller')
     CREATOR = 'creator', _('Creator')
 
 

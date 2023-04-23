@@ -17,6 +17,7 @@ class User(AbstractBaseUser):
     access_level = models.CharField(_('Access level'), max_length=32, choices=AccessLevel.choices, default=AccessLevel.choices[0])
     is_active = models.BooleanField(_('Active'), default=True)
     is_admin = models.BooleanField(_('Admin'), default=False)
+    verified = models.BooleanField(_('Verified'), editable=False, default=False)
 
     objects = UserManager()
 
@@ -30,6 +31,14 @@ class User(AbstractBaseUser):
 
     def __str__(self):
         return self.mobile
+
+    def save(self, *args, **kwargs):
+        if self.access_level != 'user':
+            self.verified = True  # Verify admin accounts
+        else:
+            self.verified = False
+
+        return super(User, self).save(*args, **kwargs)
 
     def has_perm(self, perm, obj=None):
         """Does the user have a specific permission?"""
@@ -58,10 +67,12 @@ class Profile(models.Model):
     gender = models.CharField(_('Gender'), max_length=8, null=True, blank=True, choices=Gender.choices)
     melli_code = models.CharField(_('Melli code'), max_length=10, null=True, blank=True, validators=[arithmetic_numbers])
 
-    # Additional info
-    date_of_birth = jmodels.jDateField(_('Date of birth'), null=True, blank=True)
+    # Confirmation info
     is_foreign_citizen = models.BooleanField(_('I\'m foreign citizen'), default=False)
     is_subscriber = models.BooleanField(_('Subscribe'), default=False)
+
+    # Additional info
+    date_of_birth = jmodels.jDateField(_('Date of birth'), null=True, blank=True)
     profile_image = models.ImageField(_('Profile image'), null=True, blank=True, upload_to="image/profiles")
 
     # Create/update time
