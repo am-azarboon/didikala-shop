@@ -50,3 +50,24 @@ class UserChangeForm(forms.ModelForm):
     class Meta:
         model = User
         fields = ('email', 'password', 'mobile', 'access_level', 'is_active', 'is_admin')
+
+
+# Login Form
+class LoginForm(forms.Form):
+    username = forms.CharField(max_length=128, required=True, widget=forms.TextInput(attrs={'class': 'input-ui pr-2', 'placeholder': _('Enter your mobile or email address')}))
+    password = forms.CharField(max_length=128, required=True, widget=forms.PasswordInput(attrs={'class': 'input-ui pr-2', 'placeholder': _('Enter your password')}))
+
+    def clean(self):
+        username = self.cleaned_data.get('username')
+        password = self.cleaned_data.get('password')
+
+        # Checking username format(email or mobile)
+        if not mobile_format_check(username) and not email_format_check(username):
+            raise ValidationError(_('Please Enter a valid mobile or email address'), code='INVALID-USERNAME')
+
+        # Checking user existence
+        user = authenticate(username=username, password=password)
+        if user is None:
+            raise ValidationError(_('Username or password is not correct'), code='USER-NOT-FOUND')
+
+        return self.cleaned_data

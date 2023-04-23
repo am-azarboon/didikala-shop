@@ -1,6 +1,6 @@
 from django.contrib.auth.models import AbstractBaseUser
 from django.utils.translation import gettext_lazy as _
-from django_jalali.db import models as Jmodels
+from django_jalali.db import models as jmodels
 from .managers import UserManager
 from django.db import models
 from .validators import *
@@ -59,7 +59,7 @@ class Profile(models.Model):
     melli_code = models.CharField(_('Melli code'), max_length=10, null=True, blank=True, validators=[arithmetic_numbers])
 
     # Additional info
-    date_of_birth = Jmodels.jDateField(_('Date of birth'), null=True, blank=True)
+    date_of_birth = jmodels.jDateField(_('Date of birth'), null=True, blank=True)
     is_foreign_citizen = models.BooleanField(_('I\'m foreign citizen'), default=False)
     is_subscriber = models.BooleanField(_('Subscribe'), default=False)
     profile_image = models.ImageField(_('Profile image'), null=True, blank=True, upload_to="image/profiles")
