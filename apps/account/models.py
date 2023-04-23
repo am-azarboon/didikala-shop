@@ -14,12 +14,12 @@ class User(AbstractBaseUser):
     # Model Fields
     email = models.EmailField(_('Email address'), max_length=255, null=True, blank=True)
     mobile = models.CharField(_('Mobile number'), max_length=11, null=False, unique=True)
-    access_level = models.CharField(_('Access level'), max_length=32, choices=AccessLevel.choices, default=AccessLevel.choices[0])
     is_active = models.BooleanField(_('Active'), default=True)
     is_admin = models.BooleanField(_('Admin'), default=False)
     verified = models.BooleanField(_('Verified'), editable=False, default=False)
+    access_level = models.CharField(_('Access level'), max_length=32, choices=AccessLevel.choices, default=AccessLevel.choices[0])
 
-    objects = UserManager()
+    objects = UserManager()  # Set UserManager as model object manager
 
     USERNAME_FIELD = 'mobile'
 
