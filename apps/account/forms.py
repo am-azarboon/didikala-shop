@@ -1,9 +1,8 @@
+from .validators import mobile_format_check, email_format_check, arithmetic_numbers
 from django.contrib.auth.forms import ReadOnlyPasswordHashField
-from .validators import mobile_format_check, email_format_check
 from django.utils.translation import gettext_lazy as _
 from django.core.exceptions import ValidationError
 from django.contrib.auth import authenticate
-from .validators import arithmetic_numbers
 from .models import User, Profile
 from django import forms
 
@@ -33,9 +32,11 @@ class UserCreationForm(forms.ModelForm):
         # Save the provided password in hashed format
         user = super().save(commit=False)
         user.set_password(self.cleaned_data['password1'])
+        user.verified = True
 
         if commit:
             user.save()
+
         return user
 
 
@@ -67,7 +68,7 @@ class LoginForm(forms.Form):
 
         # Checking user existence
         user = authenticate(username=username, password=password)
-        if user is None:
+        if user is None or user.verified is False:
             raise ValidationError(_('Username or password is not correct'), code='USER-NOT-FOUND')
 
         return self.cleaned_data
@@ -94,7 +95,43 @@ class RegisterForm(forms.Form):
             raise ValidationError(_('Passwords are not match'), code='PASSWORDS-MATCHING')
 
         # Checking user existence
-        if User.objects.filter(mobile=mobile).exists():
+        if User.objects.filter(mobile=mobile, verified=True).exists():
             raise ValidationError(_('User with this mobile number is already exists'), code='USER-EXISTS')
 
         return self.cleaned_data
+
+
+# Mobile form
+class MobileForm(forms.Form):
+    mobile = forms.CharField(max_length=11, required=True, widget=forms.TextInput(attrs={'class': 'input-ui pr-2', 'placeholder': _('Enter your mobile number')}))
+
+    def clean(self):
+        mobile = self.cleaned_data.get('mobile')
+
+        # Check mobile validation
+        if not mobile_format_check(mobile):
+            raise ValidationError(_('Mobile number is not valid'), code='INVALID-MOBILE')
+
+        # Check user existence
+        if not User.objects.filter(mobile=mobile, verified=True).exists():
+            raise ValidationError(_('User with this mobile number is not exists'), code='USER-NOT-FOUND')
+
+        return self.cleaned_data
+
+
+# OtpCheck form
+class OtpCheckForm(forms.Form):
+    number_one = forms.CharField(max_length=1, required=True, validators=[arithmetic_numbers], widget=forms.TextInput(attrs={'class': 'line-number'}))
+    number_two = forms.CharField(max_length=1, required=True, validators=[arithmetic_numbers], widget=forms.TextInput(attrs={'class': 'line-number'}))
+    number_three = forms.CharField(max_length=1, required=True, validators=[arithmetic_numbers], widget=forms.TextInput(attrs={'class': 'line-number'}))
+    number_four = forms.CharField(max_length=1, required=True, validators=[arithmetic_numbers], widget=forms.TextInput(attrs={'class': 'line-number'}))
+    number_five = forms.CharField(max_length=1, required=True, validators=[arithmetic_numbers], widget=forms.TextInput(attrs={'class': 'line-number'}))
+
+    def clean(self):
+        cleaned_data = self.cleaned_data
+
+        # Concatenate numbers
+        otp_code = cleaned_data['number_one'] + cleaned_data['number_two'] + cleaned_data['number_three'] + \
+            cleaned_data['number_four'] + cleaned_data['number_five']
+
+        return otp_code

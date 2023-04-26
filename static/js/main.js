@@ -328,7 +328,7 @@ $(document).ready(function (l) {
       text: '<span class="day">%s</span><span class="hour">%s</span><span>: %s</span><span>%s</span>',
       end: function () {
         $countdownOptionEnd.html(
-          "<a href='/user/otpsend' class='btn-link-border'>ارسال مجدد</a>"
+          "<a href='/account/otp_send' class='btn-link-border'>ارسال مجدد</a>"
         );
       },
     });

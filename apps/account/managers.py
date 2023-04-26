@@ -18,8 +18,8 @@ class UserManager(BaseUserManager):
         user.set_password(password)
 
         # Verify user
-        if verify:
-            user.verified = True
+        if not verify:
+            user.access_level = 'user'
 
         user.save(using=self._db)
 

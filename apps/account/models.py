@@ -32,14 +32,6 @@ class User(AbstractBaseUser):
     def __str__(self):
         return self.mobile
 
-    def save(self, *args, **kwargs):
-        if self.access_level != 'user':
-            self.verified = True  # Verify admin accounts
-        else:
-            self.verified = False
-
-        return super(User, self).save(*args, **kwargs)
-
     def has_perm(self, perm, obj=None):
         """Does the user have a specific permission?"""
         # Simplest possible answer: Yes, always
