@@ -1,6 +1,7 @@
 from django.utils.translation import gettext_lazy as _
 from django.utils.html import format_html
 from django.utils.text import slugify
+from django.shortcuts import reverse
 from django.db import models
 
 
@@ -65,12 +66,14 @@ class ProductCustom(models.Model):
     class Meta:
         verbose_name = _('Custom product')
         verbose_name_plural = _('Custom products')
-
         ordering = ('idkc',)
 
     def save(self, force_insert=False, force_update=False, using=None, update_fields=None):
         self.slug = slugify(self.product.title)
         super(ProductCustom, self).save()
+
+    def get_absolute_url(self):
+        return reverse('product:detail', args=[self.idkc])
 
     def __str__(self):
         return f"{self.idkc} - {self.product}"

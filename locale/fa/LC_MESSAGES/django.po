@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2023-04-27 17:00+0330\n"
+"POT-Creation-Date: 2023-04-27 18:38+0330\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -135,8 +135,8 @@ msgstr "کاربر باید یک شماره موبایل داشته باشد"
 msgid "Email address"
 msgstr "آدرس ایمیل"
 
-#: .\apps\account\models.py:17 .\apps\product\models.py:38
-#: .\apps\product\models.py:62
+#: .\apps\account\models.py:17 .\apps\product\models.py:39
+#: .\apps\product\models.py:63
 msgid "Active"
 msgstr "فعال"
 
@@ -192,7 +192,7 @@ msgstr "تاریخ تولد"
 msgid "Profile image"
 msgstr "تصویر پروفایل"
 
-#: .\apps\account\models.py:71 .\apps\product\models.py:63
+#: .\apps\account\models.py:71 .\apps\product\models.py:64
 msgid "Created time"
 msgstr "تاریخ ایجاد"
 
@@ -224,114 +224,118 @@ msgstr "دیدیکالا"
 msgid "Products Section"
 msgstr "بخش محصولات"
 
-#: .\apps\product\models.py:9
+#: .\apps\product\models.py:10
 msgid "Title Fa"
 msgstr "عنوان فارسی"
 
-#: .\apps\product\models.py:10
+#: .\apps\product\models.py:11
 msgid "Title En"
 msgstr "عنوان انگلیسی"
 
-#: .\apps\product\models.py:11
+#: .\apps\product\models.py:12
 msgid "Hex Code"
 msgstr "کد رنگی"
 
-#: .\apps\product\models.py:11
+#: .\apps\product\models.py:12
 msgid "Example (001100)"
 msgstr "مثال (001100)"
 
-#: .\apps\product\models.py:14 .\apps\product\models.py:59
+#: .\apps\product\models.py:15 .\apps\product\models.py:60
 msgid "Color"
 msgstr "رنگ"
 
-#: .\apps\product\models.py:15
+#: .\apps\product\models.py:16
 msgid "Colors"
 msgstr "رنگ ها"
 
-#: .\apps\product\models.py:23
+#: .\apps\product\models.py:24
 msgid "Title"
 msgstr "عنوان"
 
-#: .\apps\product\models.py:23
+#: .\apps\product\models.py:24
 msgid "Example (XL)"
 msgstr "مثال (XL)"
 
-#: .\apps\product\models.py:26 .\apps\product\models.py:60
+#: .\apps\product\models.py:27 .\apps\product\models.py:61
 msgid "Size"
 msgstr "اندازه"
 
-#: .\apps\product\models.py:27
+#: .\apps\product\models.py:28
 msgid "Sizes"
 msgstr "اندازه ها"
 
-#: .\apps\product\models.py:36
+#: .\apps\product\models.py:37
 msgid "Product Title"
 msgstr "عنوان محصول"
 
-#: .\apps\product\models.py:37
+#: .\apps\product\models.py:38
 msgid "Product Video"
 msgstr "ویدئو محصول"
 
-#: .\apps\product\models.py:39
+#: .\apps\product\models.py:40
 msgid "Selling counts"
 msgstr "تعداد فروش"
 
-#: .\apps\product\models.py:42 .\apps\product\models.py:81
+#: .\apps\product\models.py:43 .\apps\product\models.py:84
 msgid "Product"
 msgstr "محصول"
 
-#: .\apps\product\models.py:43
+#: .\apps\product\models.py:44
 msgid "Products"
 msgstr "محصولات"
 
-#: .\apps\product\models.py:53
+#: .\apps\product\models.py:54
 msgid "Main product"
 msgstr "محصول اصلی"
 
-#: .\apps\product\models.py:54
+#: .\apps\product\models.py:55
 msgid "Price"
 msgstr "قیمت"
 
-#: .\apps\product\models.py:54
+#: .\apps\product\models.py:55
 msgid "Rials"
 msgstr "ریال"
 
-#: .\apps\product\models.py:55
+#: .\apps\product\models.py:56
 msgid "Discount"
 msgstr "تخفیف"
 
-#: .\apps\product\models.py:55
+#: .\apps\product\models.py:56
 msgid "Percentage(%)"
 msgstr "درصد(%)"
 
-#: .\apps\product\models.py:56
+#: .\apps\product\models.py:57
 msgid "Counts"
 msgstr "تعداد"
 
-#: .\apps\product\models.py:57
+#: .\apps\product\models.py:58
 msgid "Slug"
 msgstr "اسلاگ"
 
-#: .\apps\product\models.py:66
+#: .\apps\product\models.py:67
 msgid "Custom product"
 msgstr "محصول کاستوم"
 
-#: .\apps\product\models.py:67
+#: .\apps\product\models.py:68
 msgid "Custom products"
 msgstr "محصولات کاستوم"
 
-#: .\apps\product\models.py:82 .\apps\product\models.py:86
+#: .\apps\product\models.py:85 .\apps\product\models.py:89
 #: .\venv\Lib\site-packages\django\db\models\fields\files.py:393
 msgid "Image"
 msgstr "تصویر"
 
-#: .\apps\product\models.py:83
+#: .\apps\product\models.py:86
 msgid "Short Description"
 msgstr "توضیح کوتاه"
 
-#: .\apps\product\models.py:87
+#: .\apps\product\models.py:90
 msgid "Images"
 msgstr "تصاویر"
+
+#: .\apps\product\templates\product\product_detail.html:8
+msgid "Product detail"
+msgstr "جزئیات محصول"
 
 #: .\didikala\settings.py:134
 msgid "Persian"

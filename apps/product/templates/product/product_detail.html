@@ -1,11 +1,12 @@
 {% extends 'base.html' %}
-{#{% load filters %}#}
+{% load filters %}
 {% load static %}
+{% load i18n %}
 
-<head>
-    <title></title>
-    {% include 'includes/head_references.html' %}
-</head>
+
+{% block title %}
+    {% trans 'Product detail' %}
+{% endblock %}
 
 {% block content %}
     <!-- Start main-content -->
@@ -94,17 +95,17 @@
                                             <h2>انتخاب رنگ:</h2>
                                         </div>
                                         <ul class="product-variants float-right ml-3">
-                                            {% for color in product.product.product_custom.all %}
+                                            {% for product_color in product.product.product_custom.all %}
                                                 <li class="ui-variant">
                                                     <label class="ui-variant ui-variant--color">
                                                         <span class="ui-variant-shape"
-                                                              style="background-color: #{{ color.color.hex_code }}"></span>
-                                                        <input type="radio" value="{{ color.color.id }}" name="color"
+                                                              style="background-color: #{{ product_color.color.hex_code }}"></span>
+                                                        <input type="radio" value="{{ product_color.color.id }}" name="color"
                                                                class="variant-selector"
-                                                                {% if product.color == color.color %}
+                                                                {% if product.color == product_color.color %}
                                                                checked {% endif %}
-                                                               onclick="">
-                                                        <span class="ui-variant--check">{{ color.color.title_fa }}</span>
+                                                                onclick="window.location='{{ product_color.get_absolute_url }}'">
+                                                        <span class="ui-variant--check">{{ product_color.color.title_fa }}</span>
                                                     </label>
                                                 </li>
                                             {% endfor %}
@@ -253,19 +254,19 @@
                                                 {% if product.discount != 0 %}
                                                     <div class="product-seller-price-info">
                                                         <div class="product-seller-price-prev">
-                                                            {{ product.price }}
+                                                            {{ product.price|changing }}
                                                         </div>
                                                         <div class="product-seller-price-off">
                                                             {{ product.discount }}%
                                                         </div>
                                                     </div>
                                                     <div class="product-seller-price-real">
-                                                        <div class="product-seller-price-raw">{{ product.price }}</div>
+                                                        <div class="product-seller-price-raw">{{ product.price|changing|intcomma }}</div>
                                                         تومان
                                                     </div>
                                                 {% else %}
                                                     <div class="product-seller-price-real">
-                                                        <div class="product-seller-price-raw">{{ product.price }}</div>
+                                                        <div class="product-seller-price-raw">{{ product.price|changing|intcomma }}</div>
                                                         تومان
                                                     </div>
                                                 {% endif %}
@@ -286,97 +287,7 @@
                     <a href="#" class="mb-add-to-cart-btn">افزودن به سبد خرید</a>
                 </div> -->
             </div>
-            <!-- sellers -->
-            <div class="product-sellers shadow-around mb-5" id="product-seller-all">
-                <div class="product-seller">
-                    <div class="product-seller-col">
-                        <div class="product-seller-title">
-                            <div class="icon">
-                                <i class="fas fa-store-alt"></i>
-                            </div>
-                            <div class="detail">
-                                <div class="name">دیدیکالا <span
-                                        class="badge badge-light rounded-pill">برگزیده</span>
-                                </div>
-                                <div class="rating">
-                                    <span class="value">۹۰.۲٪</span>
-                                    <span class="label">رضایت خریداران</span>
-                                    <span class="divider">|</span>
-                                    <span class="label">عملکرد</span>
-                                    <span class="value">عالی</span>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="product-seller-col">
-                        <div class="product-seller-conditions">
-                            <div class="product-seller-info">
-                                <i class="fad fa-truck-container"></i>
-                                <span>ارسال از دیدیکالا</span>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="product-seller-col">
-                        <div class="product-seller-guarantee">
-                            <div class="product-seller-info">
-                                <i class="fad fa-shield-check"></i>
-                                <span>گارانتی ۱۸ ماهه دیدیکالا</span>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="product-seller-col">
-                        <div class="product-seller-price-action">
-                            <div class="product-seller-price">۵,۵۵۰,۰۰۰<span class="currency">تومان</span></div>
-                            <div class="product-seller-action"><a href="#" class="btn btn-outline-danger">افزودن به
-                                سبد</a></div>
-                        </div>
-                    </div>
-                </div>
-                <div class="product-seller">
-                    <div class="product-seller-col">
-                        <div class="product-seller-title">
-                            <div class="icon">
-                                <i class="fas fa-store-alt"></i>
-                            </div>
-                            <div class="detail">
-                                <div class="name">دیدیکالا <span
-                                        class="badge badge-light rounded-pill">برگزیده</span>
-                                </div>
-                                <div class="rating">
-                                    <span class="value">۹۰.۲٪</span>
-                                    <span class="label">رضایت خریداران</span>
-                                    <span class="divider">|</span>
-                                    <span class="label">عملکرد</span>
-                                    <span class="value">عالی</span>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="product-seller-col">
-                        <div class="product-seller-conditions">
-                            <div class="product-seller-info">
-                                <i class="fad fa-truck-container"></i>
-                                <span>ارسال از دیدیکالا</span>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="product-seller-col">
-                        <div class="product-seller-guarantee">
-                            <div class="product-seller-info">
-                                <i class="fad fa-shield-check"></i>
-                                <span>گارانتی ۱۸ ماهه دیدیکالا</span>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="product-seller-col">
-                        <div class="product-seller-price-action">
-                            <div class="product-seller-price">۵,۵۵۰,۰۰۰<span class="currency">تومان</span></div>
-                            <div class="product-seller-action"><a href="#" class="btn btn-outline-danger">افزودن به
-                                سبد</a></div>
-                        </div>
-                    </div>
-                </div>
-            </div>
+
             <div class="dt-sn mb-5 px-0 dt-sl pt-0">
                 <!-- Start tabs -->
                 <section class="tabs-product-info mb-3 dt-sl">
