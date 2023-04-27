@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2023-04-23 15:19+0330\n"
+"POT-Creation-Date: 2023-04-27 17:00+0330\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -42,7 +42,7 @@ msgstr "مجوزها"
 msgid "Accounts Section"
 msgstr "بخش حساب های کاربری"
 
-#: .\apps\account\enums.py:7 .\apps\account\models.py:64
+#: .\apps\account\enums.py:7 .\apps\account\models.py:56
 msgid "User"
 msgstr "کاربر"
 
@@ -66,63 +66,67 @@ msgstr "مرد"
 msgid "Female"
 msgstr "زن"
 
-#: .\apps\account\forms.py:15 .\apps\account\forms.py:48
+#: .\apps\account\forms.py:14 .\apps\account\forms.py:49
 msgid "Password"
 msgstr "گذرواژه"
 
-#: .\apps\account\forms.py:16
+#: .\apps\account\forms.py:15
 msgid "Password repeat"
 msgstr "تکرار گذرواژه"
 
-#: .\apps\account\forms.py:17 .\apps\account\models.py:16
+#: .\apps\account\forms.py:16 .\apps\account\models.py:16
 msgid "Mobile number"
 msgstr "شماره موبایل"
 
-#: .\apps\account\forms.py:29
+#: .\apps\account\forms.py:28
 msgid "Passwords are not match!"
 msgstr "گذرواژه یکسان نیست!"
 
-#: .\apps\account\forms.py:57
+#: .\apps\account\forms.py:58
 msgid "Enter your mobile or email address"
 msgstr "شماره موبایل یا ایمیل خود را وارد کنید"
 
-#: .\apps\account\forms.py:58
+#: .\apps\account\forms.py:59
 msgid "Enter your password"
 msgstr "گذرواژه خود را وارد کنید"
 
-#: .\apps\account\forms.py:66
+#: .\apps\account\forms.py:67
 msgid "Mobile or email address is not valid"
 msgstr "موبایل یا آدرس ایمیل معتبر نمی باشد"
 
-#: .\apps\account\forms.py:71
+#: .\apps\account\forms.py:72
 msgid "Username or password is not correct"
 msgstr "اطلاعات وارد شده صحیح نمی باشد"
 
-#: .\apps\account\forms.py:78
+#: .\apps\account\forms.py:79 .\apps\account\forms.py:106
 msgid "Enter your mobile number"
 msgstr "شماره موبایل خود را وارد کنید"
 
-#: .\apps\account\forms.py:79
+#: .\apps\account\forms.py:80
 msgid "Enter password"
 msgstr "گذرواژه را وارد کنید"
 
-#: .\apps\account\forms.py:80
+#: .\apps\account\forms.py:81
 msgid "Repeat password"
 msgstr "تکرار گذرواژه"
 
-#: .\apps\account\forms.py:90
+#: .\apps\account\forms.py:91 .\apps\account\forms.py:113
 msgid "Mobile number is not valid"
 msgstr "شماره موبایل معتبر نمی باشد"
 
-#: .\apps\account\forms.py:94
+#: .\apps\account\forms.py:95
 msgid "Passwords are not match"
 msgstr "گذرواژه یکسان نمی باشد!"
 
-#: .\apps\account\forms.py:98
+#: .\apps\account\forms.py:99
 msgid "User with this mobile number is already exists"
 msgstr "کاربر با این شماره موبایل موجود می باشد"
 
-#: .\apps\account\managers.py:34
+#: .\apps\account\forms.py:117
+msgid "User with this mobile number is not exists"
+msgstr "کاربر با این شماره موبایل موجود نمی باشد"
+
+#: .\apps\account\managers.py:35
 msgid "Users must have a mobile number!"
 msgstr "کاربر باید یک شماره موبایل داشته باشد"
 
@@ -131,21 +135,22 @@ msgstr "کاربر باید یک شماره موبایل داشته باشد"
 msgid "Email address"
 msgstr "آدرس ایمیل"
 
-#: .\apps\account\models.py:17
-msgid "Access level"
-msgstr "سطح دسترسی"
-
-#: .\apps\account\models.py:18
+#: .\apps\account\models.py:17 .\apps\product\models.py:38
+#: .\apps\product\models.py:62
 msgid "Active"
 msgstr "فعال"
 
-#: .\apps\account\models.py:19
+#: .\apps\account\models.py:18
 msgid "Admin"
 msgstr "ادمین"
 
-#: .\apps\account\models.py:20
+#: .\apps\account\models.py:19
 msgid "Verified"
 msgstr "تایید شده"
+
+#: .\apps\account\models.py:20
+msgid "Access level"
+msgstr "سطح دسترسی"
 
 #: .\apps\account\models.py:29
 msgid "User account"
@@ -155,51 +160,51 @@ msgstr "حساب کاربری"
 msgid "Users accounts"
 msgstr "حساب های کاربران"
 
-#: .\apps\account\models.py:65
+#: .\apps\account\models.py:57
 msgid "First name"
 msgstr "نام"
 
-#: .\apps\account\models.py:66
+#: .\apps\account\models.py:58
 msgid "Last name"
 msgstr "نام خانوادگی"
 
-#: .\apps\account\models.py:67
+#: .\apps\account\models.py:59
 msgid "Gender"
 msgstr "جنسیت"
 
-#: .\apps\account\models.py:68
+#: .\apps\account\models.py:60
 msgid "Melli code"
 msgstr "کد ملی"
 
-#: .\apps\account\models.py:71
+#: .\apps\account\models.py:63
 msgid "I'm foreign citizen"
 msgstr "تبعه خارجی هستم"
 
-#: .\apps\account\models.py:72
+#: .\apps\account\models.py:64
 msgid "Subscribe"
 msgstr "مشترک خبرنامه"
 
-#: .\apps\account\models.py:75
+#: .\apps\account\models.py:67
 msgid "Date of birth"
 msgstr "تاریخ تولد"
 
-#: .\apps\account\models.py:76
+#: .\apps\account\models.py:68
 msgid "Profile image"
 msgstr "تصویر پروفایل"
 
-#: .\apps\account\models.py:79
+#: .\apps\account\models.py:71 .\apps\product\models.py:63
 msgid "Created time"
 msgstr "تاریخ ایجاد"
 
-#: .\apps\account\models.py:80
+#: .\apps\account\models.py:72
 msgid "Updated time"
 msgstr "تاریخ تغییر"
 
-#: .\apps\account\models.py:83
+#: .\apps\account\models.py:75
 msgid "User profile"
 msgstr "پروفایل کاربر"
 
-#: .\apps\account\models.py:84
+#: .\apps\account\models.py:76
 msgid "Users profiles"
 msgstr "پروفایل های کاربران"
 
@@ -207,11 +212,128 @@ msgstr "پروفایل های کاربران"
 msgid "Invalid input"
 msgstr "اطلاعات نادرست"
 
+#: .\apps\account\views.py:112
+msgid "Entered otp is not correct"
+msgstr "کد وارد شده صحیح نمی باشد"
+
 #: .\apps\main\templates\main\index.html:6
 msgid "didikala"
 msgstr "دیدیکالا"
 
-#: .\didikala\settings.py:133
+#: .\apps\product\apps.py:8
+msgid "Products Section"
+msgstr "بخش محصولات"
+
+#: .\apps\product\models.py:9
+msgid "Title Fa"
+msgstr "عنوان فارسی"
+
+#: .\apps\product\models.py:10
+msgid "Title En"
+msgstr "عنوان انگلیسی"
+
+#: .\apps\product\models.py:11
+msgid "Hex Code"
+msgstr "کد رنگی"
+
+#: .\apps\product\models.py:11
+msgid "Example (001100)"
+msgstr "مثال (001100)"
+
+#: .\apps\product\models.py:14 .\apps\product\models.py:59
+msgid "Color"
+msgstr "رنگ"
+
+#: .\apps\product\models.py:15
+msgid "Colors"
+msgstr "رنگ ها"
+
+#: .\apps\product\models.py:23
+msgid "Title"
+msgstr "عنوان"
+
+#: .\apps\product\models.py:23
+msgid "Example (XL)"
+msgstr "مثال (XL)"
+
+#: .\apps\product\models.py:26 .\apps\product\models.py:60
+msgid "Size"
+msgstr "اندازه"
+
+#: .\apps\product\models.py:27
+msgid "Sizes"
+msgstr "اندازه ها"
+
+#: .\apps\product\models.py:36
+msgid "Product Title"
+msgstr "عنوان محصول"
+
+#: .\apps\product\models.py:37
+msgid "Product Video"
+msgstr "ویدئو محصول"
+
+#: .\apps\product\models.py:39
+msgid "Selling counts"
+msgstr "تعداد فروش"
+
+#: .\apps\product\models.py:42 .\apps\product\models.py:81
+msgid "Product"
+msgstr "محصول"
+
+#: .\apps\product\models.py:43
+msgid "Products"
+msgstr "محصولات"
+
+#: .\apps\product\models.py:53
+msgid "Main product"
+msgstr "محصول اصلی"
+
+#: .\apps\product\models.py:54
+msgid "Price"
+msgstr "قیمت"
+
+#: .\apps\product\models.py:54
+msgid "Rials"
+msgstr "ریال"
+
+#: .\apps\product\models.py:55
+msgid "Discount"
+msgstr "تخفیف"
+
+#: .\apps\product\models.py:55
+msgid "Percentage(%)"
+msgstr "درصد(%)"
+
+#: .\apps\product\models.py:56
+msgid "Counts"
+msgstr "تعداد"
+
+#: .\apps\product\models.py:57
+msgid "Slug"
+msgstr "اسلاگ"
+
+#: .\apps\product\models.py:66
+msgid "Custom product"
+msgstr "محصول کاستوم"
+
+#: .\apps\product\models.py:67
+msgid "Custom products"
+msgstr "محصولات کاستوم"
+
+#: .\apps\product\models.py:82 .\apps\product\models.py:86
+#: .\venv\Lib\site-packages\django\db\models\fields\files.py:393
+msgid "Image"
+msgstr "تصویر"
+
+#: .\apps\product\models.py:83
+msgid "Short Description"
+msgstr "توضیح کوتاه"
+
+#: .\apps\product\models.py:87
+msgid "Images"
+msgstr "تصاویر"
+
+#: .\didikala\settings.py:134
 msgid "Persian"
 msgstr "فارسی"
 
@@ -280,7 +402,7 @@ msgstr ""
 
 #: .\venv\Lib\site-packages\django\core\validators.py:175
 msgid "Enter a valid email address."
-msgstr ""
+msgstr "آدرس ایمیل معتبر وارد کنید"
 
 #. Translators: "letters" means latin letters: a-z and A-Z.
 #: .\venv\Lib\site-packages\django\core\validators.py:256
@@ -634,10 +756,6 @@ msgstr ""
 
 #: .\venv\Lib\site-packages\django\db\models\fields\files.py:232
 msgid "File"
-msgstr ""
-
-#: .\venv\Lib\site-packages\django\db\models\fields\files.py:393
-msgid "Image"
 msgstr ""
 
 #: .\venv\Lib\site-packages\django\db\models\fields\json.py:26
@@ -1490,17 +1608,11 @@ msgstr ""
 #~ msgid "Mobile number is not correct"
 #~ msgstr "شماره موبایل صحیح نمی باشد"
 
-#~ msgid "Entered code is not correct"
-#~ msgstr "کد وارد شده صحیح نمی باشد"
-
 #~ msgid "Mobile number is incorrect"
 #~ msgstr "شماره موبایل صحیح نمی باشد"
 
 #~ msgid "Invalid melli code"
 #~ msgstr "کد ملی نامعتبر"
-
-#~ msgid "User with this mobile is not exists"
-#~ msgstr "کاربر با این شماره موبایل موجود نمی باشد"
 
 #~ msgid "Only displayed"
 #~ msgstr "مشخصات ثبت"

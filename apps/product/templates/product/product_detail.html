@@ -1,5 +1,5 @@
 {% extends 'base.html' %}
-{% load filters %}
+{#{% load filters %}#}
 {% load static %}
 
 <head>
@@ -48,7 +48,7 @@
                         <div class="product-gallery">
                             <span class="badge">پر فروش</span>
                             <div class="product-carousel owl-carousel" data-slider-id="1">
-                                {% for image in product.product.images.all %}
+                                {% for image in product.product.product_image.all %}
                                     <div class="item">
                                         <a class="gallery-item" href="{{ image.image.url }}"
                                            data-fancybox="gallery1">
@@ -59,11 +59,10 @@
                             </div>
                             <div class="d-flex justify-content-center flex-wrap">
                                 <ul class="product-thumbnails owl-thumbs ml-2" data-slider-id="1">
-                                    {% for image in product.product.images.all %}
+                                    {% for image in product.product.product_image.all %}
                                         <li class="owl-thumb-item active">
                                             <a href="">
-                                                <img src="{{ image.image.url }}"
-                                                     alt="Product">
+                                                <img src="{{ image.image.url }}" alt="Product">
                                             </a>
                                         </li>
                                     {% endfor %}
@@ -95,7 +94,7 @@
                                             <h2>انتخاب رنگ:</h2>
                                         </div>
                                         <ul class="product-variants float-right ml-3">
-                                            {% for color in product.product.product_customs.all %}
+                                            {% for color in product.product.product_custom.all %}
                                                 <li class="ui-variant">
                                                     <label class="ui-variant ui-variant--color">
                                                         <span class="ui-variant-shape"
@@ -166,8 +165,7 @@
                                                                     <span class="seller-name">دیدیکالا</span>
                                                                 </div>
                                                                 <div class="product-info-box-row">
-                                                                        <span
-                                                                                class="font-weight-bold u-text-big">۸۶.۶٪</span>
+                                                                        <span class="font-weight-bold u-text-big">۸۶.۶٪</span>
                                                                     رضایت از کالا
                                                                     <span class="text-secondary">
                                                                             (<span>۲۱</span> نفر)
@@ -258,7 +256,7 @@
                                                             {{ product.price }}
                                                         </div>
                                                         <div class="product-seller-price-off">
-                                                            {{ product.discount }}
+                                                            {{ product.discount }}%
                                                         </div>
                                                     </div>
                                                     <div class="product-seller-price-real">
@@ -267,7 +265,7 @@
                                                     </div>
                                                 {% else %}
                                                     <div class="product-seller-price-real">
-                                                        <div class="product-seller-price-raw">{{ product.price|changing|intcomma }}</div>
+                                                        <div class="product-seller-price-raw">{{ product.price }}</div>
                                                         تومان
                                                     </div>
                                                 {% endif %}
