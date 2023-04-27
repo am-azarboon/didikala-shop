@@ -30,6 +30,7 @@ INSTALLED_APPS = [
     # Created apps
     'apps.main.apps.MainConfig',
     'apps.account.apps.AccountConfig',
+    'apps.product.apps.ProductConfig',
 
     # Django-cleanup module
     'django_cleanup.apps.CleanupConfig',
