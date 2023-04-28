@@ -30,25 +30,6 @@ class ProductImageAdmin(admin.ModelAdmin):
     list_display = ('product', 'alt', 'show_image')
 
 
-# # Register ProductCustom
-# @admin.register(models.ProductCustom)
-# class ProductCustomAdmin(admin.ModelAdmin):
-#     list_display = ('idkc', 'title', 'price', 'is_active',)
-#     list_display_links = ('idkc', 'title',)
-#     search_fields = ('idkc', 'title',)
-#     list_filter = ('is_active',)
-#     fieldsets = (
-#         (None, {'fields': ('product', 'title',)}),
-#         ('بخش قیمت', {'fields': ('price', 'discount', 'count',)}),
-#         ('بخش دسترسی', {'fields': ('is_active',)}),
-#         ('بخش رنگ و سایز', {'fields': ('color', 'size',)}),
-#     )
-#     # Change formField attributes(size)
-#     formfield_overrides = {
-#         a_model.IntegerField: {'widget': forms.NumberInput(attrs={'size': '20',})},
-#     }
-
-
 # Register ProductCustom as inline
 class ProductCustomInline(admin.StackedInline):
     model = models.ProductCustom
