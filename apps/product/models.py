@@ -1,4 +1,5 @@
 from django.utils.translation import gettext_lazy as _
+from ckeditor.fields import RichTextField
 from django.utils.html import format_html
 from django.utils.text import slugify
 from django.shortcuts import reverse
@@ -37,6 +38,7 @@ class Product(models.Model):
     title = models.CharField(_('Product Title'), max_length=128)
     videos = models.FileField(_('Product Video'), upload_to='video/products', null=True, blank=True)
     is_active = models.BooleanField(_('Active'), default=True)
+    description = RichTextField(_('Description'), null=True, blank=True)
     selling_counts = models.PositiveIntegerField(_('Selling counts'), default=0, null=True, editable=False)
 
     class Meta:

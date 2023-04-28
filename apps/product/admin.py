@@ -19,7 +19,7 @@ class SizeAdmin(admin.ModelAdmin):
 
 
 # Register ProductImage as inline
-class ProductImage(admin.TabularInline):
+class ProductImageInline(admin.TabularInline):
     model = models.ProductImage
     extra = 0
 
@@ -61,8 +61,12 @@ class ProductCustomInline(admin.StackedInline):
 
 # Register Product
 @admin.register(models.Product)
-class Product(admin.ModelAdmin):
+class ProductAdmin(admin.ModelAdmin):
     list_display = ('idk', 'title',)
     list_display_links = ('idk', 'title',)
     search_fields = ('idk', 'title',)
-    inlines = (ProductImage, ProductCustomInline)
+    inlines = (ProductImageInline, ProductCustomInline)
+    # Change formField attributes(size)
+    formfield_overrides = {
+        a_model.CharField: {'widget': forms.TextInput(attrs={'size': '90'})},
+    }

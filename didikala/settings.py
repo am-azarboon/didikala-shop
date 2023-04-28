@@ -32,11 +32,10 @@ INSTALLED_APPS = [
     'apps.account.apps.AccountConfig',
     'apps.product.apps.ProductConfig',
 
-    # Django-cleanup module
+    # Django modules
     'django_cleanup.apps.CleanupConfig',
-
-    # Jalali calender module
     'django_jalali',
+    'ckeditor',
 ]
 
 MIDDLEWARE = [

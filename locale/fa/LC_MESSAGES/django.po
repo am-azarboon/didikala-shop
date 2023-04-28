@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2023-04-27 18:38+0330\n"
+"POT-Creation-Date: 2023-04-28 20:27+0330\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -135,8 +135,8 @@ msgstr "کاربر باید یک شماره موبایل داشته باشد"
 msgid "Email address"
 msgstr "آدرس ایمیل"
 
-#: .\apps\account\models.py:17 .\apps\product\models.py:39
-#: .\apps\product\models.py:63
+#: .\apps\account\models.py:17 .\apps\product\models.py:40
+#: .\apps\product\models.py:65
 msgid "Active"
 msgstr "فعال"
 
@@ -192,7 +192,7 @@ msgstr "تاریخ تولد"
 msgid "Profile image"
 msgstr "تصویر پروفایل"
 
-#: .\apps\account\models.py:71 .\apps\product\models.py:64
+#: .\apps\account\models.py:71 .\apps\product\models.py:66
 msgid "Created time"
 msgstr "تاریخ ایجاد"
 
@@ -217,119 +217,123 @@ msgid "Entered otp is not correct"
 msgstr "کد وارد شده صحیح نمی باشد"
 
 #: .\apps\main\templates\main\index.html:6
-msgid "didikala"
-msgstr "دیدیکالا"
+msgid "Online Shop Didikala"
+msgstr "فروشگاه اینترنتی دیدیکالا"
 
 #: .\apps\product\apps.py:8
 msgid "Products Section"
 msgstr "بخش محصولات"
 
-#: .\apps\product\models.py:10
+#: .\apps\product\models.py:11
 msgid "Title Fa"
 msgstr "عنوان فارسی"
 
-#: .\apps\product\models.py:11
+#: .\apps\product\models.py:12
 msgid "Title En"
 msgstr "عنوان انگلیسی"
 
-#: .\apps\product\models.py:12
+#: .\apps\product\models.py:13
 msgid "Hex Code"
 msgstr "کد رنگی"
 
-#: .\apps\product\models.py:12
+#: .\apps\product\models.py:13
 msgid "Example (001100)"
 msgstr "مثال (001100)"
 
-#: .\apps\product\models.py:15 .\apps\product\models.py:60
+#: .\apps\product\models.py:16 .\apps\product\models.py:62
 msgid "Color"
 msgstr "رنگ"
 
-#: .\apps\product\models.py:16
+#: .\apps\product\models.py:17
 msgid "Colors"
 msgstr "رنگ ها"
 
-#: .\apps\product\models.py:24
+#: .\apps\product\models.py:25
 msgid "Title"
 msgstr "عنوان"
 
-#: .\apps\product\models.py:24
+#: .\apps\product\models.py:25
 msgid "Example (XL)"
 msgstr "مثال (XL)"
 
-#: .\apps\product\models.py:27 .\apps\product\models.py:61
+#: .\apps\product\models.py:28 .\apps\product\models.py:63
 msgid "Size"
 msgstr "اندازه"
 
-#: .\apps\product\models.py:28
+#: .\apps\product\models.py:29
 msgid "Sizes"
 msgstr "اندازه ها"
 
-#: .\apps\product\models.py:37
+#: .\apps\product\models.py:38
 msgid "Product Title"
 msgstr "عنوان محصول"
 
-#: .\apps\product\models.py:38
+#: .\apps\product\models.py:39
 msgid "Product Video"
 msgstr "ویدئو محصول"
 
-#: .\apps\product\models.py:40
+#: .\apps\product\models.py:41
+msgid "Description"
+msgstr "توضیحات"
+
+#: .\apps\product\models.py:42
 msgid "Selling counts"
 msgstr "تعداد فروش"
 
-#: .\apps\product\models.py:43 .\apps\product\models.py:84
+#: .\apps\product\models.py:45 .\apps\product\models.py:86
 msgid "Product"
 msgstr "محصول"
 
-#: .\apps\product\models.py:44
+#: .\apps\product\models.py:46
 msgid "Products"
 msgstr "محصولات"
 
-#: .\apps\product\models.py:54
+#: .\apps\product\models.py:56
 msgid "Main product"
 msgstr "محصول اصلی"
 
-#: .\apps\product\models.py:55
+#: .\apps\product\models.py:57
 msgid "Price"
 msgstr "قیمت"
 
-#: .\apps\product\models.py:55
+#: .\apps\product\models.py:57
 msgid "Rials"
 msgstr "ریال"
 
-#: .\apps\product\models.py:56
+#: .\apps\product\models.py:58
 msgid "Discount"
 msgstr "تخفیف"
 
-#: .\apps\product\models.py:56
+#: .\apps\product\models.py:58
 msgid "Percentage(%)"
 msgstr "درصد(%)"
 
-#: .\apps\product\models.py:57
+#: .\apps\product\models.py:59
 msgid "Counts"
 msgstr "تعداد"
 
-#: .\apps\product\models.py:58
+#: .\apps\product\models.py:60
 msgid "Slug"
 msgstr "اسلاگ"
 
-#: .\apps\product\models.py:67
+#: .\apps\product\models.py:69
 msgid "Custom product"
 msgstr "محصول کاستوم"
 
-#: .\apps\product\models.py:68
+#: .\apps\product\models.py:70
 msgid "Custom products"
 msgstr "محصولات کاستوم"
 
-#: .\apps\product\models.py:85 .\apps\product\models.py:89
+#: .\apps\product\models.py:87 .\apps\product\models.py:91
 #: .\venv\Lib\site-packages\django\db\models\fields\files.py:393
 msgid "Image"
 msgstr "تصویر"
 
-#: .\apps\product\models.py:86
+#: .\apps\product\models.py:88
 msgid "Short Description"
 msgstr "توضیح کوتاه"
 
-#: .\apps\product\models.py:90
+#: .\apps\product\models.py:92
 msgid "Images"
 msgstr "تصاویر"
 
@@ -337,7 +341,7 @@ msgstr "تصاویر"
 msgid "Product detail"
 msgstr "جزئیات محصول"
 
-#: .\didikala\settings.py:134
+#: .\didikala\settings.py:133
 msgid "Persian"
 msgstr "فارسی"
 
@@ -356,6 +360,63 @@ msgstr "صفحه مدیریت"
 #: .\templates\admin\base_site.html:8
 msgid "Django administration"
 msgstr "مدیریت جنگو"
+
+#: .\venv\Lib\site-packages\ckeditor_uploader\forms.py:6
+#, fuzzy
+#| msgid "Static Files"
+msgid "Search files"
+msgstr "فایل های ثابت"
+
+#: .\venv\Lib\site-packages\ckeditor_uploader\templates\ckeditor\browse.html:5
+msgid "Select an image to embed"
+msgstr ""
+
+#: .\venv\Lib\site-packages\ckeditor_uploader\templates\ckeditor\browse.html:27
+msgid "Browse for the image you want, then click 'Embed Image' to continue..."
+msgstr ""
+
+#: .\venv\Lib\site-packages\ckeditor_uploader\templates\ckeditor\browse.html:29
+msgid ""
+"No images found. Upload images using the 'Image Button' dialog's 'Upload' "
+"tab."
+msgstr ""
+
+#: .\venv\Lib\site-packages\ckeditor_uploader\templates\ckeditor\browse.html:50
+#, fuzzy
+#| msgid "Images"
+msgid "Images in: "
+msgstr "تصاویر"
+
+#: .\venv\Lib\site-packages\ckeditor_uploader\templates\ckeditor\browse.html:62
+#: .\venv\Lib\site-packages\ckeditor_uploader\templates\ckeditor\browse.html:80
+#, fuzzy
+#| msgid "Image"
+msgid "Embed Image"
+msgstr "تصویر"
+
+#: .\venv\Lib\site-packages\ckeditor_uploader\templates\ckeditor\browse.html:146
+msgid "Play Slideshow"
+msgstr ""
+
+#: .\venv\Lib\site-packages\ckeditor_uploader\templates\ckeditor\browse.html:147
+msgid "Pause Slideshow"
+msgstr ""
+
+#: .\venv\Lib\site-packages\ckeditor_uploader\templates\ckeditor\browse.html:148
+msgid "&lsaquo; Previous Photo"
+msgstr ""
+
+#: .\venv\Lib\site-packages\ckeditor_uploader\templates\ckeditor\browse.html:149
+msgid "Next Photo &rsaquo;"
+msgstr ""
+
+#: .\venv\Lib\site-packages\ckeditor_uploader\templates\ckeditor\browse.html:150
+msgid "Next &rsaquo;"
+msgstr ""
+
+#: .\venv\Lib\site-packages\ckeditor_uploader\templates\ckeditor\browse.html:151
+msgid "&lsaquo; Prev"
+msgstr ""
 
 #: .\venv\Lib\site-packages\django\contrib\messages\apps.py:15
 msgid "Messages"
@@ -1605,6 +1666,9 @@ msgstr ""
 #: .\venv\Lib\site-packages\django_jalali\db\models.py:230
 msgid "Enter a valid date/time in YYYY-MM-DD HH:MM[:ss[.uuuuuu]] format."
 msgstr ""
+
+#~ msgid "didikala"
+#~ msgstr "دیدیکالا"
 
 #~ msgid "Please Enter a valid mobile or email address"
 #~ msgstr "لطفا یک شماره موبایل یا ایمیل معتبر وارد کنید"
