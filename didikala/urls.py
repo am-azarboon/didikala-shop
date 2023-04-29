@@ -17,3 +17,6 @@ urlpatterns = [
     path('cart/', include('apps.cart.urls', namespace='cart')),
     path('', include('apps.main.urls', namespace='main')),
 ] + static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
+
+# handling the 404 error
+handler404 = 'apps.main.views.error_404_view'
