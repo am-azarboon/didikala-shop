@@ -100,10 +100,9 @@
                                                     <label class="ui-variant ui-variant--color">
                                                         <span class="ui-variant-shape"
                                                               style="background-color: #{{ product_color.color.hex_code }}"></span>
-                                                        <input type="radio" value="{{ product_color.color.id }}" name="color"
-                                                               class="variant-selector"
-                                                                {% if product.color == product_color.color %}
-                                                               checked {% endif %}
+                                                        <input type="radio" value="{{ product_color.color.title_fa }}" name="color"
+                                                               class="variant-selector" id="{{ product_color.color.title_fa }}"
+                                                                {% if product.color == product_color.color %} checked {% endif %}
                                                                onclick="window.location='{{ product_color.get_absolute_url }}'">
                                                         <span class="ui-variant--check">{{ product_color.color.title_fa }}</span>
                                                     </label>
