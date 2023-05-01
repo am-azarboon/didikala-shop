@@ -54,10 +54,11 @@ class Product(models.Model):
 class ProductCustom(models.Model):
     idkc = models.BigAutoField(primary_key=True)
     product = models.ForeignKey(Product, verbose_name=_('Main product'), on_delete=models.CASCADE, related_name='product_custom')
-    price = models.IntegerField(_('Price'), help_text=_('Rials'), default=0)
+    base_price = models.IntegerField(_('Price'), help_text=_('Rials'), default=0)
     discount = models.PositiveIntegerField(_('Discount'), help_text=_('Percentage(%)'), default=0)
-    counts = models.PositiveIntegerField(_('Counts'), default=0)
-    slug = models.SlugField(_('Slug'), blank=True, editable=False)
+    selling_price = models.IntegerField(_('Selling price'), null=True, editable=False, default=0)
+    quantity = models.PositiveIntegerField(_('Quantity'), default=0)
+    slug = models.SlugField(_('Slug'), max_length=64, blank=True, allow_unicode=True, editable=False)
 
     color = models.ForeignKey(Color, verbose_name=_('Color'), null=True, blank=True, on_delete=models.DO_NOTHING, related_name='product_custom')
     size = models.ForeignKey(Size, verbose_name=_('Size'), null=True, blank=True, on_delete=models.DO_NOTHING, related_name='product_custom')
@@ -71,7 +72,8 @@ class ProductCustom(models.Model):
         ordering = ('idkc',)
 
     def save(self, force_insert=False, force_update=False, using=None, update_fields=None):
-        self.slug = slugify(self.product.title)
+        self.slug = slugify(self.product.title, allow_unicode=True)[:64]  # Save slug with slugify
+        self.selling_price = int(self.base_price - ((self.discount / 100) * self.base_price))  # Save selling_price after discount
         super(ProductCustom, self).save()
 
     def get_absolute_url(self):

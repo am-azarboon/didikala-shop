@@ -19,7 +19,7 @@ class LoginView(LogoutRequiredMixin, FormView):
         cleaned_data = form.cleaned_data
 
         # Get user and authenticate it
-        user = authenticate(self.request,username=cleaned_data.get('username'), password=cleaned_data.get('password'))
+        user = authenticate(self.request, username=cleaned_data.get('username'), password=cleaned_data.get('password'))
         login(self.request, user=user)  # Login user
 
         return super().form_valid(form)
@@ -72,9 +72,9 @@ def otp_send_view(request):
 
         otp_token = otp_random_code(user.mobile)  # Create new random otp
         request.session['otp_token'] = otp_token  # Save otp_token in sessions
+        request.session.set_expiry(180)  # Set expiration time for this session(3 minutes)
 
         return redirect('account:otp_check')  # Redirect to OtpCheck form
-
     else:
         return redirect('main:index')  # Redirect to index page if request is POST
 

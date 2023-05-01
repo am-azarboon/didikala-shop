@@ -35,17 +35,17 @@
                                 <span class="tooltip-option">افزودن به علاقمندی</span>
                             </li>
                         </ul>
-                        <div class="product-timeout position-relative pt-5 mb-3">
-                            <div class="promotion-badge">
-                                فروش ویژه
-                            </div>
-                            <div class="countdown-timer" countdown data-date="10 24 2019 20:20:22">
-                                <span data-days>0</span>:
-                                <span data-hours>0</span>:
-                                <span data-minutes>0</span>:
-                                <span data-seconds>0</span>
-                            </div>
-                        </div>
+                        {#                        <div class="product-timeout position-relative pt-5 mb-3">#}
+                        {#                            <div class="promotion-badge">#}
+                        {#                                فروش ویژه#}
+                        {#                            </div>#}
+                        {#                            <div class="countdown-timer" countdown data-date="10 24 2019 20:20:22">#}
+                        {#                                <span data-days>0</span>:#}
+                        {#                                <span data-hours>0</span>:#}
+                        {#                                <span data-minutes>0</span>:#}
+                        {#                                <span data-seconds>0</span>#}
+                        {#                            </div>#}
+                        {#                        </div>#}
                         <div class="product-gallery">
                             <span class="badge">پر فروش</span>
                             <div class="product-carousel owl-carousel" data-slider-id="1">
@@ -100,7 +100,8 @@
                                                     <label class="ui-variant ui-variant--color">
                                                         <span class="ui-variant-shape"
                                                               style="background-color: #{{ product_color.color.hex_code }}"></span>
-                                                        <input type="radio" value="{{ product_color.color.title_fa }}" name="color"
+                                                        <input type="radio" value="{{ product_color.color.title_fa }}"
+                                                               name="color"
                                                                class="variant-selector" id="{{ product_color.color.title_fa }}"
                                                                 {% if product.color == product_color.color %} checked {% endif %}
                                                                onclick="window.location='{{ product_color.get_absolute_url }}'">
@@ -253,28 +254,40 @@
                                                 {% if product.discount != 0 %}
                                                     <div class="product-seller-price-info">
                                                         <div class="product-seller-price-prev">
-                                                            {{ product.price|changing }}
+                                                            {{ product.base_price|changing }}
                                                         </div>
                                                         <div class="product-seller-price-off">
                                                             {{ product.discount }}%
                                                         </div>
                                                     </div>
                                                     <div class="product-seller-price-real">
-                                                        <div class="product-seller-price-raw">{{ product.price|changing|intcomma }}</div>
+                                                        <div class="product-seller-price-raw">{{ product.selling_price|changing|intcomma }}</div>
                                                         تومان
                                                     </div>
                                                 {% else %}
                                                     <div class="product-seller-price-real">
-                                                        <div class="product-seller-price-raw">{{ product.price|changing|intcomma }}</div>
+                                                        <div class="product-seller-price-raw">{{ product.selling_price|changing|intcomma }}</div>
                                                         تومان
                                                     </div>
                                                 {% endif %}
                                             </div>
-                                            <div class="product-seller-row product-seller-row--add-to-cart">
-                                                <a href="#" class="btn-add-to-cart btn-add-to-cart--full-width">
-                                                    <span class="btn-add-to-cart-txt">افزودن به سبد خرید</span>
-                                                </a>
-                                            </div>
+
+                                            {% if added == True %}
+                                                <div class="product-seller-row product-seller-row--add-to-cart">
+                                                    <a style="background-color: gray"
+                                                       class="btn-add-to-cart btn-add-to-cart--full-width">
+                                                        <span class="btn-add-to-cart-txt">در سبد خرید</span>
+                                                    </a>
+                                                </div>
+                                            {% else %}
+                                                <div class="product-seller-row product-seller-row--add-to-cart">
+                                                    <a href="{% url 'cart:add' product.idkc %}"
+                                                       class="btn-add-to-cart btn-add-to-cart--full-width">
+                                                        <span class="btn-add-to-cart-txt">افزودن به سبد خرید</span>
+                                                    </a>
+                                                </div>
+                                            {% endif %}
+
                                         </nav>
                                     </div>
                                 </div>
@@ -309,6 +322,7 @@
                             <div class="product-title dt-sl">
                                 <h1>{{ product.product.title }}</h1>
                             </div>
+                            <br>
                             <div class="description-product dt-sl mt-3 mb-3">
                                 <div class="container">
                                     {{ product.product.description|safe }}
@@ -371,10 +385,10 @@
                                             <span class="d-block">ویژگی‌های خاص</span>
                                         </div>
                                         <div class="params-list-value">
-                                                <span class="d-block">
-                                                    مقاوم در برابر آب , مناسب عکاسی , مناسب عکاسی
-                                                    سلفی , مناسب بازی , مجهز به حس‌گر تشخیص چهره
-                                                </span>
+                                            <span class="d-block">
+                                                مقاوم در برابر آب , مناسب عکاسی , مناسب عکاسی
+                                                سلفی , مناسب بازی , مجهز به حس‌گر تشخیص چهره
+                                            </span>
                                         </div>
                                     </li>
                                     <li>
@@ -407,9 +421,9 @@
                                             <span class="d-block">نوع پردازنده</span>
                                         </div>
                                         <div class="params-list-value">
-                                                <span class="d-block">
-                                                    64 بیت
-                                                </span>
+                                            <span class="d-block">
+                                                64 بیت
+                                            </span>
                                         </div>
                                     </li>
                                 </ul>

@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2023-04-28 20:27+0330\n"
+"POT-Creation-Date: 2023-04-30 19:52+0330\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -136,7 +136,7 @@ msgid "Email address"
 msgstr "آدرس ایمیل"
 
 #: .\apps\account\models.py:17 .\apps\product\models.py:40
-#: .\apps\product\models.py:65
+#: .\apps\product\models.py:66
 msgid "Active"
 msgstr "فعال"
 
@@ -192,7 +192,7 @@ msgstr "تاریخ تولد"
 msgid "Profile image"
 msgstr "تصویر پروفایل"
 
-#: .\apps\account\models.py:71 .\apps\product\models.py:66
+#: .\apps\account\models.py:71 .\apps\product\models.py:67
 msgid "Created time"
 msgstr "تاریخ ایجاد"
 
@@ -240,7 +240,7 @@ msgstr "کد رنگی"
 msgid "Example (001100)"
 msgstr "مثال (001100)"
 
-#: .\apps\product\models.py:16 .\apps\product\models.py:62
+#: .\apps\product\models.py:16 .\apps\product\models.py:63
 msgid "Color"
 msgstr "رنگ"
 
@@ -256,7 +256,7 @@ msgstr "عنوان"
 msgid "Example (XL)"
 msgstr "مثال (XL)"
 
-#: .\apps\product\models.py:28 .\apps\product\models.py:63
+#: .\apps\product\models.py:28 .\apps\product\models.py:64
 msgid "Size"
 msgstr "اندازه"
 
@@ -280,7 +280,7 @@ msgstr "توضیحات"
 msgid "Selling counts"
 msgstr "تعداد فروش"
 
-#: .\apps\product\models.py:45 .\apps\product\models.py:86
+#: .\apps\product\models.py:45 .\apps\product\models.py:88
 msgid "Product"
 msgstr "محصول"
 
@@ -309,31 +309,35 @@ msgid "Percentage(%)"
 msgstr "درصد(%)"
 
 #: .\apps\product\models.py:59
-msgid "Counts"
-msgstr "تعداد"
+msgid "Selling price"
+msgstr "قیمت فروش"
 
 #: .\apps\product\models.py:60
+msgid "Quantity"
+msgstr "تعداد"
+
+#: .\apps\product\models.py:61
 msgid "Slug"
 msgstr "اسلاگ"
 
-#: .\apps\product\models.py:69
+#: .\apps\product\models.py:70
 msgid "Custom product"
 msgstr "محصول کاستوم"
 
-#: .\apps\product\models.py:70
+#: .\apps\product\models.py:71
 msgid "Custom products"
 msgstr "محصولات کاستوم"
 
-#: .\apps\product\models.py:87 .\apps\product\models.py:91
+#: .\apps\product\models.py:89 .\apps\product\models.py:93
 #: .\venv\Lib\site-packages\django\db\models\fields\files.py:393
 msgid "Image"
 msgstr "تصویر"
 
-#: .\apps\product\models.py:88
+#: .\apps\product\models.py:90
 msgid "Short Description"
 msgstr "توضیح کوتاه"
 
-#: .\apps\product\models.py:92
+#: .\apps\product\models.py:94
 msgid "Images"
 msgstr "تصاویر"
 
@@ -341,7 +345,7 @@ msgstr "تصاویر"
 msgid "Product detail"
 msgstr "جزئیات محصول"
 
-#: .\didikala\settings.py:133
+#: .\didikala\settings.py:134
 msgid "Persian"
 msgstr "فارسی"
 
@@ -362,10 +366,8 @@ msgid "Django administration"
 msgstr "مدیریت جنگو"
 
 #: .\venv\Lib\site-packages\ckeditor_uploader\forms.py:6
-#, fuzzy
-#| msgid "Static Files"
 msgid "Search files"
-msgstr "فایل های ثابت"
+msgstr "فایل های جستجو"
 
 #: .\venv\Lib\site-packages\ckeditor_uploader\templates\ckeditor\browse.html:5
 msgid "Select an image to embed"
@@ -382,17 +384,13 @@ msgid ""
 msgstr ""
 
 #: .\venv\Lib\site-packages\ckeditor_uploader\templates\ckeditor\browse.html:50
-#, fuzzy
-#| msgid "Images"
 msgid "Images in: "
-msgstr "تصاویر"
+msgstr "تصاویر در: "
 
 #: .\venv\Lib\site-packages\ckeditor_uploader\templates\ckeditor\browse.html:62
 #: .\venv\Lib\site-packages\ckeditor_uploader\templates\ckeditor\browse.html:80
-#, fuzzy
-#| msgid "Image"
 msgid "Embed Image"
-msgstr "تصویر"
+msgstr "جاسازی تصویر"
 
 #: .\venv\Lib\site-packages\ckeditor_uploader\templates\ckeditor\browse.html:146
 msgid "Play Slideshow"
@@ -1666,6 +1664,9 @@ msgstr ""
 #: .\venv\Lib\site-packages\django_jalali\db\models.py:230
 msgid "Enter a valid date/time in YYYY-MM-DD HH:MM[:ss[.uuuuuu]] format."
 msgstr ""
+
+#~ msgid "Counts"
+#~ msgstr "تعداد"
 
 #~ msgid "didikala"
 #~ msgstr "دیدیکالا"
