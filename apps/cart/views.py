@@ -10,7 +10,7 @@ class CartView(TemplateView):
     content_type = 'text/html'
 
     def dispatch(self, request, *args, **kwargs):
-        cart = Cart(request)
+        cart = Cart(request)  # Get or create user shopping cart
 
         # Redirect user to emtpy cart view if its cart is emtpy
         if cart.cart == {}:
@@ -33,7 +33,7 @@ class CartEmptyView(TemplateView):
     content_type = 'text/html'
 
     def dispatch(self, request, *args, **kwargs):
-        cart = Cart(request)
+        cart = Cart(request)  # Get or create user shopping cart
 
         # Redirect user to cart view if its cart is not empty
         if cart.cart != {}:

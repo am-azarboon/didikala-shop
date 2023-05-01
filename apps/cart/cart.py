@@ -1,5 +1,4 @@
 from apps.product.models import ProductCustom
-from django.shortcuts import redirect
 
 
 CART_SESSION_ID = 'cart'  # Save 'cart' in variable
