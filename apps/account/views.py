@@ -6,6 +6,7 @@ from .mixins import LogoutRequiredMixin
 from django.urls import reverse_lazy
 from .models import User, Profile
 from .otp import otp_random_code
+from threading import Thread
 from . import forms
 
 
@@ -62,21 +63,20 @@ class MobileView(LogoutRequiredMixin, FormView):
 
 # Render OtpSendView(func)
 def otp_send_view(request):
-    if request.method == 'GET':
-        user_id = request.session.get('user_id')  # Get user_id from session
-        user = User.objects.get(id=user_id)  # Get user with query from database
+    if request.method == 'POST':
+        return redirect('main:index')  # Just handling errors
 
-        # Check if otp_token is exists
-        if 'otp_token' in request.session:
-            del request.session['otp_token']
+    user_id = request.session.get('user_id')  # Get user_id from session
+    user = User.objects.get(id=user_id)  # Get user with query from database
 
-        otp_token = otp_random_code(user.mobile)  # Create new random otp
-        request.session['otp_token'] = otp_token  # Save otp_token in sessions
-        request.session.set_expiry(180)  # Set expiration time for this session(3 minutes)
+    # Check if otp_token is exists
+    if 'otp_token' in request.session:
+        del request.session['otp_token']
 
-        return redirect('account:otp_check')  # Redirect to OtpCheck form
-    else:
-        return redirect('main:index')  # Redirect to index page if request is POST
+    otp_thread = Thread(target=otp_random_code, args=(user.mobile, request), name='otp_thread')  # Create new random otp (async)
+    otp_thread.start()  # Start async thread
+
+    return redirect('account:otp_check')  # Redirect to OtpCheck form
 
 
 # Render OtpCheckView(Form)
