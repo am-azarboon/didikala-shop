@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2023-04-30 19:52+0330\n"
+"POT-Creation-Date: 2023-05-03 01:36+0330\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -43,6 +43,7 @@ msgid "Accounts Section"
 msgstr "بخش حساب های کاربری"
 
 #: .\apps\account\enums.py:7 .\apps\account\models.py:56
+#: .\apps\cart\models.py:9
 msgid "User"
 msgstr "کاربر"
 
@@ -216,6 +217,30 @@ msgstr "اطلاعات نادرست"
 msgid "Entered otp is not correct"
 msgstr "کد وارد شده صحیح نمی باشد"
 
+#: .\apps\cart\apps.py:8
+msgid "Cart Section"
+msgstr "بخش سبد خرید"
+
+#: .\apps\cart\models.py:14
+msgid "Shopping cart"
+msgstr "سبد خرید"
+
+#: .\apps\cart\models.py:15
+msgid "Shopping Carts"
+msgstr "سبدهای خرید"
+
+#: .\apps\cart\models.py:20 .\apps\cart\models.py:25
+msgid "Cart items"
+msgstr "کالاهای سبد خرید"
+
+#: .\apps\cart\models.py:21 .\apps\product\models.py:70
+msgid "Custom product"
+msgstr "محصول کاستوم"
+
+#: .\apps\cart\models.py:24
+msgid "Cart item"
+msgstr "کالای سبد خرید"
+
 #: .\apps\main\templates\main\index.html:6
 msgid "Online Shop Didikala"
 msgstr "فروشگاه اینترنتی دیدیکالا"
@@ -319,10 +344,6 @@ msgstr "تعداد"
 #: .\apps\product\models.py:61
 msgid "Slug"
 msgstr "اسلاگ"
-
-#: .\apps\product\models.py:70
-msgid "Custom product"
-msgstr "محصول کاستوم"
 
 #: .\apps\product\models.py:71
 msgid "Custom products"

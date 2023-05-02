@@ -1,3 +1,25 @@
+from django.utils.translation import gettext_lazy as _
+from apps.product.models import ProductCustom
+from apps.account.models import User
 from django.db import models
 
-# Create your models here.
+
+# Cart model
+class Cart(models.Model):
+    user = models.OneToOneField(User, verbose_name=_('User'), on_delete=models.CASCADE, related_name='cart')
+    created_at = models.DateTimeField(auto_now_add=True)
+    updated_at = models.DateTimeField(auto_now=True)
+
+    class Meta:
+        verbose_name = _('Shopping cart')
+        verbose_name_plural = _('Shopping Carts')
+
+
+# CartItem model
+class CartItem(models.Model):
+    cart = models.ForeignKey(Cart, verbose_name=_('Cart items'), on_delete=models.CASCADE, related_name='cart_item')
+    product = models.ForeignKey(ProductCustom, verbose_name=_('Custom product'), on_delete=models.DO_NOTHING, related_name='cart_item')
+
+    class Meta:
+        verbose_name = _('Cart item')
+        verbose_name_plural = _('Cart items')

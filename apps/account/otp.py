@@ -9,5 +9,5 @@ def otp_random_code(mobile=None, request=None):
     request.session['otp_token'] = random_code
     request.modified = True
 
-    time.sleep(8)
+    time.sleep(2)
     print(random_code)
