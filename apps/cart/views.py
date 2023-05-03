@@ -1,7 +1,7 @@
 from django.views.generic import View, TemplateView
+from .cart import SessionCart, ModelCart
 from django.shortcuts import redirect
 from django.urls import reverse
-from .cart import Cart
 
 
 # Render CartView
@@ -10,18 +10,27 @@ class CartView(TemplateView):
     content_type = 'text/html'
 
     def dispatch(self, request, *args, **kwargs):
-        cart = Cart(request)  # Get or create user shopping cart
+        if request.user.is_authenticated:
+            cart = ModelCart(request)  # Get user ModelCart if user is authenticated
+        else:
+            cart = SessionCart(request)  # Get or create user shopping cart
 
         # Redirect user to emtpy cart view if its cart is emtpy
-        if cart.cart == {}:
+        if not cart.cart or not cart.total_price():
             return redirect('cart:emtpy')
 
         return super(CartView, self).dispatch(request, *args, **kwargs)
 
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
-        cart = Cart(self.request)  # Get or create user cart
-        context['cart'] = cart  # Send cart as context to template
+
+        if self.request.user.is_authenticated:
+            cart = ModelCart(self.request)
+            context['cart'] = cart
+        else:
+            cart = SessionCart(self.request)  # Get or create user cart
+            context['cart'] = cart  # Send cart as context to template
+
         context['price'] = cart.total_price()  # Get the total_price for all products
 
         return context
@@ -33,10 +42,13 @@ class CartEmptyView(TemplateView):
     content_type = 'text/html'
 
     def dispatch(self, request, *args, **kwargs):
-        cart = Cart(request)  # Get or create user shopping cart
+        if request.user.is_authenticated:
+            cart = ModelCart(request)  # Get or create user ModelCart
+        else:
+            cart = SessionCart(request)  # Get or create user SessionCart
 
         # Redirect user to cart view if its cart is not empty
-        if cart.cart != {}:
+        if cart.cart and cart.total_price():
             return redirect('cart:cart')
 
         return super(CartEmptyView, self).dispatch(request, *args, **kwargs)
@@ -45,7 +57,11 @@ class CartEmptyView(TemplateView):
 # Render CartAddView
 class CartAddView(View):
     def get(self, request, pk):
-        cart = Cart(request=request)  # Create or get user cart
+        if self.request.user.is_authenticated:
+            cart = ModelCart(self.request)
+        else:
+            cart = SessionCart(request)  # Create or get user cart
+
         cart.cart_add(idkc=pk)  # Add new product to cart
 
         return redirect(reverse('product:detail', args=[pk]))  # Redirect to current product page
@@ -56,7 +72,11 @@ class CartAddView(View):
 
 # Render cart_remove_view
 def cart_remove_view(request, pk):
-    cart = Cart(request=request)  # Get user cart
+    if request.user.is_authenticated:
+        cart = ModelCart(request)  # Get user ModelCart
+    else:
+        cart = SessionCart(request)  # Get user SessionCart
+
     cart.cart_remove(idkc=str(pk))  # Remove product from cart
 
     return redirect('cart:cart')

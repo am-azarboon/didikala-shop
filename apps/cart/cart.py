@@ -1,10 +1,11 @@
 from apps.product.models import ProductCustom
+from .models import Cart, CartItem
 
 
 CART_SESSION_ID = 'cart'  # Save 'cart' in variable
 
 
-class Cart:
+class SessionCart:
     def __init__(self, request):
         self.session = request.session
         cart = self.session.get(CART_SESSION_ID)  # Get user cart from sessions
@@ -58,3 +59,50 @@ class Cart:
 
     def save(self):
         self.session.modified = True  # Set session modified as True to allow changes
+
+
+# ModelCart
+class ModelCart:
+    def __init__(self, request):
+        self.user = request.user  # Get user with request
+
+        try:
+            cart = Cart.objects.get(user=self.user)  # Get user ModelCart
+        except Cart.DoesNotExist:
+            cart = Cart.objects.create(user=self.user)  # Create Cart if not exists
+
+        self.cart = cart  # Save in self.cart
+
+    def __iter__(self):
+        items = CartItem.objects.filter(cart=self.cart)  # Get all Cart items
+
+        for item in items:
+            yield item  # Iterate one by one
+
+    def total_price(self):
+        items = CartItem.objects.filter(cart=self.cart)
+        total_price = 0
+
+        for item in items:
+            total_price += item.total_price
+
+        return total_price
+
+    def cart_add(self, idkc, quantity=0):
+        product = ProductCustom.objects.get(idkc=idkc)  # Get current product
+
+        if not CartItem.objects.filter(product=product, cart=self.cart).exists():
+            cart_item = CartItem.objects.create(product=product, cart=self.cart)  # Create Item in CartItem for current Cart
+        else:
+            cart_item = CartItem.objects.get(product=product, cart=self.cart)  # Or just get the CartItem if exists
+
+        cart_item.idkc = product.idkc  # Save ProductCustom idkc
+        cart_item.quantity += int(quantity)  # Add extra quantity
+        cart_item.total_price = int(cart_item.quantity * cart_item.product.selling_price)  # Calculate total price of this Item
+        cart_item.save()  # Save the CartItem
+
+    def cart_remove(self, idkc):
+        product = ProductCustom.objects.get(idkc=idkc)  # Get current product
+
+        if CartItem.objects.filter(product=product, cart=self.cart).exists():
+            CartItem.objects.get(product=product, cart=self.cart).delete()  # Remove CartItem from database if exists
