@@ -20,8 +20,8 @@ class Cart(models.Model):
 class CartItem(models.Model):
     cart = models.ForeignKey(Cart, verbose_name=_('Cart items'), on_delete=models.CASCADE, related_name='cart_item')
     product = models.ForeignKey(ProductCustom, verbose_name=_('Custom product'), on_delete=models.DO_NOTHING, related_name='cart_item')
-    idkc = models.BigIntegerField(_('idkc'), null=True, editable=False)
-    quantity = models.PositiveIntegerField(_('Quantity'), default=1)
+    idkc = models.BigIntegerField(_('idkc'), default=0, editable=False)
+    quantity = models.PositiveIntegerField(_('Quantity'), default=0)
     total_price = models.IntegerField(_('Total price'), default=0, editable=False)
 
     class Meta:

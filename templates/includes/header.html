@@ -1,4 +1,5 @@
 {% load static %}
+{% load filters %}
 
 <header class="main-header">
     <!-- Start ads -->
@@ -14,7 +15,7 @@
             <div class="row">
                 <div class="col-lg-2 col-md-3 col-6">
                     <div class="logo-area">
-                        <a href="#">
+                        <a href="{% url 'main:index' %}">
                             <img src="{% static 'img/logo.png' %}" alt="">
                         </a>
                     </div>
@@ -22,8 +23,7 @@
                 <div class="col-lg-6 col-md-5 hidden-sm">
                     <div class="search-area dt-sl">
                         <form action="" class="search">
-                            <input type="text"
-                                   placeholder="نام کالا، برند و یا دسته مورد نظر خود را جستجو کنید…">
+                            <input type="text" name="q" placeholder="نام کالا، برند و یا دسته مورد نظر خود را جستجو کنید…">
                             <i class="far fa-search search-icon"></i>
                             <button class="close-search-result" type="button"><i
                                     class="mdi mdi-close"></i></button>
@@ -540,126 +540,95 @@
                         <a class="nav-link" href="#">ورزش و سفر</a>
                     </li>
                 </ul>
+
+                <!-- Start Header Cart -->
                 <div class="nav mr-auto">
                     <div class="nav-item cart--wrapper">
-                        <a class="nav-link" href="#">
+                        <a class="nav-link" href="{% url 'cart:cart' %}">
                             <span class="label-dropdown">سبد خرید</span>
                             <i class="mdi mdi-cart-outline"></i>
-                            <span class="count">2</span>
+                            {% if header_cart.cart.cart_item.all.count %}
+                                <span class="count">{{ header_cart.cart.cart_item.all.count }}</span>
+                            {% else %}
+                                <span class="count">{{ header_cart.cart.items|length }}</span>
+                            {% endif %}
+
                         </a>
                         <div class="header-cart-info">
                             <div class="header-cart-info-header">
-                                <div class="header-cart-info-count">
-                                    3 کالا
-                                </div>
-                                <a href="#" class="header-cart-info-link">
+                                {% if header_cart.cart.cart_item.all.count %}
+                                    <div class="header-cart-info-count">
+                                        {{ header_cart.cart.cart_item.all.count }} کالا
+                                    </div>
+                                {% else %}
+                                    <div class="header-cart-info-count">
+                                        {{ header_cart.cart.items|length }} کالا
+                                    </div>
+                                {% endif %}
+                                <a href="{% url 'cart:cart' %}" class="header-cart-info-link">
                                     <span>مشاهده سبد خرید</span>
                                 </a>
                             </div>
                             <ul class="header-basket-list do-nice-scroll">
-                                <li class="cart-item">
-                                    <a href="#" class="header-basket-list-item">
-                                        <div class="header-basket-list-item-image">
-                                            <img src="{% static 'img/cart/1.jpg' %}" alt="">
-                                        </div>
-                                        <div class="header-basket-list-item-content">
-                                            <p class="header-basket-list-item-title">
-                                                گوشی موبایل سامسونگ مدل Galaxy A30 SM-A305F/DS دو سیم کارت ظرفیت
-                                                64 گیگابایت
-                                            </p>
-                                            <div class="header-basket-list-item-footer">
-                                                <div class="header-basket-list-item-props">
-                                                            <span class="header-basket-list-item-props-item">
-                                                                1 x
-                                                            </span>
-                                                    <span class="header-basket-list-item-props-item">
-                                                                <div class="header-basket-list-item-color-badge"
-                                                                     style="background: #2196f3"></div>
-                                                                آبی
-                                                            </span>
-                                                </div>
-                                                <button class="header-basket-list-item-remove">
-                                                    <i class="far fa-trash-alt"></i>
-                                                </button>
+                                {% for item in header_cart %}
+                                    <li class="cart-item">
+                                        <a href="{% url 'product:detail' item.idkc %}" class="header-basket-list-item">
+                                            <div class="header-basket-list-item-image">
+                                                <img src="{{ item.product.product.product_image.first.image.url }}" alt="">
                                             </div>
-                                        </div>
-                                    </a>
-                                </li>
-                                <li class="cart-item">
-                                    <a href="#" class="header-basket-list-item">
-                                        <div class="header-basket-list-item-image">
-                                            <img src="{% static 'img/cart/2.jpg' %}" alt="">
-                                        </div>
-                                        <div class="header-basket-list-item-content">
-                                            <p class="header-basket-list-item-title">
-                                                گوشی موبایل هوآوی مدل Y9 2019 JKM-LX1 دو سیم کارت ظرفیت 64
-                                                گیگابایت
-                                            </p>
-                                            <div class="header-basket-list-item-footer">
-                                                <div class="header-basket-list-item-props">
+                                            <div class="header-basket-list-item-content">
+                                                <p class="header-basket-list-item-title">
+                                                    {{ item.product.product.title }}
+                                                </p>
+                                                <div class="header-basket-list-item-footer">
+                                                    <div class="header-basket-list-item-props">
                                                             <span class="header-basket-list-item-props-item">
-                                                                1 x
+                                                                {{ item.quantity }} x
                                                             </span>
-                                                    <span class="header-basket-list-item-props-item">
+                                                        <span class="header-basket-list-item-props-item">
                                                                 <div class="header-basket-list-item-color-badge"
-                                                                     style="background: #212121"></div>
-                                                                سفید
+                                                                     style="background: #{{ item.product.color.hex_code }}">
+                                                                </div>
+                                                                {{ item.product.color.title_fa }}
                                                             </span>
+                                                    </div>
                                                 </div>
-                                                <button class="header-basket-list-item-remove">
-                                                    <i class="far fa-trash-alt"></i>
-                                                </button>
                                             </div>
-                                        </div>
-                                    </a>
-                                </li>
-                                <li class="cart-item">
-                                    <a href="#" class="header-basket-list-item">
-                                        <div class="header-basket-list-item-image">
-                                            <img src="{% static 'img/cart/3.jpg' %}" alt="">
-                                        </div>
-                                        <div class="header-basket-list-item-content">
-                                            <p class="header-basket-list-item-title">
-                                                گوشی موبایل سامسونگ مدل Galaxy A70 SM-A705FN/DS دو سیم‌کارت
-                                                ظرفیت 128 گیگابایت
-                                            </p>
-                                            <div class="header-basket-list-item-footer">
-                                                <div class="header-basket-list-item-props">
-                                                            <span class="header-basket-list-item-props-item">
-                                                                1 x
-                                                            </span>
-                                                    <span class="header-basket-list-item-props-item">
-                                                                <div class="header-basket-list-item-color-badge"
-                                                                     style="background: #FFFFFF"></div>
-                                                                سفید
-                                                            </span>
-                                                </div>
-                                                <button class="header-basket-list-item-remove">
-                                                    <i class="far fa-trash-alt"></i>
-                                                </button>
-                                            </div>
-                                        </div>
-                                    </a>
-                                </li>
-                            </ul>
-                            <div class="header-cart-info-footer">
-                                <div class="header-cart-info-total">
-                                    <span class="header-cart-info-total-text">مبلغ قابل پرداخت:</span>
-                                    <p class="header-cart-info-total-amount">
-                                                <span class="header-cart-info-total-amount-number">
-                                                    9,500,000 <span>تومان</span></span>
-                                    </p>
-                                </div>
+                                        </a>
+                                    </li>
+                                {% endfor %}
 
-                                <div>
-                                    <a href="#" class="header-cart-info-submit">
-                                        ثبت سفارش
-                                    </a>
+                            </ul>
+
+                            <!-- Check if cart is emtpy -->
+                            {% if header_cart.total_price %}
+                                <div class="header-cart-info-footer">
+                                    <div class="header-cart-info-total">
+                                        <span class="header-cart-info-total-text">مبلغ قابل پرداخت:</span>
+                                        <p class="header-cart-info-total-amount">
+                                            <span class="header-cart-info-total-amount-number">{{ header_cart.total_price|changing|intcomma }}<span>تومان</span></span>
+                                        </p>
+                                    </div>
+
+                                    <div>
+                                        <a href="{% url 'cart:cart' %}" class="header-cart-info-submit">
+                                            ثبت سفارش
+                                        </a>
+                                    </div>
                                 </div>
-                            </div>
+                            {% else %}
+                                <div class="header-cart-info-footer">
+                                    <div class="header-cart-info-total">
+                                        <span class="header-cart-info-total-text">سبد خرید خالی است</span>
+                                    </div>
+                                </div>
+                            {% endif %}
+
                         </div>
                     </div>
                 </div>
+                <!-- .End Header Cart -->
+
                 <button class="btn-menu">
                     <div class="align align__justify">
                         <span></span>

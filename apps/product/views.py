@@ -14,20 +14,20 @@ class ProductDetailView(DetailView):
 
     def get_context_data(self, **kwargs):
         context = super(ProductDetailView, self).get_context_data(**kwargs)
-        context['added'] = False
+        context['in_cart'] = False
 
+        # Check if user authenticated
         if self.request.user.is_authenticated:
             cart = ModelCart(self.request)
-            print('outside cart file : ', cart.cart)
 
+            # Check if product is in ModelCart
             if CartItem.objects.filter(product__idkc=self.kwargs.get('pk'), cart=cart.cart).exists():
-                context['added'] = True
-                return context
+                context['in_cart'] = True
+        else:
+            cart = SessionCart(self.request)  # Get the user cart from sessions
 
-        cart = SessionCart(self.request)  # Get the user cart from sessions
-
-        # Send the added True to template if in item is in cart
-        if str(self.kwargs.get('pk')) in cart.cart:
-            context['added'] = True
+            # Send the added True to template if product is in SessionCart
+            if str(self.kwargs.get('pk')) in cart.cart:
+                context['in_cart'] = True
 
         return context

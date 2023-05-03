@@ -106,3 +106,20 @@ class ModelCart:
 
         if CartItem.objects.filter(product=product, cart=self.cart).exists():
             CartItem.objects.get(product=product, cart=self.cart).delete()  # Remove CartItem from database if exists
+
+    def cart_merge(self, request):
+        session_cart = request.session.get(CART_SESSION_ID)
+
+        if session_cart:
+            for item in session_cart.values():
+                # Check if Item is not in ModelCart then add it
+                if not CartItem.objects.filter(cart=self.cart, product__idkc=item['idkc']).exists():
+                    product = ProductCustom.objects.get(idkc=item['idkc'])  # Get current product from database
+                    CartItem.objects.create(cart=self.cart,
+                                            product=product,
+                                            idkc=product.idkc,
+                                            quantity=item['quantity'],
+                                            total_price=int(item['quantity']*product.selling_price)
+                                            ).save()  # Create new item inside ModelCart
+
+            del request.session[CART_SESSION_ID]

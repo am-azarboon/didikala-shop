@@ -14,7 +14,14 @@
                         <div class="nav nav-tabs border-bottom" id="nav-tab" role="tablist">
                             <a class="nav-item nav-link d-inline-flex w-auto active" id="nav-home-tab"
                                data-toggle="tab" href="#nav-home" role="tab" aria-controls="nav-home"
-                               aria-selected="true">سبد خرید<span class="count-cart">{{ cart.cart.items|length }}</span></a>
+                               aria-selected="true">سبد خرید
+                                {% if cart.cart.cart_item.all.count %}
+                                    <span class="count-cart">{{ cart.cart.cart_item.all.count }}</span>
+                                {% else %}
+                                    <span class="count-cart">{{ cart.cart.items|length }}</span>
+                                {% endif %}
+                            </a>
+
                         </div>
                     </nav>
                 </div>
@@ -27,7 +34,11 @@
                                     <div class="table-responsive checkout-content dt-s l">
                                         <div class="checkout-header checkout-header--express">
                                             <span class="checkout-header-title">ارسال عادی</span>
-                                            <span class="checkout-header-extra-info">({{ cart.cart.items|length }} کالا)</span>
+                                            {% if cart.cart.cart_item.all.count %}
+                                                <span class="checkout-header-extra-info">({{ cart.cart.cart_item.all.count }} کالا)</span>
+                                            {% else %}
+                                                <span class="checkout-header-extra-info">({{ cart.cart.items|length }} کالا)</span>
+                                            {% endif %}
                                         </div>
                                         <div class="checkout-section-content-dd-k">
                                             <div class="cart-items-dd-k">
@@ -35,8 +46,9 @@
                                                 {% for item in cart %}
                                                     <div class="cart-item py-4 px-3">
                                                         <div class="item-thumbnail">
-                                                            <a href="#">
-                                                                <img src="{{ item.product.product.product_image.first.image.url }}" alt="item">
+                                                            <a href="{% url 'product:detail' item.idkc %}">
+                                                                <img src="{{ item.product.product.product_image.first.image.url }}"
+                                                                     alt="item">
                                                             </a>
                                                         </div>
                                                         <div class="item-info flex-grow-1">
@@ -48,7 +60,8 @@
                                                             <div class="item-detail">
                                                                 <ul>
                                                                     <li>
-                                                                        <span class="color" style="background-color: #{{ item.product.color.hex_code }};"></span>
+                                                                        <span class="color"
+                                                                              style="background-color: #{{ item.product.color.hex_code }};"></span>
                                                                         <span>{{ item.product.color.title_fa }}</span>
                                                                     </li>
                                                                     <li>
@@ -70,12 +83,15 @@
                                                                                 <span class="minus dis"></span>
                                                                             </div>
                                                                         </div>
-                                                                        <button onclick="window.location='{% url 'cart:remove' item.idkc %}'" class="item-remove-btn mr-3">
+                                                                        <button onclick="window.location='{% url 'cart:remove' item.idkc %}'"
+                                                                                class="item-remove-btn mr-3">
                                                                             <i class="far fa-trash-alt"></i>
                                                                             حذف
                                                                         </button>
                                                                     </div>
-                                                                    <div style="background-color: #d0d0d0; border-radius: 0.5vw; padding: 5px;" class="item-price ml-4">{{ item.total_price|changing|intcomma }}<span class="text-sm mr-1">تومان</span>
+                                                                    <div style="background-color: #d0d0d0; border-radius: 0.5vw; padding: 5px;"
+                                                                         class="item-price ml-4">{{ item.total_price|changing|intcomma }}<span
+                                                                            class="text-sm mr-1">تومان</span>
                                                                     </div>
                                                                 </div>
                                                             </div>
@@ -91,11 +107,17 @@
                                     <div class="dt-sn dt-sn--box border mb-2">
                                         <ul class="checkout-summary-summary">
                                             <li>
-                                                <span>مبلغ کل ({{ cart.cart.items|length }} کالا)</span><span></span>
+                                                {% if cart.cart.cart_item.all.count %}
+                                                    <span>مبلغ کل ({{ cart.cart.cart_item.all.count }} کالا)</span><span></span>
+                                                {% else %}
+                                                    <span>مبلغ کل ({{ cart.cart.items|length }} کالا)</span><span></span>
+                                                {% endif %}
                                             </li>
                                             <li>
                                                 <span>هزینه ارسال
-                                                    <span class="help-sn" data-toggle="tooltip" data-html="true" data-placement="bottom" title="<div class='help-container is-right'><div class='help-arrow'></div><p class='help-text'>هزینه ارسال مرسولات می‌تواند وابسته به شهر و آدرس گیرنده متفاوت باشد. در صورتی که هر یک از مرسولات حداقل ارزشی برابر با ۱۵۰هزار تومان داشته باشد، آن مرسوله بصورت رایگان ارسال می‌شود.<br>'حداقل ارزش هر مرسوله برای ارسال رایگان، می تواند متغیر باشد.'</p></div>">
+                                                    <span class="help-sn" data-toggle="tooltip" data-html="true"
+                                                          data-placement="bottom"
+                                                          title="<div class='help-container is-right'><div class='help-arrow'></div><p class='help-text'>هزینه ارسال مرسولات می‌تواند وابسته به شهر و آدرس گیرنده متفاوت باشد. در صورتی که هر یک از مرسولات حداقل ارزشی برابر با ۳۵۰ هزار تومان داشته باشد، آن مرسوله بصورت رایگان ارسال می‌شود.<br>'حداقل ارزش هر مرسوله برای ارسال رایگان، می تواند متغیر باشد.'</p></div>">
                                                     <span class="mdi mdi-information-outline"></span>
                                                 </span></span>
                                                 <span>وابسته به آدرس</span>
@@ -107,7 +129,7 @@
                                         <div class="checkout-summary-content">
                                             <div class="checkout-summary-price-title">مبلغ قابل پرداخت:</div>
                                             <div class="checkout-summary-price-value">
-                                                <span class="checkout-summary-price-value-amount">{{ price|changing|intcomma }}</span>
+                                                <span class="checkout-summary-price-value-amount">{{ cart.total_price|changing|intcomma }}</span>
                                                 تومان
                                             </div>
                                             <a href="#" class="mb-2 d-block">
