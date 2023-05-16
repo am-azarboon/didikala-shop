@@ -4,6 +4,7 @@ from django.utils.translation import gettext_lazy as _
 from django.shortcuts import redirect, reverse
 from .mixins import LogoutRequiredMixin
 from django.urls import reverse_lazy
+from apps.cart.cart import ModelCart
 from .models import User, Profile
 from .otp import otp_random_code
 from threading import Thread
@@ -22,6 +23,13 @@ class LoginView(LogoutRequiredMixin, FormView):
         # Get user and authenticate it
         user = authenticate(self.request, username=cleaned_data.get('username'), password=cleaned_data.get('password'))
         login(self.request, user=user)  # Login user
+
+        # Try to merge UserModelCart with session cart
+        try:
+            cart = ModelCart(self.request)
+            cart.cart_merge(self.request)
+        except (ValueError, TypeError, KeyError, ...):
+            return super().form_valid(form)
 
         return super().form_valid(form)
 
@@ -129,6 +137,13 @@ class OtpCheckView(LogoutRequiredMixin, FormView):
         # Delete otp_token from session
         if 'otp_token' in self.request.session:
             del self.request.session['otp_token']
+
+        # Try to merge UserModelCart with session cart
+        try:
+            cart = ModelCart(self.request)
+            cart.cart_merge(self.request)
+        except (ValueError, TypeError, KeyError, ...):
+            return super().form_valid(form)
 
         return super().form_valid(form)
 

@@ -48,7 +48,7 @@
                                                         <div class="item-thumbnail">
                                                             <a href="{% url 'product:detail' item.idkc %}">
                                                                 <img src="{{ item.product.product.product_image.first.image.url }}"
-                                                                     alt="item">
+                                                                     alt="{{ item.product.product.product_image.first.alt }}">
                                                             </a>
                                                         </div>
                                                         <div class="item-info flex-grow-1">
@@ -77,10 +77,15 @@
                                                                     <div class="item-quantity">
                                                                         <div class="num-block">
                                                                             <div class="num-in">
-                                                                                <span class="plus"></span>
-                                                                                <input type="text" class="in-num"
-                                                                                       value="{{ item.quantity }}" readonly>
-                                                                                <span class="minus dis"></span>
+                                                                                {% if item.quantity < item.product.quantity %}
+                                                                                    <span onclick="window.location='{% url 'cart:item_plus' item.idkc 1 %}'" class="plus"></span>
+                                                                                {% endif %}
+                                                                                <input type="text" id="{{ item.idkc }}" class="in-num" value="{{ item.quantity }}" readonly>
+                                                                                {% if item.quantity > 1 %}
+                                                                                    <span onclick="window.location='{% url 'cart:item_plus' item.idkc 0 %}'" class="minus"></span>
+                                                                                {% else %}
+                                                                                    <span class="minus dis" readonly></span>
+                                                                                {% endif %}
                                                                             </div>
                                                                         </div>
                                                                         <button onclick="window.location='{% url 'cart:remove' item.idkc %}'"

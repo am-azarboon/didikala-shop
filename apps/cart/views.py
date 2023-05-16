@@ -47,6 +47,7 @@ class CartEmptyView(TemplateView):
 
         # Redirect user to cart view if its cart is not empty
         if cart.total_price():
+            print(cart.total_price())
             return redirect('cart:cart')
 
         return super(CartEmptyView, self).dispatch(request, *args, **kwargs)
@@ -62,6 +63,22 @@ def cart_add_view(request, pk):
     cart.cart_add(idkc=pk, quantity=1)  # Add new product to cart
 
     return redirect(reverse('product:detail', args=[pk]))  # Redirect to current product page
+
+
+# Render item_add_view
+def item_plus_view(request, pk, quantity):
+    if request.user.is_authenticated:
+        cart = ModelCart(request)
+    else:
+        cart = SessionCart(request)  # Create or get user cart
+
+    # Change the minus to -1
+    if not int(quantity):
+        quantity = -1
+
+    cart.cart_add(idkc=pk, quantity=quantity)  # Add extra quantity to item
+
+    return redirect('cart:cart')
 
 
 # Render cart_remove_view

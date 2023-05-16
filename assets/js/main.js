@@ -293,6 +293,7 @@ $(document).ready(function (l) {
   /* ************** product-quantity */
   $(".num-in span").click(function () {
     var $input = $(this).parents(".num-block").find("input.in-num");
+
     if ($(this).hasClass("minus")) {
       var count = parseFloat($input.val()) - 1;
       count = count < 1 ? 1 : count;

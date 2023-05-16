@@ -5,7 +5,6 @@ from apps.cart.cart import ModelCart, SessionCart
 def header_cart(request):
     if request.user.is_authenticated:
         cart = ModelCart(request)
-        cart.cart_merge(request)
     else:
         cart = SessionCart(request)
 

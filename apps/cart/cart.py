@@ -37,7 +37,7 @@ class SessionCart:
 
         return total_price
 
-    def cart_add(self, idkc, quantity=1):
+    def cart_add(self, idkc, quantity=0):
         product = ProductCustom.objects.get(idkc=idkc)  # Get current product
 
         # Add new product to cart
@@ -55,7 +55,7 @@ class SessionCart:
         if idkc in self.cart:
             del self.cart[idkc]  # Del item if exists
 
-        self.save()  # Save it
+        self.save()  # Save cart
 
     def save(self):
         self.session.modified = True  # Set session modified as True to allow changes
@@ -97,7 +97,7 @@ class ModelCart:
             cart_item = CartItem.objects.get(product=product, cart=self.cart)  # Or just get the CartItem if exists
 
         cart_item.idkc = product.idkc  # Save ProductCustom idkc
-        cart_item.quantity += int(quantity)  # Add extra quantity
+        cart_item.quantity += int(quantity)  # Add or minus extra quantity
         cart_item.total_price = int(cart_item.quantity * cart_item.product.selling_price)  # Calculate total price of this Item
         cart_item.save()  # Save the CartItem
 
@@ -115,11 +115,6 @@ class ModelCart:
                 # Check if Item is not in ModelCart then add it
                 if not CartItem.objects.filter(cart=self.cart, product__idkc=item['idkc']).exists():
                     product = ProductCustom.objects.get(idkc=item['idkc'])  # Get current product from database
-                    CartItem.objects.create(cart=self.cart,
-                                            product=product,
-                                            idkc=product.idkc,
-                                            quantity=item['quantity'],
-                                            total_price=int(item['quantity']*product.selling_price)
-                                            ).save()  # Create new item inside ModelCart
+                    CartItem.objects.create(cart=self.cart, product=product, idkc=product.idkc, quantity=item['quantity'], total_price=int(item['quantity']*product.selling_price)).save()  # Create new item inside ModelCart
 
             del request.session[CART_SESSION_ID]
