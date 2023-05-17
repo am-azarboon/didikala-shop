@@ -26,11 +26,10 @@ class CartView(TemplateView):
 
         if self.request.user.is_authenticated:
             cart = ModelCart(self.request)
-            context['cart'] = cart
         else:
             cart = SessionCart(self.request)  # Get or create user cart
-            context['cart'] = cart  # Send cart as context to template
 
+        context['cart'] = cart  # Send cart as context to template
         return context
 
 
@@ -47,7 +46,6 @@ class CartEmptyView(TemplateView):
 
         # Redirect user to cart view if its cart is not empty
         if cart.total_price():
-            print(cart.total_price())
             return redirect('cart:cart')
 
         return super(CartEmptyView, self).dispatch(request, *args, **kwargs)

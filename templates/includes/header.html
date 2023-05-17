@@ -71,7 +71,7 @@
                             </li>
                         {% else %}
                             <li class="nav-item account dropdown">
-                                <a class="nav-link" href="{% url 'account:login' %}"
+                                <a class="nav-link" href="{% url 'account:login' %}?next={{ request.get_full_path }}"
                                    aria-expanded="false">
                                     <span class="label-dropdown mt-1">ورود | ثبت نام</span>
                                     <i class="mdi mdi-account-circle-outline"></i>

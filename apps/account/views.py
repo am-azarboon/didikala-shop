@@ -4,11 +4,14 @@ from django.utils.translation import gettext_lazy as _
 from django.shortcuts import redirect, reverse
 from .mixins import LogoutRequiredMixin
 from django.urls import reverse_lazy
-from apps.cart.cart import ModelCart
 from .models import User, Profile
 from .otp import otp_random_code
 from threading import Thread
 from . import forms
+try:
+    from apps.cart.cart import ModelCart
+except ImportError:
+    ModelCart = None
 
 
 # Render LoginView(Form)
@@ -28,7 +31,7 @@ class LoginView(LogoutRequiredMixin, FormView):
         try:
             cart = ModelCart(self.request)
             cart.cart_merge(self.request)
-        except (ValueError, TypeError, KeyError, ...):
+        except (ValueError, ModuleNotFoundError, NameError, ...):
             return super().form_valid(form)
 
         return super().form_valid(form)
@@ -142,7 +145,7 @@ class OtpCheckView(LogoutRequiredMixin, FormView):
         try:
             cart = ModelCart(self.request)
             cart.cart_merge(self.request)
-        except (ValueError, TypeError, KeyError, ...):
+        except (ValueError, ModuleNotFoundError, NameError, ...):
             return super().form_valid(form)
 
         return super().form_valid(form)
