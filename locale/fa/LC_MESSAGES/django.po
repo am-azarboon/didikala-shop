@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2023-05-03 01:36+0330\n"
+"POT-Creation-Date: 2023-05-17 15:16+0330\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -43,7 +43,7 @@ msgid "Accounts Section"
 msgstr "بخش حساب های کاربری"
 
 #: .\apps\account\enums.py:7 .\apps\account\models.py:56
-#: .\apps\cart\models.py:9
+#: .\apps\cart\models.py:9 .\apps\order\models.py:9
 msgid "User"
 msgstr "کاربر"
 
@@ -213,7 +213,7 @@ msgstr "پروفایل های کاربران"
 msgid "Invalid input"
 msgstr "اطلاعات نادرست"
 
-#: .\apps\account\views.py:112
+#: .\apps\account\views.py:123
 msgid "Entered otp is not correct"
 msgstr "کد وارد شده صحیح نمی باشد"
 
@@ -221,29 +221,85 @@ msgstr "کد وارد شده صحیح نمی باشد"
 msgid "Cart Section"
 msgstr "بخش سبد خرید"
 
-#: .\apps\cart\models.py:14
+#: .\apps\cart\models.py:10 .\apps\cart\models.py:26 .\apps\order\models.py:27
+msgid "Total price"
+msgstr "قیمت کل"
+
+#: .\apps\cart\models.py:15
 msgid "Shopping cart"
 msgstr "سبد خرید"
 
-#: .\apps\cart\models.py:15
+#: .\apps\cart\models.py:16
 msgid "Shopping Carts"
 msgstr "سبدهای خرید"
 
-#: .\apps\cart\models.py:20 .\apps\cart\models.py:25
+#: .\apps\cart\models.py:21 .\apps\cart\models.py:30
 msgid "Cart items"
 msgstr "کالاهای سبد خرید"
 
-#: .\apps\cart\models.py:21 .\apps\product\models.py:70
-msgid "Custom product"
-msgstr "محصول کاستوم"
+#: .\apps\cart\models.py:22 .\apps\order\models.py:25
+#: .\apps\product\models.py:45 .\apps\product\models.py:88
+msgid "Product"
+msgstr "محصول"
 
-#: .\apps\cart\models.py:24
+#: .\apps\cart\models.py:23
+msgid "idkc"
+msgstr "شناسه محصول"
+
+#: .\apps\cart\models.py:24 .\apps\order\models.py:10
+#: .\apps\product\models.py:60
+msgid "Quantity"
+msgstr "تعداد"
+
+#: .\apps\cart\models.py:25
+msgid "Base total price"
+msgstr "قیمت کل پایه"
+
+#: .\apps\cart\models.py:29
 msgid "Cart item"
 msgstr "کالای سبد خرید"
 
 #: .\apps\main\templates\main\index.html:6
 msgid "Online Shop Didikala"
 msgstr "فروشگاه اینترنتی دیدیکالا"
+
+#: .\apps\order\models.py:11
+msgid "Payable price"
+msgstr "مبلغ قابل پرداخت"
+
+#: .\apps\order\models.py:12
+msgid "Discount price"
+msgstr "قیمت تخفیف"
+
+#: .\apps\order\models.py:13
+msgid "Is success"
+msgstr "موفق"
+
+#: .\apps\order\models.py:14
+msgid "Create time"
+msgstr "تاریخ ایجاد"
+
+#: .\apps\order\models.py:17 .\apps\order\models.py:24
+#: .\venv\Lib\site-packages\django\forms\formsets.py:484
+#: .\venv\Lib\site-packages\django\forms\formsets.py:491
+msgid "Order"
+msgstr "سفارش"
+
+#: .\apps\order\models.py:18
+msgid "Orders"
+msgstr "سفارشات"
+
+#: .\apps\order\models.py:26
+msgid "Quantity purchased"
+msgstr "تعداد خریداری شده"
+
+#: .\apps\order\models.py:30
+msgid "Order item"
+msgstr "کالای سفارش"
+
+#: .\apps\order\models.py:31
+msgid "Order items"
+msgstr "کالاهای سفارش"
 
 #: .\apps\product\apps.py:8
 msgid "Products Section"
@@ -305,10 +361,6 @@ msgstr "توضیحات"
 msgid "Selling counts"
 msgstr "تعداد فروش"
 
-#: .\apps\product\models.py:45 .\apps\product\models.py:88
-msgid "Product"
-msgstr "محصول"
-
 #: .\apps\product\models.py:46
 msgid "Products"
 msgstr "محصولات"
@@ -337,13 +389,13 @@ msgstr "درصد(%)"
 msgid "Selling price"
 msgstr "قیمت فروش"
 
-#: .\apps\product\models.py:60
-msgid "Quantity"
-msgstr "تعداد"
-
 #: .\apps\product\models.py:61
 msgid "Slug"
 msgstr "اسلاگ"
+
+#: .\apps\product\models.py:70
+msgid "Custom product"
+msgstr "محصول کاستوم"
 
 #: .\apps\product\models.py:71
 msgid "Custom products"
@@ -366,7 +418,7 @@ msgstr "تصاویر"
 msgid "Product detail"
 msgstr "جزئیات محصول"
 
-#: .\didikala\settings.py:134
+#: .\didikala\settings.py:136
 msgid "Persian"
 msgstr "فارسی"
 
@@ -1002,11 +1054,6 @@ msgid "Please submit at least %(num)d form."
 msgid_plural "Please submit at least %(num)d forms."
 msgstr[0] ""
 msgstr[1] ""
-
-#: .\venv\Lib\site-packages\django\forms\formsets.py:484
-#: .\venv\Lib\site-packages\django\forms\formsets.py:491
-msgid "Order"
-msgstr ""
 
 #: .\venv\Lib\site-packages\django\forms\formsets.py:499
 msgid "Delete"

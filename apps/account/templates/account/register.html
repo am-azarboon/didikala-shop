@@ -76,7 +76,7 @@
                         <div class="form-footer mt-3">
                             <div>
                                 <span class="font-weight-bold">قبلا ثبت نام کرده اید؟</span>
-                                <a href="{% url 'account:login' %}" class="mr-3 mt-2">وارد شوید</a>
+                                <a href="{% url 'account:login' %}?next={{ request.GET.next }}" class="mr-3 mt-2">وارد شوید</a>
                             </div>
                         </div>
                     </div>

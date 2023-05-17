@@ -54,7 +54,7 @@
                         <div class="form-footer mt-1">
                             <div>
                                 <span class="font-weight-bold">کاربر جدید هستید؟</span>
-                                <a href="{% url 'account:register' %}" class="mr-3 mt-2">ثبت نام در دیدیکالا</a>
+                                <a href="{% url 'account:register' %}?next={{ request.GET.next }}" class="mr-3 mt-2">ثبت نام در دیدیکالا</a>
                             </div>
                         </div>
                     </div>

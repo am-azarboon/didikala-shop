@@ -32,6 +32,7 @@ INSTALLED_APPS = [
     'apps.account.apps.AccountConfig',
     'apps.product.apps.ProductConfig',
     'apps.cart.apps.CartConfig',
+    'apps.order.apps.OrderConfig',
 
     # Django modules
     'django_cleanup.apps.CleanupConfig',

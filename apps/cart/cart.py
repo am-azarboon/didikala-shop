@@ -37,6 +37,17 @@ class SessionCart:
 
         return total_price
 
+    def base_total_price(self):
+        cart = self.cart.copy()
+        base_total_price = 0
+
+        for item in cart.values():
+            product = ProductCustom.objects.get(idkc=item['idkc'])  # Get each product
+            price = int(product.base_price * item['quantity'])  # Save item price(for all quantities)
+            base_total_price += price
+
+        return base_total_price
+
     def cart_add(self, idkc, quantity=0):
         product = ProductCustom.objects.get(idkc=idkc)  # Get current product
 
@@ -77,6 +88,9 @@ class ModelCart:
         items = CartItem.objects.filter(cart=self.cart)  # Get all Cart items
 
         for item in items:
+            item.total_price = int(item.quantity * item.product.selling_price)  # Calculate total price of this Item
+            item.base_total_price = int(item.quantity * item.product.base_price)  # Calculate base total price of this Item
+            item.save()
             yield item  # Iterate one by one
 
     def total_price(self):
@@ -87,6 +101,15 @@ class ModelCart:
             total_price += item.total_price
 
         return total_price
+
+    def base_total_price(self):
+        items = CartItem.objects.filter(cart=self.cart)
+        base_total_price = 0
+
+        for item in items:
+            base_total_price += item.base_total_price
+
+        return base_total_price
 
     def cart_add(self, idkc, quantity=0):
         product = ProductCustom.objects.get(idkc=idkc)  # Get current product
@@ -99,6 +122,7 @@ class ModelCart:
         cart_item.idkc = product.idkc  # Save ProductCustom idkc
         cart_item.quantity += int(quantity)  # Add or minus extra quantity
         cart_item.total_price = int(cart_item.quantity * cart_item.product.selling_price)  # Calculate total price of this Item
+        cart_item.base_total_price = int(cart_item.quantity * cart_item.product.base_price)  # Calculate base total price of this Item
         cart_item.save()  # Save the CartItem
 
     def cart_remove(self, idkc):
