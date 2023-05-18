@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2023-05-18 15:09+0330\n"
+"POT-Creation-Date: 2023-05-18 21:17+0330\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -43,7 +43,7 @@ msgid "Accounts Section"
 msgstr "بخش حساب های کاربری"
 
 #: .\apps\account\enums.py:7 .\apps\account\models.py:56
-#: .\apps\account\models.py:84 .\apps\cart\models.py:9
+#: .\apps\address\models.py:37 .\apps\cart\models.py:9
 #: .\apps\order\models.py:12
 msgid "User"
 msgstr "کاربر"
@@ -77,6 +77,7 @@ msgid "Password repeat"
 msgstr "تکرار گذرواژه"
 
 #: .\apps\account\forms.py:16 .\apps\account\models.py:16
+#: .\apps\address\models.py:40
 msgid "Mobile number"
 msgstr "شماره موبایل"
 
@@ -137,8 +138,8 @@ msgstr "کاربر باید یک شماره موبایل داشته باشد"
 msgid "Email address"
 msgstr "آدرس ایمیل"
 
-#: .\apps\account\models.py:17 .\apps\product\models.py:40
-#: .\apps\product\models.py:66
+#: .\apps\account\models.py:17 .\apps\address\models.py:45
+#: .\apps\product\models.py:40 .\apps\product\models.py:66
 msgid "Active"
 msgstr "فعال"
 
@@ -162,11 +163,11 @@ msgstr "حساب کاربری"
 msgid "Users accounts"
 msgstr "حساب های کاربران"
 
-#: .\apps\account\models.py:57 .\apps\account\models.py:85
+#: .\apps\account\models.py:57 .\apps\address\models.py:38
 msgid "First name"
 msgstr "نام"
 
-#: .\apps\account\models.py:58 .\apps\account\models.py:86
+#: .\apps\account\models.py:58 .\apps\address\models.py:39
 msgid "Last name"
 msgstr "نام خانوادگی"
 
@@ -210,45 +211,73 @@ msgstr "پروفایل کاربر"
 msgid "Users profiles"
 msgstr "پروفایل های کاربران"
 
-#: .\apps\account\models.py:87
-msgid "Province"
-msgstr "استان"
-
-#: .\apps\account\models.py:88
-msgid "City"
-msgstr "شهر"
-
-#: .\apps\account\models.py:89
-msgid "Address"
-msgstr "نشانی"
-
-#: .\apps\account\models.py:90
-msgid "Postal_code"
-msgstr "کد پستی"
-
-#: .\apps\account\models.py:92 .\apps\order\models.py:19
-msgid "Create time"
-msgstr "تاریخ ایجاد"
-
-#: .\apps\account\models.py:93
-msgid "Update time"
-msgstr "تاریخ تغییر"
-
-#: .\apps\account\models.py:96
-msgid "User address"
-msgstr "نشانی کاربر"
-
-#: .\apps\account\models.py:97
-msgid "User addresses"
-msgstr "نشانی های کاربران"
-
-#: .\apps\account\validators.py:12
+#: .\apps\account\validators.py:12 .\apps\address\validators.py:10
 msgid "Invalid input"
 msgstr "اطلاعات نادرست"
 
 #: .\apps\account\views.py:123
 msgid "Entered otp is not correct"
 msgstr "کد وارد شده صحیح نمی باشد"
+
+#: .\apps\address\apps.py:8
+msgid "Address Section"
+msgstr "بخش نشانی ها"
+
+#: .\apps\address\models.py:9
+msgid "ID"
+msgstr "شناسه"
+
+#: .\apps\address\models.py:10 .\apps\address\models.py:24
+#: .\apps\product\models.py:61
+msgid "Slug"
+msgstr "اسلاگ"
+
+#: .\apps\address\models.py:11 .\apps\address\models.py:25
+#| msgid "Title Fa"
+msgid "Title fa"
+msgstr "عنوان فارسی"
+
+#: .\apps\address\models.py:14 .\apps\address\models.py:23
+#: .\apps\address\models.py:41
+msgid "Province"
+msgstr "استان"
+
+#: .\apps\address\models.py:15
+#| msgid "Province"
+msgid "Provinces"
+msgstr "استان ها"
+
+#: .\apps\address\models.py:28 .\apps\address\models.py:42
+msgid "City"
+msgstr "شهر"
+
+#: .\apps\address\models.py:29
+msgid "Cities"
+msgstr "شهرها"
+
+#: .\apps\address\models.py:43
+msgid "Address"
+msgstr "نشانی"
+
+#: .\apps\address\models.py:44
+msgid "Postal_code"
+msgstr "کد پستی"
+
+#: .\apps\address\models.py:48 .\apps\order\models.py:19
+msgid "Create time"
+msgstr "تاریخ ایجاد"
+
+#: .\apps\address\models.py:49
+msgid "Update time"
+msgstr "تاریخ تغییر"
+
+#: .\apps\address\models.py:52
+msgid "User address"
+msgstr "نشانی کاربر"
+
+#: .\apps\address\models.py:53
+msgid "User addresses"
+msgstr "نشانی های کاربران"
 
 #: .\apps\cart\apps.py:8
 msgid "Cart Section"
@@ -450,10 +479,6 @@ msgstr "درصد(%)"
 msgid "Selling price"
 msgstr "قیمت فروش"
 
-#: .\apps\product\models.py:61
-msgid "Slug"
-msgstr "اسلاگ"
-
 #: .\apps\product\models.py:70
 msgid "Custom product"
 msgstr "محصول کاستوم"
@@ -479,7 +504,7 @@ msgstr "تصاویر"
 msgid "Product detail"
 msgstr "جزئیات محصول"
 
-#: .\didikala\settings.py:136
+#: .\didikala\settings.py:138
 msgid "Persian"
 msgstr "فارسی"
 

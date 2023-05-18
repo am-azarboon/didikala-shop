@@ -77,38 +77,3 @@ class Profile(models.Model):
 
     def __str__(self):
         return self.user.mobile
-
-
-# Province model
-class Province(models.Model):
-    id = models.CharField(_('ID'), primary_key=True, max_length=2, validators=[arithmetic_numbers])
-    slug = models.SlugField(_('Slug'), max_length=32, default='None')
-    name = models.CharField(_('Title fa'), max_length=32, default='')
-
-
-# City model
-class City(models.Model):
-    province = models.ForeignKey(Province, verbose_name=_('Province'), on_delete=models.CASCADE)
-    slug = models.SlugField(_('Slug'), max_length=32, default='None')
-    name = models.CharField(_('Title fa'), max_length=32, default='')
-
-
-# UserAddress model
-class Address(models.Model):
-    user = models.ForeignKey(User, verbose_name=_('User'), on_delete=models.CASCADE, related_name='address')
-    firstname = models.CharField(_('First name'), max_length=32, blank=True)
-    lastname = models.CharField(_('Last name'), max_length=32, blank=True)
-    province = models.ForeignKey(Province, verbose_name=_('Province'), on_delete=models.DO_NOTHING)
-    city = models.ForeignKey(City, verbose_name=_('City'), on_delete=models.DO_NOTHING)
-    address = models.TextField(_('Address'), max_length=256)
-    post_code = models.CharField(_('Postal_code'), max_length=10, validators=[arithmetic_numbers])
-
-    created_at = models.DateTimeField(_('Create time'), auto_now_add=True, null=True)
-    updated_at = models.DateTimeField(_('Update time'), auto_now=True, null=True)
-
-    class Meta:
-        verbose_name = _('User address')
-        verbose_name_plural = _('User addresses')
-
-    def __str__(self):
-        return f"{self.user} - {self.address}"

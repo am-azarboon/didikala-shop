@@ -30,6 +30,7 @@ INSTALLED_APPS = [
     # Created apps
     'apps.main.apps.MainConfig',
     'apps.account.apps.AccountConfig',
+    'apps.address.apps.AddressConfig',
     'apps.product.apps.ProductConfig',
     'apps.cart.apps.CartConfig',
     'apps.order.apps.OrderConfig',
@@ -37,6 +38,7 @@ INSTALLED_APPS = [
     # Django modules
     'django_cleanup.apps.CleanupConfig',
     'django_jalali',
+    'widget_tweaks',
     'ckeditor',
 ]
 

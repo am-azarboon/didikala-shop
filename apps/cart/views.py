@@ -22,15 +22,15 @@ class CartView(TemplateView):
         return super(CartView, self).dispatch(request, *args, **kwargs)
 
     def get_context_data(self, **kwargs):
-        context = super().get_context_data(**kwargs)
+        contexts = super().get_context_data(**kwargs)
 
         if self.request.user.is_authenticated:
             cart = ModelCart(self.request)
         else:
             cart = SessionCart(self.request)  # Get or create user cart
 
-        context['cart'] = cart  # Send cart as context to template
-        return context
+        contexts['cart'] = cart  # Send cart as context to template
+        return contexts
 
 
 # Render CartEmptyView

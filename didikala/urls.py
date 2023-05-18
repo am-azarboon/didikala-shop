@@ -13,8 +13,10 @@ admin.site.index_title = _('Admin Panel')
 urlpatterns = [
     path('admin/', admin.site.urls),
     path('account/', include('apps.account.urls', namespace='account')),
+    path('address/', include('apps.address.urls', namespace='address')),
     path('product/', include('apps.product.urls', namespace='product')),
     path('cart/', include('apps.cart.urls', namespace='cart')),
+    path('order/', include('apps.order.urls', namespace='order')),
     path('', include('apps.main.urls', namespace='main')),
 ] + static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
 
