@@ -68,6 +68,12 @@ class SessionCart:
 
         self.save()  # Save cart
 
+    def cart_delete(self):
+        try:
+            del self.session[CART_SESSION_ID]
+        except self.session.DoesNotExists:
+            self.save()
+
     def save(self):
         self.session.modified = True  # Set session modified as True to allow changes
 
@@ -130,6 +136,12 @@ class ModelCart:
 
         if CartItem.objects.filter(product=product, cart=self.cart).exists():
             CartItem.objects.get(product=product, cart=self.cart).delete()  # Remove CartItem from database if exists
+
+    def cart_delete(self):
+        try:
+            Cart.objects.get(user=self.user).delete()
+        except Cart.DoesNotExist:
+            return None
 
     def cart_merge(self, request):
         session_cart = request.session.get(CART_SESSION_ID)

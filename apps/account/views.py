@@ -2,9 +2,9 @@ from django.views.generic import FormView, TemplateView, View
 from django.contrib.auth import authenticate, login, logout
 from django.utils.translation import gettext_lazy as _
 from django.shortcuts import redirect, reverse
+from .models import User, Profile, Address
 from .mixins import LogoutRequiredMixin
 from django.urls import reverse_lazy
-from .models import User, Profile
 from .otp import otp_random_code
 from threading import Thread
 from . import forms

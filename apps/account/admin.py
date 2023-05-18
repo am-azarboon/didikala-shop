@@ -3,7 +3,7 @@ from django_jalali.admin.filters import JDateFieldListFilter
 from django.utils.translation import gettext_lazy as _
 from .forms import UserCreationForm, UserChangeForm
 from django.contrib.auth.models import Group
-from .models import User, Profile
+from .models import User, Profile, Address
 from django.contrib import admin
 
 
@@ -51,6 +51,14 @@ class UserAdmin(BaseUserAdmin):
     search_fields = ('mobile', 'email')
     ordering = ('mobile',)
     filter_horizontal = ()
+
+
+# Register user Address
+@admin.register(Address)
+class AddressAdmin(admin.ModelAdmin):
+    list_display = ('user', 'firstname', 'lastname', 'province', 'post_code')
+    list_display_links = ('user', 'firstname', 'lastname')
+    readonly_fields = ('created_at', 'updated_at')
 
 
 # Since we're not using Django's built-in permissions, Unregister the Group model from admin.

@@ -11,7 +11,7 @@ class OrderItemInline(admin.StackedInline):
 
 @admin.register(Order)
 class OrderAdmin(admin.ModelAdmin):
-    list_display = ('user', 'quantity', 'payable_price', 'is_success')
+    list_display = ('user', 'quantity', 'payable_price', 'is_paid', 'status')
     list_display_links = ('user', 'quantity',)
-    readonly_fields = ('payable_price', 'discount_price', 'is_success', 'created_at',)
+    readonly_fields = ('payable_price', 'discount_price', 'is_paid', 'status', 'address_info', 'created_at')
     inlines = (OrderItemInline,)

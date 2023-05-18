@@ -1,9 +1,9 @@
 from .validators import mobile_format_check, email_format_check, arithmetic_numbers
 from django.contrib.auth.forms import ReadOnlyPasswordHashField
+from .models import User, Profile, Province, City, Address
 from django.utils.translation import gettext_lazy as _
 from django.core.exceptions import ValidationError
 from django.contrib.auth import authenticate
-from .models import User, Profile
 from django import forms
 
 
@@ -135,3 +135,16 @@ class OtpCheckForm(forms.Form):
             cleaned_data['number_four'] + cleaned_data['number_five']
 
         return otp_code
+
+
+# AddressForm
+class AddressForm(forms.ModelForm):
+    def __init__(self, *args, **kwargs):
+        super(AddressForm, self).__init__(*args, **kwargs)
+        self.fields['author'].choices = list(Province.objects.values_list('id', 'name'))
+
+        self.fields['books'].choices = list(City.objects.values_list('id', 'name'))
+
+    class Meta:
+        model = Address
+        exclude = ('user', 'created_at', 'updated_at')

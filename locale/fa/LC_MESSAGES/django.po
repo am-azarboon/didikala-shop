@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2023-05-17 15:16+0330\n"
+"POT-Creation-Date: 2023-05-18 15:09+0330\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -43,7 +43,8 @@ msgid "Accounts Section"
 msgstr "بخش حساب های کاربری"
 
 #: .\apps\account\enums.py:7 .\apps\account\models.py:56
-#: .\apps\cart\models.py:9 .\apps\order\models.py:9
+#: .\apps\account\models.py:84 .\apps\cart\models.py:9
+#: .\apps\order\models.py:12
 msgid "User"
 msgstr "کاربر"
 
@@ -161,11 +162,11 @@ msgstr "حساب کاربری"
 msgid "Users accounts"
 msgstr "حساب های کاربران"
 
-#: .\apps\account\models.py:57
+#: .\apps\account\models.py:57 .\apps\account\models.py:85
 msgid "First name"
 msgstr "نام"
 
-#: .\apps\account\models.py:58
+#: .\apps\account\models.py:58 .\apps\account\models.py:86
 msgid "Last name"
 msgstr "نام خانوادگی"
 
@@ -209,6 +210,38 @@ msgstr "پروفایل کاربر"
 msgid "Users profiles"
 msgstr "پروفایل های کاربران"
 
+#: .\apps\account\models.py:87
+msgid "Province"
+msgstr "استان"
+
+#: .\apps\account\models.py:88
+msgid "City"
+msgstr "شهر"
+
+#: .\apps\account\models.py:89
+msgid "Address"
+msgstr "نشانی"
+
+#: .\apps\account\models.py:90
+msgid "Postal_code"
+msgstr "کد پستی"
+
+#: .\apps\account\models.py:92 .\apps\order\models.py:19
+msgid "Create time"
+msgstr "تاریخ ایجاد"
+
+#: .\apps\account\models.py:93
+msgid "Update time"
+msgstr "تاریخ تغییر"
+
+#: .\apps\account\models.py:96
+msgid "User address"
+msgstr "نشانی کاربر"
+
+#: .\apps\account\models.py:97
+msgid "User addresses"
+msgstr "نشانی های کاربران"
+
 #: .\apps\account\validators.py:12
 msgid "Invalid input"
 msgstr "اطلاعات نادرست"
@@ -221,7 +254,7 @@ msgstr "کد وارد شده صحیح نمی باشد"
 msgid "Cart Section"
 msgstr "بخش سبد خرید"
 
-#: .\apps\cart\models.py:10 .\apps\cart\models.py:26 .\apps\order\models.py:27
+#: .\apps\cart\models.py:10 .\apps\cart\models.py:26 .\apps\order\models.py:32
 msgid "Total price"
 msgstr "قیمت کل"
 
@@ -237,7 +270,7 @@ msgstr "سبدهای خرید"
 msgid "Cart items"
 msgstr "کالاهای سبد خرید"
 
-#: .\apps\cart\models.py:22 .\apps\order\models.py:25
+#: .\apps\cart\models.py:22 .\apps\order\models.py:30
 #: .\apps\product\models.py:45 .\apps\product\models.py:88
 msgid "Product"
 msgstr "محصول"
@@ -246,7 +279,7 @@ msgstr "محصول"
 msgid "idkc"
 msgstr "شناسه محصول"
 
-#: .\apps\cart\models.py:24 .\apps\order\models.py:10
+#: .\apps\cart\models.py:24 .\apps\order\models.py:13
 #: .\apps\product\models.py:60
 msgid "Quantity"
 msgstr "تعداد"
@@ -263,41 +296,69 @@ msgstr "کالای سبد خرید"
 msgid "Online Shop Didikala"
 msgstr "فروشگاه اینترنتی دیدیکالا"
 
-#: .\apps\order\models.py:11
+#: .\apps\order\apps.py:8
+msgid "Order section"
+msgstr "بخش سفارشات"
+
+#: .\apps\order\enums.py:7
+msgid "Unsuccessful"
+msgstr "ناموفق"
+
+#: .\apps\order\enums.py:8
+msgid "Successful"
+msgstr "موفق"
+
+#: .\apps\order\enums.py:9
+msgid "Pending"
+msgstr "درحال بررسی"
+
+#: .\apps\order\enums.py:10
+msgid "Dispatching"
+msgstr "درحال ارسال"
+
+#: .\apps\order\enums.py:11
+msgid "Dispatched"
+msgstr "ارسال شده"
+
+#: .\apps\order\models.py:14
 msgid "Payable price"
 msgstr "مبلغ قابل پرداخت"
 
-#: .\apps\order\models.py:12
+#: .\apps\order\models.py:15
 msgid "Discount price"
 msgstr "قیمت تخفیف"
 
-#: .\apps\order\models.py:13
+#: .\apps\order\models.py:16
+msgid "Address info"
+msgstr "اطلاعات آدرس"
+
+#: .\apps\order\models.py:17
+msgid "Status"
+msgstr "وضعیت"
+
+#: .\apps\order\models.py:18
 msgid "Is success"
 msgstr "موفق"
 
-#: .\apps\order\models.py:14
-msgid "Create time"
-msgstr "تاریخ ایجاد"
-
-#: .\apps\order\models.py:17 .\apps\order\models.py:24
+#: .\apps\order\models.py:22 .\apps\order\models.py:29
 #: .\venv\Lib\site-packages\django\forms\formsets.py:484
 #: .\venv\Lib\site-packages\django\forms\formsets.py:491
 msgid "Order"
 msgstr "سفارش"
 
-#: .\apps\order\models.py:18
+#: .\apps\order\models.py:23
 msgid "Orders"
 msgstr "سفارشات"
 
-#: .\apps\order\models.py:26
+#: .\apps\order\models.py:31
 msgid "Quantity purchased"
 msgstr "تعداد خریداری شده"
 
-#: .\apps\order\models.py:30
+#: .\apps\order\models.py:35
 msgid "Order item"
 msgstr "کالای سفارش"
 
-#: .\apps\order\models.py:31
+#: .\apps\order\models.py:36
 msgid "Order items"
 msgstr "کالاهای سفارش"
 
@@ -1753,9 +1814,6 @@ msgstr ""
 
 #~ msgid "Only displayed"
 #~ msgstr "مشخصات ثبت"
-
-#~ msgid "Email Address"
-#~ msgstr "آدرس ایمیل"
 
 #~ msgid "Mobile Number"
 #~ msgstr "شماره موبایل"

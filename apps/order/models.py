@@ -1,16 +1,21 @@
 from django.utils.translation import gettext_lazy as _
 from apps.product.models import ProductCustom
 from apps.account.models import User
+from .enums import OrderStatus
 from django.db import models
 
 
 # Order Model
 class Order(models.Model):
+    Status = OrderStatus
+
     user = models.ForeignKey(User, verbose_name=_('User'), on_delete=models.DO_NOTHING, related_name='order')
     quantity = models.PositiveIntegerField(_('Quantity'), default=0)
     payable_price = models.IntegerField(_('Payable price'), default=0)
     discount_price = models.IntegerField(_('Discount price'), default=0)
-    is_success = models.BooleanField(_('Is success'), default=False)
+    address_info = models.TextField(_('Address info'), max_length=256, default='')
+    status = models.CharField(_('Status'), max_length=32, choices=Status.choices, default=Status.choices[0])
+    is_paid = models.BooleanField(_('Is success'), default=False)
     created_at = models.DateTimeField(_('Create time'), auto_now_add=True)
 
     class Meta:
