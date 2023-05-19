@@ -6,9 +6,9 @@ from django.db import models
 
 # Province model
 class Province(models.Model):
-    id = models.CharField(_('ID'), primary_key=True, max_length=2, validators=[arithmetic_numbers])
-    slug = models.SlugField(_('Slug'), max_length=32, default='None')
-    name = models.CharField(_('Title fa'), max_length=32, default='')
+    id = models.BigIntegerField(_('ID'), primary_key=True, editable=False)
+    name = models.CharField(_('Title'), max_length=32, default='')
+    slug = models.SlugField(_('Slug'), max_length=64, allow_unicode=True, default='None')
 
     class Meta:
         verbose_name = _('Province')
@@ -20,9 +20,10 @@ class Province(models.Model):
 
 # City model
 class City(models.Model):
+    id = models.BigIntegerField(_('ID'), primary_key=True, editable=False)
     province = models.ForeignKey(Province, verbose_name=_('Province'), on_delete=models.CASCADE)
-    slug = models.SlugField(_('Slug'), max_length=32, default='None')
-    name = models.CharField(_('Title fa'), max_length=32, default='')
+    name = models.CharField(_('Title'), max_length=32, default='')
+    slug = models.SlugField(_('Slug'), max_length=64, allow_unicode=True, default='None')
 
     class Meta:
         verbose_name = _('City')
@@ -35,12 +36,11 @@ class City(models.Model):
 # UserAddress model
 class Address(models.Model):
     user = models.ForeignKey(User, verbose_name=_('User'), on_delete=models.CASCADE, related_name='address')
-    firstname = models.CharField(_('First name'), max_length=32, default='')
-    lastname = models.CharField(_('Last name'), max_length=32, default='')
-    mobile = models.CharField(_('Mobile number'), max_length=11, default='09000000000')
-    province = models.CharField(_('Province'), max_length=32, default='None')
-    city = models.CharField(_('City'), max_length=32, default='None')
-    address = models.TextField(_('Address'), max_length=256, unique=True)
+    fullname = models.CharField(_('Full name'), max_length=32, default='')
+    mobile = models.CharField(_('Mobile number'), max_length=11)
+    province = models.ForeignKey(Province, verbose_name=_('Province'), max_length=32, null=True, on_delete=models.SET_NULL)
+    city = models.ForeignKey(City, verbose_name=_('City'), max_length=32, null=True, on_delete=models.SET_NULL)
+    address = models.TextField(_('Address'), max_length=256)
     post_code = models.CharField(_('Postal_code'), max_length=10, unique=True, validators=[arithmetic_numbers])
     active = models.BooleanField(_('Active'), default=False)
 
@@ -57,6 +57,7 @@ class Address(models.Model):
         if self.active is True:
             for item in Address.objects.filter(user=self.user):
                 item.active = False
+                item.save()
 
         return super(Address, self).save(*args, **kwargs)
 

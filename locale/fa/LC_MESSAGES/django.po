@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2023-05-18 21:17+0330\n"
+"POT-Creation-Date: 2023-05-19 18:08+0330\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -43,8 +43,8 @@ msgid "Accounts Section"
 msgstr "بخش حساب های کاربری"
 
 #: .\apps\account\enums.py:7 .\apps\account\models.py:56
-#: .\apps\address\models.py:37 .\apps\cart\models.py:9
-#: .\apps\order\models.py:12
+#: .\apps\address\models.py:38 .\apps\cart\models.py:9
+#: .\apps\order\models.py:14
 msgid "User"
 msgstr "کاربر"
 
@@ -163,11 +163,11 @@ msgstr "حساب کاربری"
 msgid "Users accounts"
 msgstr "حساب های کاربران"
 
-#: .\apps\account\models.py:57 .\apps\address\models.py:38
+#: .\apps\account\models.py:57
 msgid "First name"
 msgstr "نام"
 
-#: .\apps\account\models.py:58 .\apps\address\models.py:39
+#: .\apps\account\models.py:58
 msgid "Last name"
 msgstr "نام خانوادگی"
 
@@ -211,7 +211,7 @@ msgstr "پروفایل کاربر"
 msgid "Users profiles"
 msgstr "پروفایل های کاربران"
 
-#: .\apps\account\validators.py:12 .\apps\address\validators.py:10
+#: .\apps\account\validators.py:12 .\apps\address\validators.py:11
 msgid "Invalid input"
 msgstr "اطلاعات نادرست"
 
@@ -223,37 +223,56 @@ msgstr "کد وارد شده صحیح نمی باشد"
 msgid "Address Section"
 msgstr "بخش نشانی ها"
 
-#: .\apps\address\models.py:9
+#: .\apps\address\forms.py:16
+msgid "Enter your name"
+msgstr "نام خود را وارد کنید"
+
+#: .\apps\address\forms.py:20
+msgid "Please enter your address"
+msgstr "لطفا آدرس خود را وارد کنید"
+
+#: .\apps\address\forms.py:21
+msgid "Please enter your post code without dash or comma"
+msgstr "لطفا کد پستی را بدون خط تیره وارد کنید"
+
+#: .\apps\address\forms.py:43
+msgid "Enter a valid mobile number"
+msgstr "لطفا یک شماره موبایل معتبر وارد کنید"
+
+#: .\apps\address\models.py:9 .\apps\address\models.py:23
 msgid "ID"
 msgstr "شناسه"
 
-#: .\apps\address\models.py:10 .\apps\address\models.py:24
+#: .\apps\address\models.py:10 .\apps\address\models.py:25
+#: .\apps\product\models.py:25
+msgid "Title"
+msgstr "عنوان"
+
+#: .\apps\address\models.py:11 .\apps\address\models.py:26
 #: .\apps\product\models.py:61
 msgid "Slug"
 msgstr "اسلاگ"
 
-#: .\apps\address\models.py:11 .\apps\address\models.py:25
-#| msgid "Title Fa"
-msgid "Title fa"
-msgstr "عنوان فارسی"
-
-#: .\apps\address\models.py:14 .\apps\address\models.py:23
+#: .\apps\address\models.py:14 .\apps\address\models.py:24
 #: .\apps\address\models.py:41
 msgid "Province"
 msgstr "استان"
 
 #: .\apps\address\models.py:15
-#| msgid "Province"
 msgid "Provinces"
 msgstr "استان ها"
 
-#: .\apps\address\models.py:28 .\apps\address\models.py:42
+#: .\apps\address\models.py:29 .\apps\address\models.py:42
 msgid "City"
 msgstr "شهر"
 
-#: .\apps\address\models.py:29
+#: .\apps\address\models.py:30
 msgid "Cities"
 msgstr "شهرها"
+
+#: .\apps\address\models.py:39
+msgid "Full name"
+msgstr "نام کامل"
 
 #: .\apps\address\models.py:43
 msgid "Address"
@@ -263,7 +282,7 @@ msgstr "نشانی"
 msgid "Postal_code"
 msgstr "کد پستی"
 
-#: .\apps\address\models.py:48 .\apps\order\models.py:19
+#: .\apps\address\models.py:48 .\apps\order\models.py:24
 msgid "Create time"
 msgstr "تاریخ ایجاد"
 
@@ -283,7 +302,7 @@ msgstr "نشانی های کاربران"
 msgid "Cart Section"
 msgstr "بخش سبد خرید"
 
-#: .\apps\cart\models.py:10 .\apps\cart\models.py:26 .\apps\order\models.py:32
+#: .\apps\cart\models.py:10 .\apps\cart\models.py:26 .\apps\order\models.py:37
 msgid "Total price"
 msgstr "قیمت کل"
 
@@ -299,7 +318,7 @@ msgstr "سبدهای خرید"
 msgid "Cart items"
 msgstr "کالاهای سبد خرید"
 
-#: .\apps\cart\models.py:22 .\apps\order\models.py:30
+#: .\apps\cart\models.py:22 .\apps\order\models.py:35
 #: .\apps\product\models.py:45 .\apps\product\models.py:88
 msgid "Product"
 msgstr "محصول"
@@ -308,7 +327,7 @@ msgstr "محصول"
 msgid "idkc"
 msgstr "شناسه محصول"
 
-#: .\apps\cart\models.py:24 .\apps\order\models.py:13
+#: .\apps\cart\models.py:24 .\apps\order\models.py:15
 #: .\apps\product\models.py:60
 msgid "Quantity"
 msgstr "تعداد"
@@ -349,45 +368,69 @@ msgstr "درحال ارسال"
 msgid "Dispatched"
 msgstr "ارسال شده"
 
-#: .\apps\order\models.py:14
+#: .\apps\order\enums.py:16
+msgid "Normal"
+msgstr "عادی"
+
+#: .\apps\order\enums.py:17
+msgid "Quick"
+msgstr "سریع"
+
+#: .\apps\order\enums.py:22
+msgid "Bank"
+msgstr "بانک"
+
+#: .\apps\order\enums.py:23
+msgid "Didipay"
+msgstr "دیدی پی"
+
+#: .\apps\order\models.py:16
 msgid "Payable price"
 msgstr "مبلغ قابل پرداخت"
 
-#: .\apps\order\models.py:15
+#: .\apps\order\models.py:17
 msgid "Discount price"
 msgstr "قیمت تخفیف"
 
-#: .\apps\order\models.py:16
+#: .\apps\order\models.py:18
 msgid "Address info"
 msgstr "اطلاعات آدرس"
 
-#: .\apps\order\models.py:17
+#: .\apps\order\models.py:19
+msgid "Delivery type"
+msgstr "نحوه ارسال"
+
+#: .\apps\order\models.py:20
+msgid "Payment method"
+msgstr "نحوه پرداخت"
+
+#: .\apps\order\models.py:21
 msgid "Status"
 msgstr "وضعیت"
 
-#: .\apps\order\models.py:18
+#: .\apps\order\models.py:22
 msgid "Is success"
 msgstr "موفق"
 
-#: .\apps\order\models.py:22 .\apps\order\models.py:29
+#: .\apps\order\models.py:27 .\apps\order\models.py:34
 #: .\venv\Lib\site-packages\django\forms\formsets.py:484
 #: .\venv\Lib\site-packages\django\forms\formsets.py:491
 msgid "Order"
 msgstr "سفارش"
 
-#: .\apps\order\models.py:23
+#: .\apps\order\models.py:28
 msgid "Orders"
 msgstr "سفارشات"
 
-#: .\apps\order\models.py:31
+#: .\apps\order\models.py:36
 msgid "Quantity purchased"
 msgstr "تعداد خریداری شده"
 
-#: .\apps\order\models.py:35
+#: .\apps\order\models.py:40
 msgid "Order item"
 msgstr "کالای سفارش"
 
-#: .\apps\order\models.py:36
+#: .\apps\order\models.py:41
 msgid "Order items"
 msgstr "کالاهای سفارش"
 
@@ -418,10 +461,6 @@ msgstr "رنگ"
 #: .\apps\product\models.py:17
 msgid "Colors"
 msgstr "رنگ ها"
-
-#: .\apps\product\models.py:25
-msgid "Title"
-msgstr "عنوان"
 
 #: .\apps\product\models.py:25
 msgid "Example (XL)"
@@ -1819,14 +1858,15 @@ msgstr ""
 msgid "Enter a valid date/time in YYYY-MM-DD HH:MM[:ss[.uuuuuu]] format."
 msgstr ""
 
+#~| msgid "Title Fa"
+#~ msgid "Title fa"
+#~ msgstr "عنوان فارسی"
+
 #~ msgid "Counts"
 #~ msgstr "تعداد"
 
 #~ msgid "didikala"
 #~ msgstr "دیدیکالا"
-
-#~ msgid "Please Enter a valid mobile or email address"
-#~ msgstr "لطفا یک شماره موبایل یا ایمیل معتبر وارد کنید"
 
 #~ msgid "Mobile number is not correct"
 #~ msgstr "شماره موبایل صحیح نمی باشد"

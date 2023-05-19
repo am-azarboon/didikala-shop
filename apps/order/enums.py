@@ -9,3 +9,15 @@ class OrderStatus(TextChoices):
     PENDING = 'pending', _('Pending')
     DISPATCHING = 'dispatching', _('Dispatching')
     DISPATCHED = 'dispatched', _('Dispatched')
+
+
+# OrderDeliveryType Choices
+class DeliveryType(TextChoices):
+    NORMAL = 'N', _('Normal')
+    QUICK = 'Q', _('Quick')
+
+
+# OrderPaymentMethod
+class PaymentMethod(TextChoices):
+    BANK = 'BA', _('Bank')
+    DIDIPAY = 'DD', _('Didipay')

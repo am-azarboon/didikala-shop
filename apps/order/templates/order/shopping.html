@@ -1,4 +1,5 @@
 {% load static %}
+{% load filters %}
 
 <!DOCTYPE html>
 <html lang="fa">
@@ -50,6 +51,11 @@
         <div class="container main-container">
             <div class="row">
                 <div class="cart-page-content col-xl-9 col-lg-8 col-12 px-0">
+                    {% if error %}
+                        <div class="alert alert-danger">
+                            <h5>{{ error }}</h5>
+                        </div>
+                    {% endif %}
                     <div class="section-title text-sm-title title-wide no-after-title-wide mb-0 px-res-1">
                         <h2>انتخاب آدرس تحویل سفارش</h2>
                     </div>
@@ -61,7 +67,7 @@
                                         <ul class="checkout-contact-items">
                                             <li class="checkout-contact-item">
                                                 گیرنده:
-                                                <span class="full-name">{{ active_address.firstname }} {{ active_address.lastname }}</span>
+                                                <span class="full-name">{{ active_address.fullname }}</span>
                                             </li>
                                             <li class="checkout-contact-item">
                                                 <div class="checkout-contact-item checkout-contact-item-mobile">
@@ -81,7 +87,8 @@
                                                 <span class="address-part">{{ active_address.province }}-{{ active_address.city }}</span>
                                             </li>
                                         </ul>
-                                        <a class="checkout-contact-location" id="btn-checkout-contact-location">تغییر آدرس ارسال</a>
+                                        <a class="checkout-contact-location" id="btn-checkout-contact-location">تغییر آدرس
+                                            ارسال</a>
                                         <div class="checkout-contact-badge">
                                             <i class="mdi mdi-check-bold"></i>
                                         </div>
@@ -107,7 +114,7 @@
                                                 <div class="checkout-address-row">
                                                     <div class="checkout-address-col">
                                                         <div class="checkout-address-box is-selected">
-                                                            <h5 class="checkout-address-title">{{ address.firstname }} {{ address.lastname }}</h5>
+                                                            <h5 class="checkout-address-title">{{ address.fullname }}</h5>
                                                             <p class="checkout-address-text">
                                                                 <span>{{ address.province }} {{ address.city }}</span>
                                                             </p>
@@ -124,21 +131,33 @@
                                                                 <li>
                                                                     <ul>
                                                                         <li>
-                                                                            <button class="checkout-address-btn-edit" data-toggle="modal"
-                                                                                    data-target="#modal-location-edit">ویرایش
+                                                                            <button class="checkout-address-btn-edit"
+                                                                                    data-toggle="modal">
+                                                                                    <!--data-target="#modal-location-edit" -->
+                                                                                ویرایش
                                                                             </button>
                                                                         </li>
                                                                         <li>
                                                                             <button class="checkout-address-btn-remove"
-                                                                                    onclick="window.location='#'">حذف
+                                                                                    onclick="window.location='{% url 'address:delete' address.id %}'">
+                                                                                حذف
                                                                             </button>
                                                                         </li>
                                                                     </ul>
                                                                 </li>
                                                             </ul>
-                                                            <button type="button" onclick="window.location='#'"
-                                                                    class="checkout-address-btn-submit">سفارش به این آدرس ارسال می‌شود.
-                                                            </button>
+                                                            {% if address.active %}
+                                                                <button type="button"
+                                                                        class="checkout-address-btn-submit">سفارش به این آدرس
+                                                                    ارسال می‌شود
+                                                                </button>
+                                                            {% else %}
+                                                                <button type="button" style="background-color: #696969"
+                                                                        onclick="window.location='{% url 'address:active' address.id %}'"
+                                                                        class="checkout-address-btn-submit">ارسال سفارش به این
+                                                                    آدرس
+                                                                </button>
+                                                            {% endif %}
                                                         </div>
                                                     </div>
                                                 </div>
@@ -168,92 +187,81 @@
                                                 <div class="row">
                                                     <div class="col-lg-12 col-md-12">
                                                         <div class="form-ui dt-sl">
-                                                            <form class="form-account" method="POST" action="">
+                                                            <form class="form-account" method="POST" id="AddressForm"
+                                                                  data-cities-url="{% url 'address:get_cities' %}"
+                                                                  action="{% url 'address:add' %}" role="form">
                                                                 {% csrf_token %}
                                                                 <div class="row">
                                                                     <div class="col-md-6 col-sm-12 mb-2">
                                                                         <div class="form-row-title">
                                                                             <h4>
-                                                                                نام و نام خانوادگی
+                                                                                <label for="fullname">
+                                                                                    نام و نام خانوادگی
+                                                                                </label>
                                                                             </h4>
                                                                         </div>
                                                                         <div class="form-row">
-                                                                            <input class="input-ui pr-2 text-right"
-                                                                                   type="text"
-                                                                                   placeholder="نام خود را وارد نمایید">
+                                                                            {{ form.fullname }}
                                                                         </div>
                                                                     </div>
                                                                     <div class="col-md-6 col-sm-12 mb-2">
                                                                         <div class="form-row-title">
                                                                             <h4>
-                                                                                شماره موبایل
+                                                                                <label for="mobile">
+                                                                                    شماره موبایل
+                                                                                </label>
                                                                             </h4>
                                                                         </div>
                                                                         <div class="form-row">
-                                                                            <input class="input-ui pl-2 dir-ltr text-left"
-                                                                                   type="text"
-                                                                                   placeholder="09xxxxxxxxx">
+                                                                           {{ form.mobile }}
                                                                         </div>
                                                                     </div>
                                                                     <div class="col-md-6 col-sm-12 mb-2">
                                                                         <div class="form-row-title">
                                                                             <h4>
-                                                                                استان
+                                                                                <label for="id_province">
+                                                                                    استان
+                                                                                </label>
                                                                             </h4>
                                                                         </div>
                                                                         <div class="form-row">
-                                                                            <div class="custom-select-ui">
-                                                                                <select class="right">
-                                                                                    <option value="khrasan-north">
-                                                                                        خراسان شمالی
-                                                                                    </option>
-                                                                                    <option value="tehran">
-                                                                                        تهران
-                                                                                    </option>
-                                                                                </select>
-                                                                            </div>
+                                                                            {{ form.province }}
                                                                         </div>
                                                                     </div>
                                                                     <div class="col-md-6 col-sm-12 mb-2">
                                                                         <div class="form-row-title">
                                                                             <h4>
-                                                                                شهر
+                                                                                <label for="id_city">
+                                                                                    شهر
+                                                                                </label>
                                                                             </h4>
                                                                         </div>
                                                                         <div class="form-row">
-                                                                            <div class="custom-select-ui">
-                                                                                <select class="right">
-                                                                                    <option value="bojnourd">
-                                                                                        بجنورد
-                                                                                    </option>
-                                                                                    <option value="garme">
-                                                                                        گرمه
-                                                                                    </option>
-                                                                                </select>
-                                                                            </div>
+                                                                            {{ form.city }}
                                                                         </div>
                                                                     </div>
                                                                     <div class="col-12 mb-2">
                                                                         <div class="form-row-title">
                                                                             <h4>
-                                                                                آدرس پستی
+                                                                                <label for="address">
+                                                                                    آدرس محل تحویل
+                                                                                </label>
                                                                             </h4>
                                                                         </div>
                                                                         <div class="form-row">
-                                                                            <textarea class="input-ui pr-2 text-right"
-                                                                                    placeholder=" آدرس تحویل گیرنده را وارد نمایید"></textarea>
+                                                                            {{ form.address }}
                                                                         </div>
                                                                     </div>
                                                                     <div class="col-12 mb-2">
                                                                         <div class="form-row-title">
                                                                             <h4>
-                                                                                کد پستی
+                                                                                <label for="post_code">
+                                                                                    کد پستی
+                                                                                </label>
                                                                             </h4>
                                                                         </div>
                                                                         <div class="form-row">
-                                                                            <input class="input-ui pl-2 dir-ltr text-left placeholder-right"
-                                                                                    type="text"
-                                                                                    placeholder=" کد پستی را بدون خط تیره وارد نمایید">
+                                                                            {{ form.post_code }}
                                                                         </div>
                                                                     </div>
                                                                     <div class="col-12 pr-4 pl-4">
@@ -297,37 +305,42 @@
                                                                     <div class="col-md-6 col-sm-12 mb-2">
                                                                         <div class="form-row-title">
                                                                             <h4>
-                                                                                نام و نام خانوادگی
+                                                                                <label for="id_fullname">
+                                                                                    نام و نام خانوادگی
+                                                                                </label>
                                                                             </h4>
                                                                         </div>
                                                                         <div class="form-row">
                                                                             <input class="input-ui pr-2 text-right"
-                                                                                   type="text"
+                                                                                   type="text" id="id_fullname"
                                                                                    placeholder="نام خود را وارد نمایید">
                                                                         </div>
                                                                     </div>
                                                                     <div class="col-md-6 col-sm-12 mb-2">
                                                                         <div class="form-row-title">
                                                                             <h4>
-                                                                                شماره موبایل
+                                                                                <label for="id_mobile">
+                                                                                    شماره موبایل
+                                                                                </label>
                                                                             </h4>
                                                                         </div>
                                                                         <div class="form-row">
-                                                                            <input
-                                                                                    class="input-ui pl-2 dir-ltr text-left"
-                                                                                    type="text"
-                                                                                    placeholder="09xxxxxxxxx">
+                                                                            <input class="input-ui pl-2 dir-ltr text-left"
+                                                                                   type="text" id="id_mobile"
+                                                                                   placeholder="09xxxxxxxxx">
                                                                         </div>
                                                                     </div>
                                                                     <div class="col-md-6 col-sm-12 mb-2">
                                                                         <div class="form-row-title">
                                                                             <h4>
-                                                                                استان
+                                                                                <label for="id_province">
+                                                                                    استان
+                                                                                </label>
                                                                             </h4>
                                                                         </div>
                                                                         <div class="form-row">
                                                                             <div class="custom-select-ui">
-                                                                                <select class="right">
+                                                                                <select class="right" id="id_province">
                                                                                     <option value="khrasan-north">
                                                                                         خراسان شمالی
                                                                                     </option>
@@ -341,12 +354,14 @@
                                                                     <div class="col-md-6 col-sm-12 mb-2">
                                                                         <div class="form-row-title">
                                                                             <h4>
-                                                                                شهر
+                                                                                <label for="id_city">
+                                                                                    شهر
+                                                                                </label>
                                                                             </h4>
                                                                         </div>
                                                                         <div class="form-row">
                                                                             <div class="custom-select-ui">
-                                                                                <select class="right">
+                                                                                <select class="right" id="id_city">
                                                                                     <option value="bojnourd">
                                                                                         بجنورد
                                                                                     </option>
@@ -360,29 +375,34 @@
                                                                     <div class="col-12 mb-2">
                                                                         <div class="form-row-title">
                                                                             <h4>
-                                                                                آدرس پستی
+                                                                                <label for="id_address">
+                                                                                    آدرس پستی
+                                                                                </label>
                                                                             </h4>
                                                                         </div>
                                                                         <div class="form-row">
-                                                                            <textarea class="input-ui pr-2 text-right"
-                                                                                    placeholder=" آدرس تحویل گیرنده را وارد نمایید"></textarea>
+                                                                            <textarea class="input-ui pr-2 text-right" id="id_address"
+                                                                                      placeholder=" آدرس تحویل گیرنده را وارد نمایید"></textarea>
                                                                         </div>
                                                                     </div>
                                                                     <div class="col-12 mb-2">
                                                                         <div class="form-row-title">
                                                                             <h4>
-                                                                                کد پستی
+                                                                                <label for="id_post_code">
+                                                                                    کد پستی
+                                                                                </label>
                                                                             </h4>
                                                                         </div>
                                                                         <div class="form-row">
                                                                             <input class="input-ui pl-2 dir-ltr text-left placeholder-right"
-                                                                                    type="text"
-                                                                                    placeholder=" کد پستی را بدون خط تیره وارد نمایید">
+                                                                                   type="text" id="id_post_code"
+                                                                                   placeholder=" کد پستی را بدون خط تیره وارد نمایید">
                                                                         </div>
                                                                     </div>
                                                                     <div class="col-12 pr-4 pl-4">
                                                                         <button type="submit"
-                                                                                class="btn btn-sm btn-primary btn-submit-form">ثبت و ارسال به این آدرس
+                                                                                class="btn btn-sm btn-primary btn-submit-form">ثبت
+                                                                            و ارسال به این آدرس
                                                                         </button>
                                                                     </div>
                                                                 </div>
@@ -399,22 +419,23 @@
                             </div>
                         </div>
 
-                        <form method="post" action="#" id="shipping-data-form" class="dt-sn dt-sn--box pt-3 pb-3">
+                        <form method="POST" action="{% url 'order:payment' %}" id="shipping-data-form" class="dt-sn dt-sn--box pt-3 pb-3">
+                            {% csrf_token %}
                             <div class="section-title text-sm-title title-wide no-after-title-wide mb-0 px-res-1">
                                 <h2>انتخاب نحوه ارسال</h2>
                             </div>
                             <div class="checkout-shipment border-bottom pb-3 mb-4">
                                 <div class="custom-control custom-radio pl-0 pr-3">
-                                    <input type="radio" class="custom-control-input" name="radio1" id="radio1"
-                                           value="option1" checked>
-                                    <label for="radio1" class="custom-control-label">
+                                    <input type="radio" class="custom-control-input" name="deliveryType" id="N"
+                                           value="N" checked>
+                                    <label for="N" class="custom-control-label">
                                         عادی (بین ۲ تا ۵ روز کاری)
                                     </label>
                                 </div>
                                 <div class="custom-control custom-radio  pl-0 pr-3">
-                                    <input type="radio" class="custom-control-input" name="radio1" id="radio2"
-                                           value="option2">
-                                    <label for="radio2" class="custom-control-label">
+                                    <input type="radio" class="custom-control-input" name="deliveryType" id="Q"
+                                           value="Q">
+                                    <label for="Q" class="custom-control-label">
                                         سریع‌ (حداکثر تا ۲ روز کاری آینده)
                                     </label>
                                 </div>
@@ -452,10 +473,13 @@
                             </div>
                         </form>
                         <div class="mt-5">
-                            <a href="{% url 'cart:cart' %}" class="float-right border-bottom-dt"><i
-                                    class="mdi mdi-chevron-double-right"></i>بازگشت به سبد خرید</a>
-                            <a href="#" class="float-left border-bottom-dt">تایید و ادامه ثبت سفارش<i
-                                    class="mdi mdi-chevron-double-left"></i></a>
+                            <a href="{% url 'cart:cart' %}" class="float-right border-bottom-dt">
+                                <i class="mdi mdi-chevron-double-right"></i>بازگشت به سبد خرید
+                            </a>
+                            <a href="#" onclick="document.getElementById('shipping-data-form').submit();" class="float-left border-bottom-dt">
+                                تایید و ادامه ثبت سفارش
+                                <i class="mdi mdi-chevron-double-left"></i>
+                            </a>
                         </div>
                     </section>
                 </div>
@@ -463,25 +487,19 @@
                     <div class="dt-sn dt-sn--box border mb-2">
                         <ul class="checkout-summary-summary">
                             <li>
-                                <span>مبلغ کل (۲ کالا)</span><span>۱۶,۸۹۷,۰۰۰ تومان</span>
+                                <span>مبلغ کل ({{ cart.cart.cart_item.all.count }} کالا)</span>
+                                <span>{{ cart.base_total_price|changing|intcomma }} تومان</span>
                             </li>
-                            <li class="checkout-summary-discount">
-                                <span>سود شما از خرید</span><span><span>(۱٪)</span>۲۰۰,۰۰۰
-                                        تومان</span>
-                            </li>
+                            {% if cart.total_price|discount:cart.base_total_price > 0 %}
+                                <li class="checkout-summary-discount">
+                                    <span>سود شما از خرید</span><span>{{ cart.total_price|discount:cart.base_total_price|changing|intcomma }}تومان</span>
+                                </li>
+                            {% endif %}
                             <li>
-                                <span>هزینه ارسال<span class="help-sn" data-toggle="tooltip" data-html="true"
-                                                       data-placement="bottom"
-                                                       title="<div class='help-container is-right'><div class='help-arrow'></div><p class='help-text'>هزینه ارسال مرسولات می‌تواند وابسته به شهر و آدرس گیرنده متفاوت باشد. در صورتی که هر یک از مرسولات حداقل ارزشی برابر با ۱۵۰هزار تومان داشته باشد، آن مرسوله بصورت رایگان ارسال می‌شود.<br>'حداقل ارزش هر مرسوله برای ارسال رایگان، می تواند متغیر باشد.'</p></div>">
+                                <span>هزینه ارسال<span class="help-sn" data-toggle="tooltip" data-html="true" data-placement="bottom"
+                                           title="<div class='help-container is-right'><div class='help-arrow'></div><p class='help-text'>هزینه ارسال مرسولات می‌تواند وابسته به شهر و آدرس گیرنده متفاوت باشد. در صورتی که هر یک از مرسولات حداقل ارزشی برابر با ۱۵۰هزار تومان داشته باشد، آن مرسوله بصورت رایگان ارسال می‌شود.<br>'حداقل ارزش هر مرسوله برای ارسال رایگان، می تواند متغیر باشد.'</p></div>">
                                         <span class="mdi mdi-information-outline"></span>
                                     </span></span><span>وابسته به آدرس</span>
-                            </li>
-                            <li class="checkout-club-container">
-                                <span>دیدیکلاب<span class="help-sn" data-toggle="tooltip" data-html="true"
-                                                    data-placement="bottom"
-                                                    title="<div class='help-container is-right'><div class='help-arrow'></div><p class='help-text'>با امتیازهای خود در باشگاه مشتریان دیجی کالا (دیجی کلاب) از بین جوایز متنوع انتخاب کنید.</p></div>">
-                                        <span class="mdi mdi-information-outline"></span>
-                                    </span></span><span><span>۱۵۰+</span><span> امتیاز</span></span>
                             </li>
                         </ul>
                         <div class="checkout-summary-devider">
@@ -490,15 +508,16 @@
                         <div class="checkout-summary-content">
                             <div class="checkout-summary-price-title">مبلغ قابل پرداخت:</div>
                             <div class="checkout-summary-price-value">
-                                <span class="checkout-summary-price-value-amount">۱۶,۶۹۷,۰۰۰</span>
+                                <span class="checkout-summary-price-value-amount">{{ cart.total_price|changing|intcomma }}</span>
                                 تومان
                             </div>
-                            <a href="#" class="mb-2 d-block">
-                                <button class="btn-primary-cm btn-with-icon w-100 text-center pr-0 pl-0">
+                            <button class="mb-2 d-block">
+                                <button type="submit" form="shipping-data-form"
+                                        class="btn-primary-cm btn-with-icon w-100 text-center pr-0 pl-0">
                                     <i class="mdi mdi-arrow-left"></i>
                                     تایید و ادامه ثبت سفارش
                                 </button>
-                            </a>
+                            </button>
                             <div>
                                 <span>
                                     کالاهای موجود در سبد شما ثبت و رزرو نشده‌اند، برای ثبت سفارش
@@ -565,5 +584,23 @@
 <!-- Main JS File -->
 {% include 'includes/footer_references.html' %}
 </body>
+
+<script>
+    $("#id_province").change(function () {
+      var url = $("#AddressForm").attr("data-cities-url");  // get the url of the `load_cities` view
+      var provinceId = $(this).val();
+
+      $.ajax({
+        url: url,
+        data: {
+          'province': provinceId
+        },
+        success: function (data) {   // `data` is the return of the `load_cities` view function
+            $("#id_city").html(data);  // replace the contents of the city input with the data that came from the server
+        }
+      });
+
+    });
+  </script>
 
 </html>

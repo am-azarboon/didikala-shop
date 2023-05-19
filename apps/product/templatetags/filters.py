@@ -16,3 +16,9 @@ def changing(value):
 @register.filter
 def intcomma(value):
     return "{:,}".format(value)
+
+
+# Calculate price discount
+@register.filter
+def discount(value, price):
+    return price - value

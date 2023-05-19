@@ -1,0 +1,348 @@
+{% load static %}
+{% load filters %}
+
+<!DOCTYPE html>
+<html lang="fa">
+
+<head>
+    <title>تکمیل خرید</title>
+    {% include 'includes/head_references.html' %}
+</head>
+
+<body>
+<div class="wrapper shopping-page">
+    <!-- Start header-shopping -->
+    <header class="header-shopping dt-sl">
+        <div class="container">
+            <div class="row">
+                <div class="col-12 text-center pt-2">
+                    <div class="header-shopping-logo dt-sl">
+                        <a href="#">
+                            <img src="{% static 'img/logo.png' %}" alt="">
+                        </a>
+                    </div>
+                </div>
+                <div class="col-12 text-center">
+                    <ul class="checkout-steps">
+                        <li>
+                            <a href="#" class="active">
+                                <span>اطلاعات ارسال</span>
+                            </a>
+                        </li>
+                        <li class="active">
+                            <a href="#" class="active">
+                                <span>پرداخت</span>
+                            </a>
+                        </li>
+                        <li>
+                            <a href="#">
+                                <span>اتمام خرید و ارسال</span>
+                            </a>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </header>
+    <!-- End header-shopping -->
+
+    <!-- Start main-content -->
+    <main class="main-content dt-sl mt-4 mb-3">
+        <div class="container main-container">
+            <div class="row">
+                <div class="cart-page-content col-xl-9 col-lg-8 col-12 px-0">
+                    <section class="page-content dt-sl">
+                        <div class="section-title text-sm-title title-wide no-after-title-wide mb-0 px-res-1">
+                            <h2>انتخاب شیوه پرداخت</h2>
+                        </div>
+                        <form method="POST" action=""
+                              id="payment-data-form" class="dt-sn dt-sn--box pt-3 pb-3 mb-4">
+                            {% csrf_token %}
+                            <div class="checkout-pack">
+                                <div class="row">
+                                    <div class="checkout-time-table checkout-time-table-time">
+                                        <div class="col-12">
+                                            <div class="radio-box custom-control custom-radio pl-0 pr-3">
+                                                <input type="radio" class="custom-control-input" name="paymentMethod"
+                                                       id="BA" value="BA" checked>
+                                                <label for="BA" class="custom-control-label">
+                                                    <i class="mdi mdi-credit-card-outline checkout-additional-options-checkbox-image"></i>
+                                                    <div class="content-box">
+                                                        <div class="checkout-time-table-title-bar checkout-time-table-title-bar-city">
+                                                            پرداخت اینترنتی هوشمند دیدی‌کالا
+                                                            <span class="help-sn" data-toggle="tooltip"
+                                                                  data-html="true" data-placement="bottom"
+                                                                  title="<div class='help-container is-left'><div class='help-arrow'></div><p class='help-text'>با پرداخت اینترنتی، سفارش شما با اولویت بیشتری نسبت به پرداخت در محل پردازش و ارسال می شود. در صورت پرداخت ناموفق هزینه کسر شده حداکثر طی ۷۲ ساعت به حساب شما بازگردانده می‌شود.</p></div>">
+                                                                    <span class="mdi mdi-information-outline"></span>
+                                                                </span>
+                                                        </div>
+                                                        <ul class="checkout-time-table-subtitle-bar">
+                                                            <li>
+                                                                آنلاین با تمامی کارت‌های بانکی
+                                                            </li>
+                                                        </ul>
+                                                    </div>
+                                                </label>
+                                            </div>
+                                        </div>
+                                        <div class="col-12">
+                                            <div class="radio-box custom-control custom-radio pl-0 pr-3">
+                                                <input type="radio" class="custom-control-input" name="paymentMethod"
+                                                       id="DD" value="DD">
+                                                <label for="DD" class="custom-control-label">
+                                                    <i class="mdi mdi-credit-card-multiple-outline checkout-additional-options-checkbox-image"></i>
+                                                    <div class="content-box">
+                                                        <div class="checkout-time-table-title-bar checkout-time-table-title-bar-city">
+                                                            پرداخت اعتباری دیدی‌پی
+                                                        </div>
+                                                        <ul class="checkout-time-table-subtitle-bar">
+                                                            <li>
+                                                                با اعتبار دیدی‌پی
+                                                            </li>
+                                                        </ul>
+                                                    </div>
+                                                </label>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </form>
+                        <div class="section-title text-sm-title title-wide no-after-title-wide mb-0 px-res-1">
+                            <h2>خلاصه سفارش</h2>
+                        </div>
+                        <div class="dt-sn dt-sn--box pt-3 pb-3">
+                            <div class="checkout-order-summary">
+                                <div class="accordion checkout-order-summary-item" id="accordionExample">
+                                    <div class="card border-bottom pt-sl-res">
+                                    {% if delivery_type == 'Q' %}
+                                        <div class="card-header checkout-order-summary-header" id="headingOne">
+                                            <div class="row">
+                                                <div class="col-md-6">
+                                                    <span class="text-muted">
+                                                        مرسولات <span class="fs-sm">({{ cart.cart.cart_item.all.count }} کالا)</span>
+                                                    </span>
+                                                </div>
+                                                <div class="col-md-6">
+                                                    <span class="text-muted">
+                                                        <span class="dl-none-sm">نحوه ارسال:</span>
+                                                        <span class="dl-none-sm">
+                                                            پست پیشتاز با ظرفیت اختصاصی برای دیجی کالا
+                                                        </span>
+                                                    </span>
+                                                </div>
+                                                <div class="col-md-6">
+                                                    <span class="text-muted">
+                                                        <span>ارسال از</span>
+                                                        <span class="fs-sm">
+                                                            2 روز کاری
+                                                        </span>
+                                                    </span>
+                                                </div>
+                                                <div class="col-md-6">
+                                                    <span class="text-muted">
+                                                        <span>هزینه ارسال</span>
+                                                        <span class="fs-sm">
+                                                            ۳۵,۰۰۰ تومان
+                                                        </span>
+                                                    </span>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    {% else %}
+                                        <div class="card-header checkout-order-summary-header" id="headingOne">
+                                            <div class="row">
+                                                <div class="col-md-6">
+                                                    <span class="text-muted">
+                                                        مرسولات <span class="fs-sm">({{ cart.cart.cart_item.all.count }} کالا)</span>
+                                                    </span>
+                                                </div>
+                                                <div class="col-md-6">
+                                                    <span class="text-muted">
+                                                        <span class="dl-none-sm">نحوه ارسال:</span>
+                                                        <span class="dl-none-sm">
+                                                            پست عادی با ظرفیت اختصاصی برای دیدی کالا
+                                                        </span>
+                                                    </span>
+                                                </div>
+                                                <div class="col-md-6">
+                                                    <span class="text-muted">
+                                                        <span>ارسال از</span>
+                                                        <span class="fs-sm">
+                                                            5 روز کاری
+                                                        </span>
+                                                    </span>
+                                                </div>
+                                                <div class="col-md-6">
+                                                    <span class="text-muted">
+                                                        <span>هزینه ارسال</span>
+                                                        <span class="fs-sm">
+                                                            ۱۵,۰۰۰ تومان
+                                                        </span>
+                                                    </span>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    {% endif %}
+                                        <div class="box">
+                                            <div class="row">
+                                                {% for item in cart %}
+                                                    <div class="col-lg-3 col-md-4 col-sm-6 col-12">
+                                                        <div class="product-box-container">
+                                                            <div class="product-box product-box-compact">
+                                                                <a class="product-box-img">
+                                                                    <img src="{{ item.product.product.product_image.first.image.url }}">
+                                                                </a>
+                                                                <div class="product-box-title">
+                                                                    {{ item.product.product.title|truncatechars:20 }}
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                {% endfor %}
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="row mt-4">
+                            <div class="col-sm-6 col-12">
+                                <div class="dt-sn dt-sn--box pt-3 pb-3 px-res-1">
+                                    <div class="section-title text-sm-title title-wide no-after-title-wide mb-0">
+                                        <h2>استفاده از کد تخفیف دیدی‌کالا
+                                            <span class="help-sn" data-toggle="tooltip" data-html="true"
+                                                  data-placement="bottom"
+                                                  title="<div class='help-container is-left'><div class='help-arrow'></div><p class='help-text'>بعد از نهایی شدن سفارش کد تخفیف را ثبت نمایید. بعد از ثبت کد تخفیف امکان بازگشت و یا تغییر سبد وجود نخواهد داشت. در صورت تغییر سفارش، کد تخفیف از بین خواهد رفت و امکان اعمال مجدد آن وجود ندارد</p></div>">
+                                                    <span class="mdi mdi-information-outline"></span>
+                                                </span>
+                                        </h2>
+                                    </div>
+                                    <p><label for="id_giftCart">با ثبت کد تخفیف، مبلغ کد تخفیف از “مبلغ قابل پرداخت” کسر می‌شود.</label></p>
+                                    <div class="form-ui">
+                                        <form action="" id="giftCardForm">
+                                            <div class="row text-center">
+                                                <div class="col-xl-8 col-lg-12 px-0">
+                                                    <div class="form-row">
+                                                        <input type="text" class="input-ui pr-2" id="id_giftCart"
+                                                               placeholder="مثلا 837A2CS">
+                                                    </div>
+                                                </div>
+                                                <div class="col-xl-4 col-lg-12 px-0">
+                                                    <button type="submit" form="giftCardForm" class="btn btn-primary mt-res-1">ثبت کد تخفیف</button>
+                                                </div>
+                                            </div>
+                                        </form>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="mt-5">
+                            <a href="{% url 'order:shopping' %}" class="float-right border-bottom-dt"><i
+                                    class="mdi mdi-chevron-double-right"></i>بازگشت به شیوه ارسال</a>
+                            <a href="#" onclick="document.getElementById('payment-data-form').submit();"
+                               class="float-left border-bottom-dt">ثبت نهایی سفارش
+                                <i class="mdi mdi-chevron-double-left"></i>
+                            </a>
+                        </div>
+                    </section>
+                </div>
+                <div class="col-xl-3 col-lg-4 col-12 w-res-sidebar sticky-sidebar">
+                    <div class="dt-sn dt-sn--box border mb-2">
+                        <ul class="checkout-summary-summary">
+                            <li>
+                                <span>مبلغ کل ({{ cart.cart.cart_item.all.count }} کالا)</span><span>{{ cart.base_total_price|changing|intcomma }} تومان</span>
+                            </li>
+                            <li>
+                                <span>هزینه ارسال<span class="help-sn" data-toggle="tooltip" data-html="true"
+                                                       data-placement="bottom"
+                                                       title="<div class='help-container is-right'><div class='help-arrow'></div><p class='help-text'>هزینه ارسال مرسولات می‌تواند وابسته به شهر و آدرس گیرنده متفاوت باشد. در صورتی که هر یک از مرسولات حداقل ارزشی برابر با ۱۵۰هزار تومان داشته باشد، آن مرسوله بصورت رایگان ارسال می‌شود.<br>'حداقل ارزش هر مرسوله برای ارسال رایگان، می تواند متغیر باشد.'</p></div>">
+                                        <span class="mdi mdi-information-outline"></span>
+                                    </span></span>
+                                {% if delivery_type == 'N' %}
+                                    <span>۱۵,۰۰۰ تومان</span>
+                                {% else %}
+                                    <span>۳۵,۰۰۰ تومان</span>
+                                {% endif %}
+                            </li>
+                        </ul>
+                        <div class="checkout-summary-devider">
+                            <div></div>
+                        </div>
+                        <div class="checkout-summary-content">
+                            <div class="checkout-summary-price-title">مبلغ قابل پرداخت:</div>
+                            <div class="checkout-summary-price-value">
+                                <span class="checkout-summary-price-value-amount">{{ cart.total_price|changing|intcomma }}</span>
+                                تومان
+                            </div>
+
+                                <button type="submit" form="payment-data-form"
+                                    class="btn-primary-cm btn-with-icon w-100 text-center pr-0 pl-0">
+                                    <i class="mdi mdi-arrow-left"></i>
+                                    پرداخت و ثبت نهایی سفارش
+                                </button>
+
+                            <div>
+                                <span>
+                                    کالاهای موجود در سبد شما ثبت و رزرو نشده‌اند، برای ثبت سفارش
+                                    مراحل بعدی را تکمیل کنید.
+                                </span><span class="help-sn" data-toggle="tooltip" data-html="true"
+                                             data-placement="bottom"
+                                             title="<div class='help-container is-right'><div class='help-arrow'></div><p class='help-text'>محصولات موجود در سبد خرید شما تنها در صورت ثبت و پرداخت سفارش برای شما رزرو می‌شوند. در صورت عدم ثبت سفارش، دیجی‌کالا هیچگونه مسئولیتی در قبال تغییر قیمت یا موجودی این کالاها ندارد.</p></div>">
+                                    <span class="mdi mdi-information-outline"></span>
+                                </span>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="dt-sn dt-sn--box checkout-feature-aside pt-4">
+                        <ul>
+                            <li class="checkout-feature-aside-item">
+                                <img src="{% static 'img/svg/return-policy.svg' %}" alt="MoneyBackGuarantee">
+                                هفت روز ضمانت تعویض
+                            </li>
+                            <li class="checkout-feature-aside-item">
+                                <img src="{% static 'img/svg/payment-terms.svg' %}" alt="PayWithCards">
+                                پرداخت در محل با کارت بانکی
+                            </li>
+                            <li class="checkout-feature-aside-item">
+                                <img src="{% static 'img/svg/delivery.svg' %}" alt="ExpressDispatch">
+                                تحویل اکسپرس
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </main>
+    <!-- End main-content -->
+    <!-- Start mini-footer -->
+    <footer class="mini-footer dt-sl">
+        <div class="container main-container">
+            <div class="row">
+                <div class="col-md-6 col-sm-12 text-left">
+                    <i class="mdi mdi-phone-outline"></i>
+                    شماره تماس : <a href="#">
+                    ۶۱۹۳۰۰۰۰
+                    - ۰۲۱
+                </a>
+                </div>
+                <div class="col-md-6 col-sm-12 text-right">
+                    <i class="mdi mdi-email-outline"></i>
+                    آدرس ایمیل : <a href="#">info@gmail.com</a>
+                </div>
+                <div class="col-12 text-center">
+                    <div class="copy-right-mini-footer">
+                        Copyright © 2023 Didikala
+                    </div>
+                </div>
+            </div>
+        </div>
+    </footer>
+    <!-- End mini-footer -->
+</div>
+
+<!-- Core JS Files -->
+{% include 'includes/footer_references.html' %}
+</body>
+
+</html>
