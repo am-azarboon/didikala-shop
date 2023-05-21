@@ -11,15 +11,17 @@ class Order(models.Model):
     DeliveryType = DeliveryType
     Status = OrderStatus
 
+    oid = models.PositiveBigIntegerField(_('OID'), default=1000)
     user = models.ForeignKey(User, verbose_name=_('User'), on_delete=models.DO_NOTHING, related_name='order')
     quantity = models.PositiveIntegerField(_('Quantity'), default=0)
     payable_price = models.IntegerField(_('Payable price'), default=0)
     discount_price = models.IntegerField(_('Discount price'), default=0)
-    address_info = models.TextField(_('Address info'), max_length=256, default='')
+    address_info = models.TextField(_('Address info'), max_length=256, null=True, blank=True)
     delivery_type = models.CharField(_('Delivery type'), max_length=32, choices=DeliveryType.choices, default=DeliveryType.choices[0])
     payment_method = models.CharField(_('Payment method'), max_length=32, choices=PaymentMethod.choices, default=DeliveryType.choices[0])
-    status = models.CharField(_('Status'), max_length=32, choices=Status.choices, default=Status.choices[0])
-    is_paid = models.BooleanField(_('Is success'), default=False)
+    bank_tracking_code = models.CharField(_('Bank tracking code'), max_length=16, null=True, blank=True)
+    status = models.CharField(_('Status'), max_length=32, choices=Status.choices, default='unsuccessful')
+    is_paid = models.BooleanField(_('Is paid'), default=False)
 
     created_at = models.DateTimeField(_('Create time'), auto_now_add=True)
 

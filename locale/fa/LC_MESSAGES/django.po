@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2023-05-19 18:08+0330\n"
+"POT-Creation-Date: 2023-05-21 20:18+0330\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -44,7 +44,7 @@ msgstr "بخش حساب های کاربری"
 
 #: .\apps\account\enums.py:7 .\apps\account\models.py:56
 #: .\apps\address\models.py:38 .\apps\cart\models.py:9
-#: .\apps\order\models.py:14
+#: .\apps\order\models.py:15
 msgid "User"
 msgstr "کاربر"
 
@@ -235,10 +235,6 @@ msgstr "لطفا آدرس خود را وارد کنید"
 msgid "Please enter your post code without dash or comma"
 msgstr "لطفا کد پستی را بدون خط تیره وارد کنید"
 
-#: .\apps\address\forms.py:43
-msgid "Enter a valid mobile number"
-msgstr "لطفا یک شماره موبایل معتبر وارد کنید"
-
 #: .\apps\address\models.py:9 .\apps\address\models.py:23
 msgid "ID"
 msgstr "شناسه"
@@ -282,7 +278,7 @@ msgstr "نشانی"
 msgid "Postal_code"
 msgstr "کد پستی"
 
-#: .\apps\address\models.py:48 .\apps\order\models.py:24
+#: .\apps\address\models.py:48 .\apps\order\models.py:26
 msgid "Create time"
 msgstr "تاریخ ایجاد"
 
@@ -302,7 +298,7 @@ msgstr "نشانی های کاربران"
 msgid "Cart Section"
 msgstr "بخش سبد خرید"
 
-#: .\apps\cart\models.py:10 .\apps\cart\models.py:26 .\apps\order\models.py:37
+#: .\apps\cart\models.py:10 .\apps\cart\models.py:26 .\apps\order\models.py:39
 msgid "Total price"
 msgstr "قیمت کل"
 
@@ -318,7 +314,7 @@ msgstr "سبدهای خرید"
 msgid "Cart items"
 msgstr "کالاهای سبد خرید"
 
-#: .\apps\cart\models.py:22 .\apps\order\models.py:35
+#: .\apps\cart\models.py:22 .\apps\order\models.py:37
 #: .\apps\product\models.py:45 .\apps\product\models.py:88
 msgid "Product"
 msgstr "محصول"
@@ -327,7 +323,7 @@ msgstr "محصول"
 msgid "idkc"
 msgstr "شناسه محصول"
 
-#: .\apps\cart\models.py:24 .\apps\order\models.py:15
+#: .\apps\cart\models.py:24 .\apps\order\models.py:16
 #: .\apps\product\models.py:60
 msgid "Quantity"
 msgstr "تعداد"
@@ -384,53 +380,61 @@ msgstr "بانک"
 msgid "Didipay"
 msgstr "دیدی پی"
 
-#: .\apps\order\models.py:16
+#: .\apps\order\models.py:14
+msgid "OID"
+msgstr "شناسه سفارش"
+
+#: .\apps\order\models.py:17
 msgid "Payable price"
 msgstr "مبلغ قابل پرداخت"
 
-#: .\apps\order\models.py:17
+#: .\apps\order\models.py:18
 msgid "Discount price"
 msgstr "قیمت تخفیف"
 
-#: .\apps\order\models.py:18
+#: .\apps\order\models.py:19
 msgid "Address info"
 msgstr "اطلاعات آدرس"
 
-#: .\apps\order\models.py:19
+#: .\apps\order\models.py:20
 msgid "Delivery type"
 msgstr "نحوه ارسال"
 
-#: .\apps\order\models.py:20
+#: .\apps\order\models.py:21
 msgid "Payment method"
 msgstr "نحوه پرداخت"
 
-#: .\apps\order\models.py:21
+#: .\apps\order\models.py:22
+msgid "Bank tracking code"
+msgstr "کد پرداخت"
+
+#: .\apps\order\models.py:23
 msgid "Status"
 msgstr "وضعیت"
 
-#: .\apps\order\models.py:22
-msgid "Is success"
-msgstr "موفق"
+#: .\apps\order\models.py:24
+msgid "Is paid"
+msgstr "پرداخت شده"
 
-#: .\apps\order\models.py:27 .\apps\order\models.py:34
+#: .\apps\order\models.py:29 .\apps\order\models.py:36
 #: .\venv\Lib\site-packages\django\forms\formsets.py:484
 #: .\venv\Lib\site-packages\django\forms\formsets.py:491
 msgid "Order"
 msgstr "سفارش"
 
-#: .\apps\order\models.py:28
+#: .\apps\order\models.py:30
 msgid "Orders"
 msgstr "سفارشات"
 
-#: .\apps\order\models.py:36
+#: .\apps\order\models.py:38
 msgid "Quantity purchased"
 msgstr "تعداد خریداری شده"
 
-#: .\apps\order\models.py:40
+#: .\apps\order\models.py:42
 msgid "Order item"
 msgstr "کالای سفارش"
 
-#: .\apps\order\models.py:41
+#: .\apps\order\models.py:43
 msgid "Order items"
 msgstr "کالاهای سفارش"
 
@@ -543,15 +547,15 @@ msgstr "تصاویر"
 msgid "Product detail"
 msgstr "جزئیات محصول"
 
-#: .\didikala\settings.py:138
+#: .\didikala\settings.py:140
 msgid "Persian"
 msgstr "فارسی"
 
-#: .\didikala\urls.py:8 .\didikala\urls.py:9
+#: .\didikala\urls.py:9 .\didikala\urls.py:10
 msgid "Shop Management"
 msgstr "مدیریت فروشگاه"
 
-#: .\didikala\urls.py:10
+#: .\didikala\urls.py:11
 msgid "Admin Panel"
 msgstr "پنل ادمین"
 
@@ -1857,6 +1861,12 @@ msgstr ""
 #: .\venv\Lib\site-packages\django_jalali\db\models.py:230
 msgid "Enter a valid date/time in YYYY-MM-DD HH:MM[:ss[.uuuuuu]] format."
 msgstr ""
+
+#~ msgid "Enter a valid mobile number"
+#~ msgstr "لطفا یک شماره موبایل معتبر وارد کنید"
+
+#~ msgid "Is success"
+#~ msgstr "موفق"
 
 #~| msgid "Title Fa"
 #~ msgid "Title fa"

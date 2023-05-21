@@ -1,11 +1,15 @@
-from django.shortcuts import get_object_or_404
-from django.views.generic import TemplateView
+from azbankgateways import bankfactories, models as bank_models, default_settings as settings
+from azbankgateways.exceptions import AZBankGatewaysException
+from django.http import HttpResponseNotFound, HttpResponse, Http404
+from django.shortcuts import redirect, reverse, get_object_or_404
+from django.views.generic import TemplateView, View
 from apps.address.forms import AddressForm
 from .mixins import NewLoginRequiredMixin
 from apps.address.models import Address
-from django.shortcuts import redirect
 from apps.cart.cart import ModelCart
 from .order import SessionOrder
+from .models import Order
+# from . import bank
 
 
 # Render ShoppingView
@@ -47,7 +51,11 @@ class PaymentView(TemplateView):
     def post(self, request, *args, **kwargs):
         if self.request.user.is_authenticated:
             delivery_type = self.request.POST.get('deliveryType')  # Get posted delivery type
-            active_address = get_object_or_404(Address, user=self.request.user, active=True)  # Get user active address
+
+            try:
+                active_address = Address.objects.get(user=self.request.user, active=True)  # Get user active address
+            except Address.DoesNotExist:
+                return redirect('order:shopping')
 
             # Get user order from sessions and set new values
             order = SessionOrder(self.request)
@@ -56,7 +64,6 @@ class PaymentView(TemplateView):
             order.modify(key='address_info', value=active_address.id)
             order.modify(key='is_paid', value=False)
 
-            print(order.order)
         return self.get(request, *args, **kwargs)
 
     def get_context_data(self, **kwargs):
@@ -69,5 +76,90 @@ class PaymentView(TemplateView):
             contexts['delivery_type'] = 'Q'
 
         contexts['cart'] = ModelCart(self.request)  # Send user ModelCart as context
+
+        return contexts
+
+
+# OrderCreateView
+class CreateOrderView(NewLoginRequiredMixin, View):
+    def post(self, request):
+        payment_method = request.POST.get('paymentMethod')
+        order = SessionOrder(request)  # Get user order from sessions
+        order.modify(key='payment_method', value=str(payment_method))  # Set payment_method in order session
+
+        status = order.create_order(request)  # Create new Order in database
+
+        # Redirect to payment gateway(bank or others)
+        if status:
+            return redirect('order:bank')
+
+        return HttpResponseNotFound()
+
+
+# BankView
+class CreateBankView(View):
+    def get(self, request):
+        order = get_object_or_404(Order, oid=request.session['order']['oid'])
+        print('Order oid: ', order.oid)
+
+        amount = int(order.payable_price)
+        user_mobile_number = str(request.user.mobile)
+
+        factory = bankfactories.BankFactory()
+        try:
+            bank = factory.auto_create()
+            bank.set_request(request)
+            bank.set_amount(amount)
+            bank.set_client_callback_url(reverse('order:callback'))
+            bank.set_mobile_number(user_mobile_number)
+
+            bank_record = bank.ready()
+
+            return bank.redirect_gateway()
+        except AZBankGatewaysException:
+            return HttpResponse('اتصال به درگاه پرداخت با مشکل مواجه شد. لطفا مجدد تلاش کنید')
+
+
+# Render BankCallBackView
+class CallBackView(TemplateView):
+    template_name = 'order/order_success.html'
+    content_type = 'text/html'
+
+    def dispatch(self, request, *args, **kwargs):
+        tracking_code = request.GET.get(settings.TRACKING_CODE_QUERY_PARAM, None)
+
+        try:
+            order = Order.objects.get(oid=request.session['order']['oid'])
+        except Order.DoesNotExist:
+            raise Http404
+
+        if not tracking_code:
+            raise Http404
+
+        try:
+            bank_record = bank_models.Bank.objects.get(tracking_code=tracking_code)
+        except bank_models.Bank.DoesNotExist:
+            raise Http404
+
+        if not bank_record.is_success:
+            return HttpResponse('پرداخت با مشکل مواجه شد! در صورت کسر مبلغ تا ۴۸ ساعت آینده به حساب شما بازگردانده میشود.')
+
+        order.is_paid = True  # Is_paid = True
+        order.status = 'successful'
+        order.bank_tracking_code = tracking_code
+        order.save()
+
+        cart = ModelCart(request)
+        cart.cart_delete()  # Delete user cart from database
+
+        return super(CallBackView, self).dispatch(request, *args, **kwargs)
+
+    def get_context_data(self, **kwargs):
+        contexts = super().get_context_data(**kwargs)
+
+        order = get_object_or_404(Order, oid=self.request.session['order']['oid'])
+        address = get_object_or_404(Address, user=self.request.user, active=True)
+        contexts['order'] = order
+        contexts['address'] = address
 
         return contexts

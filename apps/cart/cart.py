@@ -106,6 +106,10 @@ class ModelCart:
         for item in items:
             total_price += item.total_price
 
+        # Save the cart total price
+        self.cart.total_price = total_price
+        self.cart.save()
+
         return total_price
 
     def base_total_price(self):
@@ -130,6 +134,8 @@ class ModelCart:
         cart_item.total_price = int(cart_item.quantity * cart_item.product.selling_price)  # Calculate total price of this Item
         cart_item.base_total_price = int(cart_item.quantity * cart_item.product.base_price)  # Calculate base total price of this Item
         cart_item.save()  # Save the CartItem
+
+        self.total_price()
 
     def cart_remove(self, idkc):
         product = ProductCustom.objects.get(idkc=idkc)  # Get current product

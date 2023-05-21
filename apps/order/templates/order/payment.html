@@ -55,7 +55,7 @@
                         <div class="section-title text-sm-title title-wide no-after-title-wide mb-0 px-res-1">
                             <h2>انتخاب شیوه پرداخت</h2>
                         </div>
-                        <form method="POST" action=""
+                        <form method="POST" action="{% url 'order:create' %}"
                               id="payment-data-form" class="dt-sn dt-sn--box pt-3 pb-3 mb-4">
                             {% csrf_token %}
                             <div class="checkout-pack">
@@ -251,7 +251,7 @@
                     <div class="dt-sn dt-sn--box border mb-2">
                         <ul class="checkout-summary-summary">
                             <li>
-                                <span>مبلغ کل ({{ cart.cart.cart_item.all.count }} کالا)</span><span>{{ cart.base_total_price|changing|intcomma }} تومان</span>
+                                <span>مبلغ کل ({{ cart.cart.cart_item.all.count }} کالا)</span><span>{{ cart.total_price|changing|intcomma }} تومان</span>
                             </li>
                             <li>
                                 <span>هزینه ارسال<span class="help-sn" data-toggle="tooltip" data-html="true"
@@ -272,8 +272,13 @@
                         <div class="checkout-summary-content">
                             <div class="checkout-summary-price-title">مبلغ قابل پرداخت:</div>
                             <div class="checkout-summary-price-value">
-                                <span class="checkout-summary-price-value-amount">{{ cart.total_price|changing|intcomma }}</span>
-                                تومان
+                                {% if delivery_type == 'N' %}
+                                    <span class="checkout-summary-price-value-amount">{{ cart.total_price|add:150000|changing|intcomma }}</span>
+                                    تومان
+                                {% else %}
+                                    <span class="checkout-summary-price-value-amount">{{ cart.total_price|add:350000|changing|intcomma }}</span>
+                                    تومان
+                                {% endif %}
                             </div>
 
                                 <button type="submit" form="payment-data-form"

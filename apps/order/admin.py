@@ -6,12 +6,12 @@ from django.contrib import admin
 class OrderItemInline(admin.StackedInline):
     model = OrderItem
     readonly_fields = ('quantity', 'total_price')
-    extra = 1
+    extra = 0
 
 
 @admin.register(Order)
 class OrderAdmin(admin.ModelAdmin):
     list_display = ('user', 'quantity', 'payable_price', 'is_paid', 'status')
     list_display_links = ('user', 'quantity',)
-    readonly_fields = ('payable_price', 'discount_price', 'is_paid', 'status', 'address_info', 'created_at')
+    readonly_fields = ('payable_price', 'discount_price', 'address_info', 'bank_tracking_code', 'created_at')
     inlines = (OrderItemInline,)

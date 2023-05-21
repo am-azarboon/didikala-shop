@@ -1,4 +1,5 @@
 from django.utils.translation import gettext_lazy as _
+from azbankgateways.urls import az_bank_gateways_urls
 from django.conf.urls.static import static
 from django.urls import path, include
 from django.contrib import admin
@@ -18,6 +19,7 @@ urlpatterns = [
     path('cart/', include('apps.cart.urls', namespace='cart')),
     path('order/', include('apps.order.urls', namespace='order')),
     path('', include('apps.main.urls', namespace='main')),
+    path('bankgateways/', az_bank_gateways_urls()),
 ] + static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
 
 # handling the 404 error

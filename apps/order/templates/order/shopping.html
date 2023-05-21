@@ -476,10 +476,17 @@
                             <a href="{% url 'cart:cart' %}" class="float-right border-bottom-dt">
                                 <i class="mdi mdi-chevron-double-right"></i>بازگشت به سبد خرید
                             </a>
-                            <a href="#" onclick="document.getElementById('shipping-data-form').submit();" class="float-left border-bottom-dt">
-                                تایید و ادامه ثبت سفارش
-                                <i class="mdi mdi-chevron-double-left"></i>
-                            </a>
+                            {% if active_address %}
+                                <a href="#" onclick="document.getElementById('shipping-data-form').submit();" class="float-left border-bottom-dt">
+                                    تایید و ادامه ثبت سفارش
+                                    <i class="mdi mdi-chevron-double-left"></i>
+                                </a>
+                            {% else %}
+                                <a href="#" class="float-left border-bottom-dt">
+                                    تایید و ادامه ثبت سفارش
+                                    <i class="mdi mdi-chevron-double-left"></i>
+                                </a>
+                            {% endif %}
                         </div>
                     </section>
                 </div>
@@ -512,11 +519,19 @@
                                 تومان
                             </div>
                             <button class="mb-2 d-block">
-                                <button type="submit" form="shipping-data-form"
-                                        class="btn-primary-cm btn-with-icon w-100 text-center pr-0 pl-0">
-                                    <i class="mdi mdi-arrow-left"></i>
-                                    تایید و ادامه ثبت سفارش
-                                </button>
+                                {% if active_address %}
+                                    <button type="submit" form="shipping-data-form"
+                                            class="btn-primary-cm btn-with-icon w-100 text-center pr-0 pl-0">
+                                        <i class="mdi mdi-arrow-left"></i>
+                                        تایید و ادامه ثبت سفارش
+                                    </button>
+                                {% else %}
+                                    <button type="button"
+                                            class="btn-primary-cm btn-with-icon w-100 text-center pr-0 pl-0">
+                                        <i class="mdi mdi-arrow-left"></i>
+                                        تایید و ادامه ثبت سفارش
+                                    </button>
+                                {% endif %}
                             </button>
                             <div>
                                 <span>

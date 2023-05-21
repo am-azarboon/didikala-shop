@@ -1,5 +1,6 @@
 from django.utils.translation import gettext_lazy as _
 from pathlib import Path
+import gettext
 import os
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
@@ -37,6 +38,7 @@ INSTALLED_APPS = [
 
     # Django modules
     'django_cleanup.apps.CleanupConfig',
+    'azbankgateways',
     'django_jalali',
     'widget_tweaks',
     'ckeditor',
@@ -45,7 +47,7 @@ INSTALLED_APPS = [
 MIDDLEWARE = [
     "django.middleware.security.SecurityMiddleware",
     "django.contrib.sessions.middleware.SessionMiddleware",
-    # "django.middleware.locale.LocaleMiddleware",
+    "django.middleware.locale.LocaleMiddleware",
     "django.middleware.common.CommonMiddleware",
     "django.middleware.csrf.CsrfViewMiddleware",
     "django.contrib.auth.middleware.AuthenticationMiddleware",
@@ -139,3 +141,25 @@ LANGUAGES = (
 )
 
 LOCALE_PATHS = [os.path.join(BASE_DIR, 'locale')]
+
+# BankGateways settings
+AZ_IRANIAN_BANK_GATEWAYS = {
+   'GATEWAYS': {
+       'IDPAY': {
+           'MERCHANT_CODE': '<YOUR MERCHANT CODE>',
+           'METHOD': 'POST',  # GET or POST
+           'SANDBOX': 1,  # 0 disable, 1 active
+       },
+       'ZARINPAL': {
+           'MERCHANT_CODE': '<YOUR MERCHANT CODE>',
+           'SANDBOX': 1,  # 0 disable, 1 active
+       },
+   },
+   'IS_SAMPLE_FORM_ENABLE': True,  # Optional(default is False)
+   'DEFAULT': 'IDPAY',  # Required
+   'CURRENCY': 'IRR',  # Optional
+   'TRACKING_CODE_QUERY_PARAM': 'tc',  # Optional
+   'TRACKING_CODE_LENGTH': 16,  # Optional
+   'SETTING_VALUE_READER_CLASS': 'azbankgateways.readers.DefaultReader',  # Optional
+   'BANK_PRIORITIES': ['ZARINPAL', 'IDPAY',]
+}

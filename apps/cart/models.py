@@ -7,7 +7,7 @@ from django.db import models
 # Cart model
 class Cart(models.Model):
     user = models.OneToOneField(User, verbose_name=_('User'), on_delete=models.CASCADE, related_name='cart')
-    total_price = models.IntegerField(_('Total price'), default=0, editable=False)
+    total_price = models.IntegerField(_('Total price'), default=0, editable=True)
     created_at = models.DateTimeField(auto_now_add=True)
     updated_at = models.DateTimeField(auto_now=True)
 
