@@ -8,7 +8,7 @@ from django.urls import reverse_lazy
 from .forms import AddressForm
 
 
-# Render AddAddressView:
+# Render AddAddressView
 class AddAddressView(NewLoginRequiredMixin, CreateView):
     model = Address
     form_class = AddressForm

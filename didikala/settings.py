@@ -104,6 +104,9 @@ AUTH_PASSWORD_VALIDATORS = [
     },
 ]
 
+# Login settings
+LOGIN_URL = "/account/login"
+
 # Internationalization
 # https://docs.djangoproject.com/en/4.2/topics/i18n/
 
@@ -112,6 +115,8 @@ LANGUAGE_CODE = "fa-ir"
 TIME_ZONE = "Asia/Tehran"
 
 USE_I18N = True
+
+USE_L10N = True
 
 USE_TZ = True
 
@@ -156,10 +161,10 @@ AZ_IRANIAN_BANK_GATEWAYS = {
        },
    },
    'IS_SAMPLE_FORM_ENABLE': True,  # Optional(default is False)
-   'DEFAULT': 'IDPAY',  # Required
+   'DEFAULT': 'ZARINPAL',  # Required
    'CURRENCY': 'IRR',  # Optional
    'TRACKING_CODE_QUERY_PARAM': 'tc',  # Optional
    'TRACKING_CODE_LENGTH': 16,  # Optional
    'SETTING_VALUE_READER_CLASS': 'azbankgateways.readers.DefaultReader',  # Optional
-   'BANK_PRIORITIES': ['ZARINPAL', 'IDPAY',]
+   'BANK_PRIORITIES': ['ZARINPAL', 'IDPAY']
 }

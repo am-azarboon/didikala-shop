@@ -1,5 +1,6 @@
 from apps.product.models import ProductCustom
 from .models import Cart, CartItem
+from django.http import Http404
 
 
 CART_SESSION_ID = 'cart'  # Save 'cart' in variable
@@ -51,15 +52,22 @@ class SessionCart:
     def cart_add(self, idkc, quantity=0):
         product = ProductCustom.objects.get(idkc=idkc)  # Get current product
 
-        # Add new product to cart
-        if idkc not in self.cart:
-            self.cart[idkc] = {
-                'idk': product.product.idk,
-                'idkc': product.idkc,
-                'quantity': 0,
-            }
+        if product.quantity > 1:
 
-        self.cart[idkc]['quantity'] += int(quantity)  # Add extra quantity
+            # Add new product to cart
+            if idkc not in self.cart:
+                self.cart[idkc] = {
+                    'idk': product.product.idk,
+                    'idkc': product.idkc,
+                    'quantity': 0,
+                }
+
+        if product.quantity > self.cart[idkc]['quantity']:
+            self.cart[idkc]['quantity'] += int(quantity)  # Add extra quantity
+
+        if self.cart[idkc]['quantity'] < 1:
+            self.cart[idkc]['quantity'] = 1  # Fix to 1
+
         self.save()
 
     def cart_remove(self, idkc):
@@ -122,15 +130,24 @@ class ModelCart:
         return base_total_price
 
     def cart_add(self, idkc, quantity=0):
-        product = ProductCustom.objects.get(idkc=idkc)  # Get current product
+        try:
+            product = ProductCustom.objects.get(idkc=idkc)  # Get current product
+        except ProductCustom.DoesNotExist:
+            raise Http404
 
-        if not CartItem.objects.filter(product=product, cart=self.cart).exists():
+        try:
+            cart_item = CartItem.objects.get(product=product, cart=self.cart)  # Just get the CartItem if exists
+        except CartItem.DoesNotExist:
             cart_item = CartItem.objects.create(product=product, cart=self.cart)  # Create Item in CartItem for current Cart
-        else:
-            cart_item = CartItem.objects.get(product=product, cart=self.cart)  # Or just get the CartItem if exists
 
         cart_item.idkc = product.idkc  # Save ProductCustom idkc
-        cart_item.quantity += int(quantity)  # Add or minus extra quantity
+
+        if product.quantity > cart_item.quantity:
+            cart_item.quantity += quantity  # Add or minus extra quantity
+
+        if cart_item.quantity < 1:
+            cart_item.quantity = 1  # Fix to 1 quantity
+
         cart_item.total_price = int(cart_item.quantity * cart_item.product.selling_price)  # Calculate total price of this Item
         cart_item.base_total_price = int(cart_item.quantity * cart_item.product.base_price)  # Calculate base total price of this Item
         cart_item.save()  # Save the CartItem

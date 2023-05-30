@@ -156,4 +156,9 @@ def logout_view(request):
     if request.user.is_authenticated:
         logout(request)
 
-    return redirect('main:index')
+    next_url = request.GET.get('next')  # Get next_url from url path
+    if not next_url:
+        # Return to index page if next_url not exists
+        next_url = reverse('main:index')
+
+    return redirect(next_url)

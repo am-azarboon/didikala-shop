@@ -2,6 +2,7 @@ from django.views.generic import View, TemplateView
 from .cart import SessionCart, ModelCart
 from django.shortcuts import redirect
 from django.urls import reverse
+from django.http import Http404
 
 
 # Render CartView
@@ -69,6 +70,10 @@ def item_plus_view(request, pk, quantity):
         cart = ModelCart(request)
     else:
         cart = SessionCart(request)  # Create or get user cart
+
+    # Check quantity range(0 or 1)
+    if int(quantity) < 0 or int(quantity) > 1:
+        raise Http404
 
     # Change the minus to -1
     if not int(quantity):

@@ -2,18 +2,18 @@ from azbankgateways import bankfactories, models as bank_models, default_setting
 from azbankgateways.exceptions import AZBankGatewaysException
 from django.http import HttpResponseNotFound, HttpResponse, Http404
 from django.shortcuts import redirect, reverse, get_object_or_404
+from django.contrib.auth.mixins import LoginRequiredMixin
 from django.views.generic import TemplateView, View
+from apps.product.models import ProductCustom
 from apps.address.forms import AddressForm
-from .mixins import NewLoginRequiredMixin
 from apps.address.models import Address
 from apps.cart.cart import ModelCart
+from .models import Order, OrderItem
 from .order import SessionOrder
-from .models import Order
-# from . import bank
 
 
 # Render ShoppingView
-class ShoppingView(NewLoginRequiredMixin, TemplateView):
+class ShoppingView(LoginRequiredMixin, TemplateView):
     template_name = 'order/shopping.html'
     content_type = 'text/html'
 
@@ -44,7 +44,7 @@ class ShoppingView(NewLoginRequiredMixin, TemplateView):
 
 
 # Render PaymentView
-class PaymentView(TemplateView):
+class PaymentView(LoginRequiredMixin, TemplateView):
     template_name = 'order/payment.html'
     content_type = 'text/html'
 
@@ -81,7 +81,7 @@ class PaymentView(TemplateView):
 
 
 # OrderCreateView
-class CreateOrderView(NewLoginRequiredMixin, View):
+class CreateOrderView(LoginRequiredMixin, View):
     def post(self, request):
         payment_method = request.POST.get('paymentMethod')
         order = SessionOrder(request)  # Get user order from sessions
@@ -99,8 +99,11 @@ class CreateOrderView(NewLoginRequiredMixin, View):
 # BankView
 class CreateBankView(View):
     def get(self, request):
-        order = get_object_or_404(Order, oid=request.session['order']['oid'])
-        print('Order oid: ', order.oid)
+        try:
+            oid = request.session['order']['oid']
+            order = Order.objects.get(oid=oid)
+        except (Order.DoesNotExist, KeyError):
+            return HttpResponse('اتصال به درگاه پرداخت با مشکل مواجه شد. لطفا مجدد تلاش کنید')
 
         amount = int(order.payable_price)
         user_mobile_number = str(request.user.mobile)
@@ -116,12 +119,12 @@ class CreateBankView(View):
             bank_record = bank.ready()
 
             return bank.redirect_gateway()
-        except AZBankGatewaysException:
+        except (AZBankGatewaysException, TimeoutError):
             return HttpResponse('اتصال به درگاه پرداخت با مشکل مواجه شد. لطفا مجدد تلاش کنید')
 
 
 # Render BankCallBackView
-class CallBackView(TemplateView):
+class CallBackView(LoginRequiredMixin, TemplateView):
     template_name = 'order/order_success.html'
     content_type = 'text/html'
 
@@ -130,6 +133,7 @@ class CallBackView(TemplateView):
 
         try:
             order = Order.objects.get(oid=request.session['order']['oid'])
+            order_items = OrderItem.objects.filter(order=order)
         except Order.DoesNotExist:
             raise Http404
 
@@ -144,13 +148,23 @@ class CallBackView(TemplateView):
         if not bank_record.is_success:
             return HttpResponse('پرداخت با مشکل مواجه شد! در صورت کسر مبلغ تا ۴۸ ساعت آینده به حساب شما بازگردانده میشود.')
 
-        order.is_paid = True  # Is_paid = True
+        # Modify new order to successful
+        order.is_paid = True
         order.status = 'successful'
         order.bank_tracking_code = tracking_code
         order.save()
 
         cart = ModelCart(request)
         cart.cart_delete()  # Delete user cart from database
+
+        # Try to minus Product quantity
+        try:
+            for item in order_items.all():
+                product = ProductCustom.objects.get(idkc=item.product.idkc)
+                product.quantity -= item.quantity
+                product.save()
+        except (ProductCustom.DoesNotExist, ProductCustom.MultipleObjectsReturned):
+            raise Http404
 
         return super(CallBackView, self).dispatch(request, *args, **kwargs)
 

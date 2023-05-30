@@ -64,7 +64,7 @@
                                         <i class="mdi mdi-comment-text-outline"></i>پیغام ها
                                     </a>
                                     <div class="dropdown-divider" role="presentation"></div>
-                                    <a class="dropdown-item" href="{% url 'account:logout' %}">
+                                    <a class="dropdown-item" href="{% url 'account:logout' %}?next={{ request.path }}">
                                         <i class="mdi mdi-logout-variant"></i>خروج
                                     </a>
                                 </div>

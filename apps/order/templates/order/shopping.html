@@ -477,7 +477,8 @@
                                 <i class="mdi mdi-chevron-double-right"></i>بازگشت به سبد خرید
                             </a>
                             {% if active_address %}
-                                <a href="#" onclick="document.getElementById('shipping-data-form').submit();" class="float-left border-bottom-dt">
+                                <a href="#" id="shipping-data-submit"
+                                   class="float-left border-bottom-dt">
                                     تایید و ادامه ثبت سفارش
                                     <i class="mdi mdi-chevron-double-left"></i>
                                 </a>
@@ -588,7 +589,7 @@
                 </div>
                 <div class="col-12 text-center">
                     <div class="copy-right-mini-footer">
-                        Copyright © 2019 Didikala
+                        Copyright © 2023 Didikala
                     </div>
                 </div>
             </div>
@@ -616,6 +617,10 @@
       });
 
     });
+
+    document.getElementById('').addEventListener("click", function (e){
+        e.preventDefault();
+    })
   </script>
 
 </html>
