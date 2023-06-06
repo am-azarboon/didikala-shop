@@ -1,4 +1,5 @@
 # Didikala(NOT COMPLETED)
+An e-commerce shop with Django
 
 <hr>
 
