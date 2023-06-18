@@ -3,7 +3,7 @@ from django.contrib.auth.forms import ReadOnlyPasswordHashField
 from django.utils.translation import gettext_lazy as _
 from django.core.exceptions import ValidationError
 from django.contrib.auth import authenticate
-from .models import User, Profile
+from .models import User
 from django import forms
 
 
@@ -68,10 +68,10 @@ class LoginForm(forms.Form):
 
         # Checking user existence
         user = authenticate(username=username, password=password)
-        if user is None or user.verified is False:
+        if user is None or not user.verified:
             raise ValidationError(_("Username or password is not correct"), code="USER-NOT-FOUND")
 
-        return self.cleaned_data
+        return user
 
 
 # Register form

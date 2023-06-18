@@ -29,12 +29,32 @@ class User(AbstractBaseUser):
         verbose_name = _("User account")
         verbose_name_plural = _("Users accounts")
 
+        permissions = [
+            ("is_manager", _("Is_manager")),
+            ("is_seller", _("Is_seller")),
+            ("is_creator", _("Is_creator")),
+        ]
+
     def __str__(self):
         return self.mobile
 
     def has_perm(self, perm, obj=None):
         """Does the user have a specific permission?"""
-        # Simplest possible answer: Yes, always
+
+        #Check access_level permission
+        if perm == "is_user":
+            if self.access_level != self.AccessLevel.USER:
+                return False
+        elif perm == "is_manager":
+            if self.access_level != self.AccessLevel.MANAGER:
+                return False
+        elif perm == "is_seller":
+            if self.access_level != self.AccessLevel.SELLER:
+                return False
+        elif perm == "is_creator":
+            if self.access_level != self.AccessLevel.CREATOR:
+                return False
+
         return True
 
     def has_module_perms(self, app_label):
