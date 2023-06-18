@@ -37,7 +37,7 @@ INSTALLED_APPS = [
     'apps.order.apps.OrderConfig',
 
     # Django modules
-    'django_cleanup.apps.CleanupConfig',
+    'django_cleanup',
     'azbankgateways',
     'django_jalali',
     'widget_tweaks',

@@ -5,7 +5,7 @@ from .enums import UserAccessLevel
 
 # ReCreate UserManger model
 class UserManager(BaseUserManager):
-    def create_user(self, password=None, mobile=None, verify=False):
+    def create_user(self, password=None, mobile=None):
         """ Creates and saves a User with the given data. """
 
         user = self.model(
@@ -14,10 +14,6 @@ class UserManager(BaseUserManager):
         )
 
         user.set_password(password)
-
-        # Verify user
-        if not verify:
-            user.access_level = 'user'
 
         user.save(using=self._db)
 
@@ -30,7 +26,7 @@ class UserManager(BaseUserManager):
         if mobile:
             user = self.create_user(mobile=mobile, password=password)
         else:
-            raise ValueError(_('Users must have a mobile number!'))
+            raise ValueError(_("Users must have a mobile number!"))
 
         user.is_admin = True  # Set the admin 'True'
         user.verified = True  # Set the verified 'True'

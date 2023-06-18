@@ -12,22 +12,22 @@ class User(AbstractBaseUser):
     AccessLevel = UserAccessLevel
 
     # Model Fields
-    email = models.EmailField(_('Email address'), max_length=255, null=True, blank=True)
-    mobile = models.CharField(_('Mobile number'), max_length=11, null=False, unique=True)
-    is_active = models.BooleanField(_('Active'), default=True)
-    is_admin = models.BooleanField(_('Admin'), default=False)
-    verified = models.BooleanField(_('Verified'), editable=False, default=False)
-    access_level = models.CharField(_('Access level'), max_length=32, choices=AccessLevel.choices, default=AccessLevel.choices[0])
+    email = models.EmailField(_("Email address"), max_length=255, null=True, blank=True)
+    mobile = models.CharField(_("Mobile number"), max_length=11, null=False, unique=True)
+    is_active = models.BooleanField(_("Active"), default=True)
+    is_admin = models.BooleanField(_("Admin"), default=False)
+    verified = models.BooleanField(_("Verified"), editable=False, default=False)
+    access_level = models.CharField(_("Access level"), max_length=32, choices=AccessLevel.choices, default=AccessLevel.choices[0])
 
     objects = UserManager()  # Set UserManager as model object manager
 
-    USERNAME_FIELD = 'mobile'
+    USERNAME_FIELD = "mobile"
 
     REQUIRED_FIELDS = []
 
     class Meta:
-        verbose_name = _('User account')
-        verbose_name_plural = _('Users accounts')
+        verbose_name = _("User account")
+        verbose_name_plural = _("Users accounts")
 
     def __str__(self):
         return self.mobile
@@ -53,27 +53,27 @@ class User(AbstractBaseUser):
 class Profile(models.Model):
     Gender = UserGender
 
-    user = models.OneToOneField(User, verbose_name=_('User'), on_delete=models.CASCADE)
-    firstname = models.CharField(_('First name'), max_length=64, null=True, blank=True)
-    lastname = models.CharField(_('Last name'), max_length=64, null=True, blank=True)
-    gender = models.CharField(_('Gender'), max_length=8, null=True, blank=True, choices=Gender.choices)
-    melli_code = models.CharField(_('Melli code'), max_length=10, null=True, blank=True, validators=[arithmetic_numbers])
+    user = models.OneToOneField(User, verbose_name=_("User"), on_delete=models.CASCADE)
+    firstname = models.CharField(_("First name"), max_length=64, null=True, blank=True)
+    lastname = models.CharField(_("Last name"), max_length=64, null=True, blank=True)
+    gender = models.CharField(_("Gender"), max_length=8, null=True, blank=True, choices=Gender.choices)
+    melli_code = models.CharField(_("Melli code"), max_length=10, null=True, blank=True, validators=[arithmetic_numbers])
 
     # Confirmation info
-    is_foreign_citizen = models.BooleanField(_('I\'m foreign citizen'), default=False)
-    is_subscriber = models.BooleanField(_('Subscribe'), default=False)
+    is_foreign_citizen = models.BooleanField(_("I\'m foreign citizen"), default=False)
+    is_subscriber = models.BooleanField(_("Subscribe"), default=False)
 
     # Additional info
-    date_of_birth = jmodels.jDateField(_('Date of birth'), null=True, blank=True)
-    profile_image = models.ImageField(_('Profile image'), null=True, blank=True, upload_to="image/profiles")
+    date_of_birth = jmodels.jDateField(_("Date of birth"), null=True, blank=True)
+    profile_image = models.ImageField(_("Profile image"), null=True, blank=True, upload_to="image/profiles")
 
     # Create/update time
-    created_at = models.DateTimeField(_('Created time'), auto_now_add=True)
-    updated_at = models.DateTimeField(_('Updated time'), auto_now=True)
+    created_at = models.DateTimeField(_("Created time"), auto_now_add=True)
+    updated_at = models.DateTimeField(_("Updated time"), auto_now=True)
 
     class Meta:
-        verbose_name = _('User profile')
-        verbose_name_plural = _('Users profiles')
+        verbose_name = _("User profile")
+        verbose_name_plural = _("Users profiles")
 
     def __str__(self):
         return self.user.mobile
