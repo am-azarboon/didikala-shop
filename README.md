@@ -1,4 +1,4 @@
-# Didikala(NOT COMPLETED)
+# Didikala (NOT COMPLETED)
 An e-commerce shop with Django
 
 <br>
@@ -13,7 +13,7 @@ This project also uses django built-in i18n with Persian translations. This tran
 ### Clone this repository
 
 ```
-git clone https://github.com/AM-azarboon/didikala-shop.git
+git clone https://github.com/am-azarboon/didikala-shop.git
 ```
 
 ### Install Packages

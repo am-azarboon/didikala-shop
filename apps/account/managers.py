@@ -6,9 +6,7 @@ from .enums import UserAccessLevel
 # ReCreate UserManger model
 class UserManager(BaseUserManager):
     def create_user(self, password=None, mobile=None, verify=False):
-        """
-        Creates and saves a User with the given data.
-        """
+        """ Creates and saves a User with the given data. """
 
         user = self.model(
             mobile=mobile,
