@@ -1,4 +1,4 @@
-from django import DetailView
+from django.views.generic import DetailView
 from apps.cart.cart import SessionCart, ModelCart
 from .models import ProductCustom
 from apps.cart.models import CartItem

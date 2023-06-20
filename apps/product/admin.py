@@ -1,5 +1,5 @@
-from django import models as a_model
-from django import admin
+from django.contrib.auth.models import models as a_model
+from django.contrib import admin
 from django import forms
 from . import models
 
@@ -34,6 +34,7 @@ class ProductImageAdmin(admin.ModelAdmin):
 class ProductCustomInline(admin.StackedInline):
     model = models.ProductCustom
     extra = 0
+
     # Change formField attributes(size)
     formfield_overrides = {
         a_model.IntegerField: {'widget': forms.NumberInput(attrs={'size': '20'})},
@@ -47,6 +48,7 @@ class ProductAdmin(admin.ModelAdmin):
     list_display_links = ('idk', 'title',)
     search_fields = ('idk', 'title',)
     inlines = (ProductImageInline, ProductCustomInline)
+
     # Change formField attributes(size)
     formfield_overrides = {
         a_model.CharField: {'widget': forms.TextInput(attrs={'size': '90'})},

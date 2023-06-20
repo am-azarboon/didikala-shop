@@ -1,8 +1,8 @@
 from .validators import mobile_format_check, email_format_check, arithmetic_numbers
-from django import ReadOnlyPasswordHashField
-from django import gettext_lazy as _
-from django import ValidationError
-from django import authenticate
+from django.contrib.auth.forms import ReadOnlyPasswordHashField
+from django.utils.translation import gettext_lazy as _
+from django.core.exceptions import ValidationError
+from django.contrib.auth import authenticate
 from .models import User
 from django import forms
 

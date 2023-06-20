@@ -1,9 +1,9 @@
-from django import authenticate, login, logout
-from django import FormView, View
-from django import gettext_lazy as _
-from django import redirect, reverse
+from django.contrib.auth import authenticate, login, logout
+from django.views.generic import FormView, View
+from django.utils.translation import gettext_lazy as _
+from django.shortcuts import redirect, reverse
 from .mixins import LogoutRequiredMixin
-from django import reverse_lazy
+from django.urls import reverse_lazy
 from .models import User, Profile
 from .otp import OtpManager
 from . import forms

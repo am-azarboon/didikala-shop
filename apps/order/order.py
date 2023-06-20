@@ -1,11 +1,11 @@
-from django import IntegrityError, InternalError
-from django import get_object_or_404
+from django.db import IntegrityError, InternalError
+from django.shortcuts import get_object_or_404
 from apps.cart.models import CartItem, Cart
 from apps.address.models import Address
 from .models import Order, OrderItem
 
 
-ORDER_SESSION_ID = 'order'
+ORDER_SESSION_ID = "order"
 
 
 # SessionOrder Handler
@@ -29,7 +29,7 @@ class SessionOrder:
         user = request.user  # Get user from request
 
         cart = get_object_or_404(Cart, user=user)
-        cart_items = CartItem.objects.filter(cart__user=order['user'])  # Get user CartItems
+        cart_items = CartItem.objects.filter(cart__user=order["user"])  # Get user CartItems
 
         # Get user active address and create address info text
         address = get_object_or_404(Address, user=request.user, active=True)
@@ -43,7 +43,7 @@ class SessionOrder:
             discount += int(item.base_total_price - item.total_price)
 
         # Calc payable_price based on delivery type
-        if order['delivery_type'] == 'N':
+        if order["delivery_type"] == "N":
             payable_price = int(cart.total_price + 150000)
         else:
             payable_price = int(cart.total_price + 350000)
@@ -51,13 +51,13 @@ class SessionOrder:
         # Create new order
         try:
             order = Order.objects.create(user=user, quantity=quantity, discount_price=discount, address_info=address_info,
-                                         payable_price=payable_price, delivery_type=order['delivery_type'],
-                                         payment_method=order['payment_method'],)
+                                         payable_price=payable_price, delivery_type=order["delivery_type"],
+                                         payment_method=order["payment_method"],)
 
             order.oid = int(1000 + order.id)  # Create oid with base id
             order.save()
 
-            self.modify(key='oid', value=str(order.oid))  # Save order oid in to sessions
+            self.modify(key="oid", value=str(order.oid))  # Save order oid in to sessions
 
         except (IntegrityError, InternalError):
             return False

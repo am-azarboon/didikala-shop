@@ -1,6 +1,6 @@
 from apps.product.models import ProductCustom
 from .models import Cart, CartItem
-from django import Http404
+from django.http import Http404
 
 
 CART_SESSION_ID = 'cart'  # Save 'cart' in variable

@@ -1,7 +1,6 @@
-from django import gettext_lazy as _
-from django import ValidationError
-from django import validate_email
+
 import re
+from django.core.exceptions import ValidationError
 
 
 # Arithmetic numbers only

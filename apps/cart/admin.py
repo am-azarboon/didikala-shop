@@ -1,5 +1,5 @@
 from .models import Cart, CartItem
-from django import admin
+from django.contrib import admin
 
 
 # CartItem Admin

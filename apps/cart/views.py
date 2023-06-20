@@ -1,8 +1,7 @@
-from django import View, TemplateView
+from django.views.generic import View, TemplateView
+from django.shortcuts import redirect, reverse
 from .cart import SessionCart, ModelCart
-from django import redirect
-from django import reverse
-from django import Http404
+from django.http import Http404
 
 
 # Render CartView

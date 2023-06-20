@@ -1,10 +1,10 @@
-from django import UserAdmin as BaseUserAdmin
+from django.contrib.auth.admin import UserAdmin as BaseUserAdmin
 from django_jalali.admin.filters import JDateFieldListFilter
-from django import gettext_lazy as _
+from django.utils.translation import gettext_lazy as _
 from .forms import UserCreationForm, UserChangeForm
-from django import Group
+from django.contrib.auth.models import Group
 from .models import User, Profile, Otp
-from django import admin
+from django.contrib import admin
 
 
 # Register the Profile model with custom ProfileAdmin to admin site

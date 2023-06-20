@@ -1,4 +1,4 @@
-from django import gettext_lazy as _
+from django.utils.translation import gettext_lazy as _
 from pathlib import Path
 import gettext
 import os

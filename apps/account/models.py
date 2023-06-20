@@ -1,9 +1,9 @@
-from django import AbstractBaseUser
-from django import gettext_lazy as _
+from django.contrib.auth.models import AbstractBaseUser
+from django.utils.translation import gettext_lazy as _
 from django_jalali.db import models as jmodels
 from .validators import arithmetic_numbers
 from .managers import UserManager
-from django import models
+from django.db import models
 from .enums import *
 
 

@@ -1,15 +1,14 @@
-from django import CreateView, DeleteView
-from django import get_object_or_404
+from django.shortcuts import render, redirect, get_object_or_404
+from django.views.generic import CreateView, DeleteView
+from django.contrib.auth.mixins import LoginRequiredMixin
 from apps.address.models import Address, City
-from django import render, redirect
-from django import HttpResponseNotFound
-from .mixins import NewLoginRequiredMixin
-from django import reverse_lazy
+from django.http import HttpResponseNotFound
+from django.urls import reverse_lazy
 from .forms import AddressForm
 
 
 # Render AddAddressView
-class AddAddressView(NewLoginRequiredMixin, CreateView):
+class AddAddressView(LoginRequiredMixin, CreateView):
     model = Address
     form_class = AddressForm
     success_url = reverse_lazy('order:shopping')
