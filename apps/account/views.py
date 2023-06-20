@@ -1,9 +1,10 @@
+from .mixins import LogoutRequiredMixin, ViewRedirectMixin
 from django.contrib.auth import authenticate, login, logout
 from django.views.generic import FormView, View
 from django.utils.translation import gettext_lazy as _
 from django.shortcuts import redirect, reverse
-from .mixins import LogoutRequiredMixin
 from django.urls import reverse_lazy
+from django.http import JsonResponse
 from .models import User, Profile
 from .otp import OtpManager
 from . import forms
@@ -33,14 +34,15 @@ class LoginView(LogoutRequiredMixin, FormView):
 class RegisterView(LogoutRequiredMixin, FormView):
     template_name = "account/register_template.html"
     form_class = forms.RegisterForm
+    success_url = reverse_lazy("account:otp_check")
 
     def get_success_url(self):
         # Get next_url from url and override the success_url
-        next_url = reverse_lazy("account:otp_check")
-        if not next_url:
-            next_url = reverse_lazy("account:otp_check")
+        next_url = self.request.GET.get("next")
+        if next_url:
+            return reverse_lazy("account:otp_check") + f"?next={next_url}"
 
-        return next_url
+        return super().get_success_url()
 
     def form_valid(self, form):
         data = form.cleaned_data
@@ -63,8 +65,26 @@ class MobileFormView(LogoutRequiredMixin, FormView):
     template_name = "account/mobile_form_template.html"
     form_class = forms.MobileForm
 
+    def get_success_url(self):
+        # Get next_url from url and override the success_url
+        next_url = self.request.GET.get("next")
+        if next_url:
+            return reverse_lazy("account:otp_check") + f"?next={next_url}"
+            
+        return super().get_success_url()
 
-class OtpCheckView(LogoutRequiredMixin, FormView):
+    def form_valid(self, form):
+        data = form.cleaned_data  # Get cleaned data (user)
+
+        # Create new otp
+        user_otp = OtpManager(mobile=data)
+        user_otp.create_otp(self.request)
+
+        return super(MobileFormView, self).form_valid(form)
+
+
+# Render OtpCheckView
+class OtpCheckView(LogoutRequiredMixin, ViewRedirectMixin, FormView):
     template_name = "account/otp_template.html"
     form_class = forms.OtpCheckForm
 
@@ -73,21 +93,24 @@ class OtpCheckView(LogoutRequiredMixin, FormView):
         next_url = self.request.GET.get("next")
         if not next_url:
             next_url = reverse("main:index")
+
         return next_url
 
     def form_valid(self, form):
         data = form.cleaned_data
         user_otp = OtpManager(token=self.request.session.get("otp_token"))
 
+        # Check entered otp
         if data == user_otp.otp.otp:
-            user = User.objects.get(mobile=user_otp.otp.mobile)
-            user.verified = True
+            user = User.objects.get(mobile=user_otp.otp.mobile)  # Get created user
+            if not user.verified:
+                user.verified = True  # Verify user
             user.save()
 
             login(self.request, user, backend="django.contrib.auth.backends.ModelBackend")  # Login user
             user_otp.delete_otp(self.request)  # Delete method
         else:
-            form.add_error("number_one", _("Invalid code"))
+            form.add_error("number_one", _("Invalid code"))  # Add new error if Otp is not correct
 
         return super(OtpCheckView, self).form_valid(form)
 

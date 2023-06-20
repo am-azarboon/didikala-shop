@@ -115,10 +115,12 @@ class MobileForm(forms.Form):
             raise ValidationError(_("Mobile number is not valid"), code="INVALID-MOBILE")
 
         # Check user existence
-        if not User.objects.filter(mobile=mobile, verified=True).exists():
+        try:
+            user = User.objects.get(mobile=mobile)
+        except User.DoesNotExist:
             raise ValidationError(_("User with this mobile number is not exists"), code="USER-NOT-FOUND")
 
-        return self.cleaned_data
+        return user.mobile
 
 
 # OtpCheck form
