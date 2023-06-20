@@ -41,18 +41,14 @@ class User(AbstractBaseUser):
     def has_perm(self, perm, obj=None):
         """Does the user have a specific permission?"""
         # Check access_level permission
-        if perm == "is_user":
-            if self.access_level != self.AccessLevel.USER:
-                return False
-        elif perm == "is_manager":
-            if self.access_level != self.AccessLevel.MANAGER:
-                return False
-        elif perm == "is_seller":
-            if self.access_level != self.AccessLevel.SELLER:
-                return False
-        elif perm == "is_creator":
-            if self.access_level != self.AccessLevel.CREATOR:
-                return False
+        if perm == "is_user" and self.access_level != self.AccessLevel.USER:
+            return False
+        elif perm == "is_manager" and self.access_level != self.AccessLevel.MANAGER:
+            return False
+        elif perm == "is_seller" and self.access_level != self.AccessLevel.SELLER:
+            return False
+        elif perm == "is_creator" and self.access_level != self.AccessLevel.CREATOR:
+            return False
 
         return True
 
@@ -98,6 +94,7 @@ class Profile(models.Model):
         return self.user.mobile
 
 
+# One time passwords model
 class Otp(models.Model):
     token = models.CharField(_("Token"), max_length=128, null=True)
     mobile = models.CharField(_("Mobile"), max_length=11, unique=True)

@@ -1,4 +1,4 @@
-{% extends "admin/../../venv/Lib/site-packages/django/contrib/admin/templates/admin/base.html" %}
+{% extends "admin/base.html" %}
 {% load i18n %}
 {% load static %}
 
@@ -9,7 +9,7 @@
 {% endblock %}
 
 {% block extrastyle %}
-    <link rel="stylesheet" type="text/css" href="{% static 'css/../../assets/css/samim.css' %}" />
+    <link rel="stylesheet" type="text/css" href="{% static 'css/samim.css' %}" />
 {% endblock %}
 
 {% block nav-global %}{% endblock %}
