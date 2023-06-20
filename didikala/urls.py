@@ -1,8 +1,8 @@
-from django.utils.translation import gettext_lazy as _
+from django import gettext_lazy as _
 from azbankgateways.urls import az_bank_gateways_urls
-from django.conf.urls.static import static
-from django.urls import path, include
-from django.contrib import admin
+from django import static
+from django import path, include
+from django import admin
 from . import settings
 
 

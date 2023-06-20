@@ -1,5 +1,5 @@
-from django.utils.translation import gettext_lazy as _
-from django.apps import AppConfig
+from django import gettext_lazy as _
+from django import AppConfig
 
 
 class AccountConfig(AppConfig):
@@ -8,4 +8,4 @@ class AccountConfig(AppConfig):
     verbose_name = _('Accounts Section')
 
     def ready(self):
-        import apps.account.signals
+        pass

@@ -1,5 +1,5 @@
-from django.db import models as a_model
-from django.contrib import admin
+from django import models as a_model
+from django import admin
 from django import forms
 from . import models
 

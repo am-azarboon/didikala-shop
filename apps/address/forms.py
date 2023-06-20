@@ -1,6 +1,6 @@
 from .validators import mobile_format_check, arithmetic_numbers
-from django.utils.translation import gettext_lazy as _
-from django.core.exceptions import ValidationError
+from django import gettext_lazy as _
+from django import ValidationError
 from .models import Address, City
 from django import forms
 

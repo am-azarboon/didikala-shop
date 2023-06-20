@@ -1,5 +1,5 @@
-from django.views.generic import TemplateView
-from django.shortcuts import render
+from django import TemplateView
+from django import render
 
 
 # Render IndexView

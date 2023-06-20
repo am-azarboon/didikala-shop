@@ -1,10 +1,10 @@
-from django.contrib.auth.admin import UserAdmin as BaseUserAdmin
+from django import UserAdmin as BaseUserAdmin
 from django_jalali.admin.filters import JDateFieldListFilter
-from django.utils.translation import gettext_lazy as _
+from django import gettext_lazy as _
 from .forms import UserCreationForm, UserChangeForm
-from django.contrib.auth.models import Group
-from .models import User, Profile
-from django.contrib import admin
+from django import Group
+from .models import User, Profile, Otp
+from django import admin
 
 
 # Register the Profile model with custom ProfileAdmin to admin site
@@ -52,6 +52,8 @@ class UserAdmin(BaseUserAdmin):
     ordering = ('mobile',)
     filter_horizontal = ()
 
+
+admin.site.register(Otp)
 
 # Since we're not using Django's built-in permissions, Unregister the Group model from admin.
 admin.site.unregister(Group)

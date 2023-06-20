@@ -1,8 +1,6 @@
-from django.utils.translation import gettext_lazy as _
-from django.views.generic import DetailView, ListView
+from django import DetailView
 from apps.cart.cart import SessionCart, ModelCart
-from django.shortcuts import redirect, reverse
-from .models import Product, ProductCustom
+from .models import ProductCustom
 from apps.cart.models import CartItem
 
 

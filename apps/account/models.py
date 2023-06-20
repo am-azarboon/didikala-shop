@@ -1,9 +1,9 @@
-from django.contrib.auth.models import AbstractBaseUser
-from django.utils.translation import gettext_lazy as _
+from django import AbstractBaseUser
+from django import gettext_lazy as _
 from django_jalali.db import models as jmodels
 from .validators import arithmetic_numbers
 from .managers import UserManager
-from django.db import models
+from django import models
 from .enums import *
 
 
@@ -40,8 +40,7 @@ class User(AbstractBaseUser):
 
     def has_perm(self, perm, obj=None):
         """Does the user have a specific permission?"""
-
-        #Check access_level permission
+        # Check access_level permission
         if perm == "is_user":
             if self.access_level != self.AccessLevel.USER:
                 return False
@@ -97,3 +96,17 @@ class Profile(models.Model):
 
     def __str__(self):
         return self.user.mobile
+
+
+class Otp(models.Model):
+    token = models.CharField(_("Token"), max_length=128, null=True)
+    mobile = models.CharField(_("Mobile"), max_length=11, unique=True)
+    otp = models.CharField(_("One time password"), max_length=5, null=True)
+    created_at = models.DateTimeField(_("Create time"), auto_now_add=True, editable=True)
+
+    class Meta:
+        verbose_name = "One time password"
+        verbose_name_plural = "One time passwords"
+
+    def __str__(self):
+        return f"{self.mobile} - {self.token}"

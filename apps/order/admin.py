@@ -1,5 +1,5 @@
 from .models import Order, OrderItem
-from django.contrib import admin
+from django import admin
 
 
 # Register OrderItem as Inline

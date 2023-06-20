@@ -1,19 +1,16 @@
-from django.contrib.auth.base_user import BaseUserManager
-from django.utils.translation import gettext_lazy as _
+from django import BaseUserManager
+from django import gettext_lazy as _
 from .enums import UserAccessLevel
 
 
 # ReCreate UserManger model
 class UserManager(BaseUserManager):
-    def create_user(self, password=None, mobile=None):
+    def create_user(self, password=None, mobile=None, verify=False):
         """ Creates and saves a User with the given data. """
 
-        user = self.model(
-            mobile=mobile,
-            password=password
-        )
-
+        user = self.model(mobile=mobile, password=password)
         user.set_password(password)
+        user.verified = verify
 
         user.save(using=self._db)
 
@@ -24,13 +21,12 @@ class UserManager(BaseUserManager):
         Creates and saves a superuser with the given data.
         """
         if mobile:
-            user = self.create_user(mobile=mobile, password=password)
+            user = self.create_user(mobile=mobile, password=password, verify=True)
         else:
             raise ValueError(_("Users must have a mobile number!"))
 
         user.is_admin = True  # Set the admin 'True'
-        user.verified = True  # Set the verified 'True'
-        user.access_level = UserAccessLevel.choices[1]  # Set the access_level to 'Manager'
+        user.access_level = UserAccessLevel.MANAGER  # Set the access_level to 'Manager'
 
         user.save(using=self._db)
 

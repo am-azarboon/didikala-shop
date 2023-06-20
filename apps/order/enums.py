@@ -1,5 +1,5 @@
-from django.utils.translation import gettext_lazy as _
-from django.db.models import TextChoices
+from django import gettext_lazy as _
+from django import TextChoices
 
 
 # OrderStatus Choices

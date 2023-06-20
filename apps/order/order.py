@@ -1,5 +1,5 @@
-from django.db import IntegrityError, InternalError
-from django.shortcuts import get_object_or_404
+from django import IntegrityError, InternalError
+from django import get_object_or_404
 from apps.cart.models import CartItem, Cart
 from apps.address.models import Address
 from .models import Order, OrderItem

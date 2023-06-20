@@ -1,9 +1,9 @@
-from django.utils.translation import gettext_lazy as _
+from django import gettext_lazy as _
 from ckeditor.fields import RichTextField
-from django.utils.html import format_html
-from django.utils.text import slugify
-from django.shortcuts import reverse
-from django.db import models
+from django import format_html
+from django import slugify
+from django import reverse
+from django import models
 
 
 # Color model

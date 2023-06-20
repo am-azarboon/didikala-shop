@@ -5,7 +5,7 @@
 
 <head>
     <title>ورود کاربر</title>
-    {% include 'includes/head_references.html' %}
+    {% include 'includes/../../../../templates/includes/head_references.html' %}
 </head>
 
 <body>
@@ -16,7 +16,7 @@
             <div class="row">
                 <div class="col-xl-4 col-lg-5 col-md-7 col-12 mx-auto">
                     <div class="logo-area text-center mb-3">
-                        <a href="{% url 'main:index' %}"><img src="{% static 'img/logo.png' %}" class="img-fluid" alt="logo"></a>
+                        <a href="{% url 'main:index' %}"><img src="{% static 'img/../../../../assets/img/logo.png' %}" class="img-fluid" alt="logo"></a>
                     </div>
                     <div class="auth-wrapper form-ui border pt-4">
                         <div class="section-title title-wide mb-1 no-after-title-wide">
@@ -38,36 +38,23 @@
                             {% endif %}
 
                             <div class="form-row-title">
-                                <h3>ایمیل یا شماره موبایل</h3>
+                                <h3>شماره موبایل</h3>
                             </div>
                             <div class="form-row with-icon">
-                                {{ form.username }}
+                                {{ form.mobile }}
                                 <i class="mdi mdi-account-circle-outline"></i>
-                            </div>
-                            <div class="form-row-title">
-                                <h3>رمز عبور</h3>
-                            </div>
-                            <div class="form-row with-icon">
-                                {{ form.password }}
-                                <i class="mdi mdi-lock-open-variant-outline"></i>
                             </div>
                             <div class="form-row mt-3">
                                 <button class="btn-primary-cm btn-with-icon mx-auto w-100" type="submit">
                                     <i class="mdi mdi-login-variant"></i>
-                                    ورود به دیدیکالا
+                                    تایید
                                 </button>
                             </div>
                         </form>
-                        <div class="form-footer mt-3">
-                            <div>
-                                <span class="font-weight-bold">رمز عبور را فراموش کردید؟</span>
-{#                                <a href="{% url 'account:mobile' %}?next={{ request.GET.next }}" class="mr-3 mt-2">ورود با پیامک</a>#}
-                            </div>
-                        </div>
                         <div class="form-footer mt-1">
                             <div>
                                 <span class="font-weight-bold">کاربر جدید هستید؟</span>
-{#                                <a href="{% url 'account:register' %}?next={{ request.GET.next }}" class="mr-3 mt-2">ثبت نام در دیدیکالا</a>#}
+                                <a href="{% url 'account:register' %}?next={{ request.GET.next }}" class="mr-3 mt-2">ثبت نام در دیدیکالا</a>
                             </div>
                         </div>
                     </div>
@@ -78,12 +65,12 @@
     <!-- End main-content -->
 
     <!-- Start mini-footer -->
-    {% include 'includes/mini_footer.html' %}
+    {% include 'includes/../../../../templates/includes/mini_footer.html' %}
     <!-- End mini-footer -->
 </div>
 
 <!-- Core JS Files -->
-{% include 'includes/footer_references.html' %}
+{% include 'includes/../../../../templates/includes/footer_references.html' %}
 </body>
 
 </html>

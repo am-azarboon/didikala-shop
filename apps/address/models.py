@@ -1,7 +1,7 @@
-from django.utils.translation import gettext_lazy as _
+from django import gettext_lazy as _
 from .validators import arithmetic_numbers
 from apps.account.models import User
-from django.db import models
+from django import models
 
 
 # Province model

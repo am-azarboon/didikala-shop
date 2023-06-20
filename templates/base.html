@@ -5,23 +5,23 @@
 
 <head>
     <title>{% block title %} {% endblock %}</title>
-    {% include 'includes/head_references.html' %}
+    {% include 'includes/includes/head_references.html' %}
 </head>
 
 <div class="wrapper">
     <!-- Start header -->
-    {% include 'includes/header.html' %}
+    {% include 'includes/includes/header.html' %}
     <!-- End header -->
 
     {% block content %}
     {% endblock %}
 
     <!-- Start footer -->
-    {% include 'includes/footer.html' %}
+    {% include 'includes/includes/footer.html' %}
     <!-- End footer -->
 </div>
 
 <!-- Core JS Files -->
-{% include 'includes/footer_references.html' %}
+{% include 'includes/includes/footer_references.html' %}
 
 </html>

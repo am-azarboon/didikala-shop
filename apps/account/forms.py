@@ -1,8 +1,8 @@
 from .validators import mobile_format_check, email_format_check, arithmetic_numbers
-from django.contrib.auth.forms import ReadOnlyPasswordHashField
-from django.utils.translation import gettext_lazy as _
-from django.core.exceptions import ValidationError
-from django.contrib.auth import authenticate
+from django import ReadOnlyPasswordHashField
+from django import gettext_lazy as _
+from django import ValidationError
+from django import authenticate
 from .models import User
 from django import forms
 
@@ -62,11 +62,11 @@ class LoginForm(forms.Form):
         username = self.cleaned_data.get("username")
         password = self.cleaned_data.get("password")
 
-        # Checking username format(email or mobile)
+        # Check username format(email or mobile)
         if not mobile_format_check(username) and not email_format_check(username):
             raise ValidationError(_("Mobile or email address is not valid"), code="INVALID-USERNAME")
 
-        # Checking user existence
+        # Check login information
         user = authenticate(username=username, password=password)
         if user is None or not user.verified:
             raise ValidationError(_("Username or password is not correct"), code="USER-NOT-FOUND")
@@ -81,18 +81,20 @@ class RegisterForm(forms.Form):
     password2 = forms.CharField(max_length=128, required=True, widget=forms.PasswordInput(attrs={"class": "input-ui pr-2", "placeholder": _("Repeat password")}))
     checkbox = forms.BooleanField(required=True, widget=forms.CheckboxInput(attrs={"class": "custom-control-input"}))
 
-    def clean(self):
-        mobile = self.cleaned_data.get("mobile")
+    def clean_password2(self):
         password1 = self.cleaned_data.get("password1")
         password2 = self.cleaned_data.get("password2")
-
-        # Checking mobile format
-        if not mobile_format_check(mobile):
-            raise ValidationError(_("Mobile number is not valid"), code="INVALID-MOBILE")
 
         # Checking passwords
         if password1 != password2:
             raise ValidationError(_("Passwords are not match"), code="PASSWORDS-MATCHING")
+
+    def clean(self):
+        mobile = self.cleaned_data.get("mobile")
+
+        # Checking mobile format
+        if not mobile_format_check(mobile):
+            raise ValidationError(_("Mobile number is not valid"), code="INVALID-MOBILE")
 
         # Checking user existence
         if User.objects.filter(mobile=mobile, verified=True).exists():

@@ -1,6 +1,6 @@
-from django.utils.translation import gettext_lazy as _
-from django.core.exceptions import ValidationError
-from django.core.validators import validate_email
+from django import gettext_lazy as _
+from django import ValidationError
+from django import validate_email
 import re
 
 

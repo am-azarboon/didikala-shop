@@ -1,9 +1,9 @@
 from azbankgateways import bankfactories, models as bank_models, default_settings as settings
 from azbankgateways.exceptions import AZBankGatewaysException
-from django.http import HttpResponseNotFound, HttpResponse, Http404
-from django.shortcuts import redirect, reverse, get_object_or_404
-from django.contrib.auth.mixins import LoginRequiredMixin
-from django.views.generic import TemplateView, View
+from django import HttpResponseNotFound, HttpResponse, Http404
+from django import redirect, reverse, get_object_or_404
+from django import LoginRequiredMixin
+from django import TemplateView, View
 from apps.product.models import ProductCustom
 from apps.address.forms import AddressForm
 from apps.address.models import Address

@@ -1,36 +1,36 @@
 /* Shabnam */
 @font-face {
     font-family: Shabnam;
-    src: url("../fonts/shabnam/Shabnam.eot");
-    src: url("../fonts/shabnam/Shabnam.eot?#iefix") format("embedded-opentype"), url("../fonts/shabnam/Shabnam.woff2") format("woff2"), url("../fonts/shabnam/Shabnam.woff") format("woff"), url("../fonts/shabnam/Shabnam.ttf") format("truetype");
+    src: url("Shabnam.eot");
+    src: url("Shabnam.eot?#iefix") format("embedded-opentype"), url("Shabnam.woff2") format("woff2"), url("Shabnam.woff") format("woff"), url("Shabnam.ttf") format("truetype");
     font-weight: normal;
 }
 
 @font-face {
     font-family: Shabnam;
-    src: url("../fonts/shabnam/Shabnam-Bold.eot");
-    src: url("../fonts/shabnam/Shabnam-Bold.eot?#iefix") format("embedded-opentype"), url("../fonts/shabnam/Shabnam-Bold.woff2") format("woff2"), url("../fonts/shabnam/Shabnam-Bold.woff") format("woff"), url("../fonts/shabnam/Shabnam-Bold.ttf") format("truetype");
+    src: url("Shabnam-Bold.eot");
+    src: url("Shabnam-Bold.eot?#iefix") format("embedded-opentype"), url("Shabnam-Bold.woff2") format("woff2"), url("Shabnam-Bold.woff") format("woff"), url("Shabnam-Bold.ttf") format("truetype");
     font-weight: bold;
 }
 
 @font-face {
     font-family: Shabnam;
-    src: url("../fonts/shabnam/Shabnam-Thin.eot");
-    src: url("../fonts/shabnam/Shabnam-Thin.eot?#iefix") format("embedded-opentype"), url("../fonts/shabnam/Shabnam-Thin.woff2") format("woff2"), url("../fonts/shabnam/Shabnam-Thin.woff") format("woff"), url("../fonts/shabnam/Shabnam-Thin.ttf") format("truetype");
+    src: url("Shabnam-Thin.eot");
+    src: url("Shabnam-Thin.eot?#iefix") format("embedded-opentype"), url("Shabnam-Thin.woff2") format("woff2"), url("Shabnam-Thin.woff") format("woff"), url("Shabnam-Thin.ttf") format("truetype");
     font-weight: 100;
 }
 
 @font-face {
     font-family: Shabnam;
-    src: url("../fonts/shabnam/Shabnam-Light.eot");
-    src: url("../fonts/shabnam/Shabnam-Light.eot?#iefix") format("embedded-opentype"), url("../fonts/shabnam/Shabnam-Light.woff2") format("woff2"), url("../fonts/shabnam/Shabnam-Light.woff") format("woff"), url("../fonts/shabnam/Shabnam-Light.ttf") format("truetype");
+    src: url("Shabnam-Light.eot");
+    src: url("Shabnam-Light.eot?#iefix") format("embedded-opentype"), url("Shabnam-Light.woff2") format("woff2"), url("Shabnam-Light.woff") format("woff"), url("Shabnam-Light.ttf") format("truetype");
     font-weight: 300;
 }
 
 @font-face {
     font-family: Shabnam;
-    src: url("../fonts/shabnam/Shabnam-Medium.eot");
-    src: url("../fonts/shabnam/Shabnam-Medium.eot?#iefix") format("embedded-opentype"), url("../fonts/shabnam/Shabnam-Medium.woff2") format("woff2"), url("../fonts/shabnam/Shabnam-Medium.woff") format("woff"), url("../fonts/shabnam/Shabnam-Medium.ttf") format("truetype");
+    src: url("Shabnam-Medium.eot");
+    src: url("Shabnam-Medium.eot?#iefix") format("embedded-opentype"), url("Shabnam-Medium.woff2") format("woff2"), url("Shabnam-Medium.woff") format("woff"), url("Shabnam-Medium.ttf") format("truetype");
     font-weight: 500;
 }
 
@@ -1901,7 +1901,7 @@ main.main-content {
 }
 
 .title-wide h2:before {
-    background: url(../img/theme/title-circles.png) left no-repeat;
+    background: url(title-circles.png) left no-repeat;
     display: block;
     position: absolute;
     right: -20px;
@@ -2636,7 +2636,7 @@ html:not([dir=rtl]) .noUi-horizontal .noUi-handle {
 .header-cover {
     content: "";
     background-color: #f7858d;
-    background-image: url(../img/svg/701f8a6b.svg);
+    background-image: url(701f8a6b.svg);
     position: absolute;
     top: -30px;
     left: 0;
@@ -2647,7 +2647,7 @@ html:not([dir=rtl]) .noUi-horizontal .noUi-handle {
 
 .promotion-header-img {
     width: 100%;
-    background: url(../img/theme/amazing.svg) 50% no-repeat;
+    background: url(amazing.svg) 50% no-repeat;
     background-size: contain;
     height: 120px;
 }
@@ -7340,9 +7340,9 @@ input[type=number]::-webkit-outer-spin-button {
 .page-cover {
     width: 100%;
     height: 400px;
-    background: url(../img/theme/page-cover.jpg) top no-repeat;
+    background: url(page-cover.jpg) top no-repeat;
     background: -webkit-gradient(linear, left top, left bottom, from(rgba(0, 0, 0, .6)), to(rgba(0, 0, 0, .6))), url(../files/page-cover.jpg) top no-repeat;
-    background: linear-gradient(rgba(0, 0, 0, .6), rgba(0, 0, 0, .6)), url(../img/theme/page-cover.jpg) top no-repeat;
+    background: linear-gradient(rgba(0, 0, 0, .6), rgba(0, 0, 0, .6)), url(page-cover.jpg) top no-repeat;
     background-size: cover;
     margin-top: -23px;
 }
@@ -7465,9 +7465,9 @@ input[type=number]::-webkit-outer-spin-button {
 }
 
 .page-question-not-found {
-    background: url(../img/theme/page-cover-faq.jpg) no-repeat;
-    background: -webkit-gradient(linear, left top, left bottom, from(rgba(0, 0, 0, .6)), to(rgba(0, 0, 0, .6))), url(../img/theme/page-cover-faq.jpg) no-repeat;
-    background: linear-gradient(rgba(0, 0, 0, .6), rgba(0, 0, 0, .6)), url(../img/theme/page-cover-faq.jpg) no-repeat;
+    background: url(page-cover-faq.jpg) no-repeat;
+    background: -webkit-gradient(linear, left top, left bottom, from(rgba(0, 0, 0, .6)), to(rgba(0, 0, 0, .6))), url(page-cover-faq.jpg) no-repeat;
+    background: linear-gradient(rgba(0, 0, 0, .6), rgba(0, 0, 0, .6)), url(page-cover-faq.jpg) no-repeat;
     height: 405px;
     background-size: cover;
     border: 1px solid #dedede;
@@ -7680,11 +7680,11 @@ footer.main-footer .footer-services .service-item img {
     font-size: 17px;
     width: 15px;
     height: 15px;
-    background: url(../img/theme/star-empty.svg) no-repeat;
+    background: url(star-empty.svg) no-repeat;
 }
 
 .title-breadcrumb-special .post-rating span.active {
-    background: url(../img/theme/star.svg) no-repeat;
+    background: url(star.svg) no-repeat;
 }
 
 .tooltip-inner {

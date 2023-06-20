@@ -1,7 +1,7 @@
-from django.utils.translation import gettext_lazy as _
+from django import gettext_lazy as _
 from apps.product.models import ProductCustom
 from apps.account.models import User
-from django.db import models
+from django import models
 
 
 # Cart model

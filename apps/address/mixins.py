@@ -1,4 +1,4 @@
-from django.shortcuts import redirect, reverse
+from django import redirect, reverse
 
 
 # logout required mixin

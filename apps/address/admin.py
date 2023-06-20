@@ -1,5 +1,5 @@
 from .models import Address, Province, City
-from django.contrib import admin
+from django import admin
 
 
 # Register user Address
