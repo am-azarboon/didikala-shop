@@ -28,7 +28,7 @@
                                 ویرایش شماره
                             </a>
                         </div>
-                        <form method="POST" action="">
+                        <form method="POST" id="otpForm">
                             {% csrf_token %}
 
                             <!-- form errors display block -->
@@ -47,21 +47,13 @@
                             </div>
                             <div class="form-row">
                                 <div class="numbers-verify">
-                                    <div class="lines-number-input">
-                                        {{ form.number_one }}
-                                        {{ form.number_two }}
-                                        {{ form.number_three }}
-                                        {{ form.number_four }}
-                                        {{ form.number_five }}
-                                    </div>
+                                    {{ form.otp_number }}
                                 </div>
                             </div>
                             <div class="form-row mt-3">
                                 <div class="d-flex align-items-center">
-                                    <span class="text-primary btn-link-border ml-1">دریافت مجدد کد تایید</span>
-                                    <span>(</span>
-                                    <p id="countdown-verify-end"></p>
-                                    <span>)</span>
+                                    <span class="text-primary btn-link-border ml-1" id="resendBtn"></span>
+                                    <span id="resendTimer">(2:00)</span>
                                 </div>
                             </div>
                             <div class="form-row mt-3">
@@ -85,6 +77,8 @@
 
 <!-- Core JS Files -->
 {% include 'includes/footer_references.html' %}
+<script src="{% static 'js/otp.js' %}"></script>
+
 </body>
 
 </html>

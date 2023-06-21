@@ -293,7 +293,6 @@ $(document).ready(function (l) {
   /* ************** product-quantity */
   $(".num-in span").click(function () {
     var $input = $(this).parents(".num-block").find("input.in-num");
-
     if ($(this).hasClass("minus")) {
       var count = parseFloat($input.val()) - 1;
       count = count < 1 ? 1 : count;
@@ -329,7 +328,7 @@ $(document).ready(function (l) {
       text: '<span class="day">%s</span><span class="hour">%s</span><span>: %s</span><span>%s</span>',
       end: function () {
         $countdownOptionEnd.html(
-          "<a href='/user/otpsend' class='btn-link-border'>ارسال مجدد</a>"
+          "<a href='' class='btn-link-border'>ارسال مجدد</a>"
         );
       },
     });

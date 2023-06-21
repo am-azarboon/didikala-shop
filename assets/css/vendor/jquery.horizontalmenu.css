@@ -81,7 +81,7 @@
 }
 
 .ah-tab-overflow-menu {
-    background: transparent url('ah-tab-overflow-menu.svg') center center no-repeat;
+    background: transparent url('../../img/theme/ah-tab-overflow-menu.svg') center center no-repeat;
     background-size: 18px;
     display: inline-block;
     width: 100%;

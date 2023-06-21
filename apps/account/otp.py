@@ -36,9 +36,10 @@ class OtpManager:
     def send_otp(self):
         # Send Otp via SMS
         mobile = self.otp.mobile
-        otp = str(self.otp.otp)
+        if mobile:
+            otp = str(self.otp.otp)
 
-        print(otp)
+            print(otp)
 
     def delete_otp(self, request):
         # Delete existing otp_token

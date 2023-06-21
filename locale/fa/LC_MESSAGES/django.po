@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2023-05-21 20:18+0330\n"
+"POT-Creation-Date: 2023-06-21 21:32+0330\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -42,7 +42,7 @@ msgstr "مجوزها"
 msgid "Accounts Section"
 msgstr "بخش حساب های کاربری"
 
-#: .\apps\account\enums.py:7 .\apps\account\models.py:56
+#: .\apps\account\enums.py:7 .\apps\account\models.py:71
 #: .\apps\address\models.py:38 .\apps\cart\models.py:9
 #: .\apps\order\models.py:15
 msgid "User"
@@ -101,7 +101,7 @@ msgstr "موبایل یا آدرس ایمیل معتبر نمی باشد"
 msgid "Username or password is not correct"
 msgstr "اطلاعات وارد شده صحیح نمی باشد"
 
-#: .\apps\account\forms.py:79 .\apps\account\forms.py:106
+#: .\apps\account\forms.py:79 .\apps\account\forms.py:108
 msgid "Enter your mobile number"
 msgstr "شماره موبایل خود را وارد کنید"
 
@@ -113,28 +113,28 @@ msgstr "گذرواژه را وارد کنید"
 msgid "Repeat password"
 msgstr "تکرار گذرواژه"
 
-#: .\apps\account\forms.py:91 .\apps\account\forms.py:113
-msgid "Mobile number is not valid"
-msgstr "شماره موبایل معتبر نمی باشد"
-
-#: .\apps\account\forms.py:95
+#: .\apps\account\forms.py:90
 msgid "Passwords are not match"
 msgstr "گذرواژه یکسان نمی باشد!"
 
-#: .\apps\account\forms.py:99
+#: .\apps\account\forms.py:97 .\apps\account\forms.py:115
+msgid "Mobile number is not valid"
+msgstr "شماره موبایل معتبر نمی باشد"
+
+#: .\apps\account\forms.py:101
 msgid "User with this mobile number is already exists"
 msgstr "کاربر با این شماره موبایل موجود می باشد"
 
-#: .\apps\account\forms.py:117
+#: .\apps\account\forms.py:121
 msgid "User with this mobile number is not exists"
 msgstr "کاربر با این شماره موبایل موجود نمی باشد"
 
-#: .\apps\account\managers.py:35
+#: .\apps\account\managers.py:26
 msgid "Users must have a mobile number!"
 msgstr "کاربر باید یک شماره موبایل داشته باشد"
 
 #: .\apps\account\models.py:15
-#: .\venv\Lib\site-packages\django\db\models\fields\__init__.py:1847
+#: .\venv\Lib\site-packages\django\db\models\fields\__init__.py:1845
 msgid "Email address"
 msgstr "آدرس ایمیل"
 
@@ -163,61 +163,97 @@ msgstr "حساب کاربری"
 msgid "Users accounts"
 msgstr "حساب های کاربران"
 
-#: .\apps\account\models.py:57
+#: .\apps\account\models.py:33
+#, fuzzy
+#| msgid "Manager"
+msgid "Is_manager"
+msgstr "مدیر است؟"
+
+#: .\apps\account\models.py:34
+#, fuzzy
+#| msgid "Seller"
+msgid "Is_seller"
+msgstr "فروشنده است؟"
+
+#: .\apps\account\models.py:35
+#, fuzzy
+#| msgid "Creator"
+msgid "Is_creator"
+msgstr "سازنده محتوا است؟"
+
+#: .\apps\account\models.py:72
 msgid "First name"
 msgstr "نام"
 
-#: .\apps\account\models.py:58
+#: .\apps\account\models.py:73
 msgid "Last name"
 msgstr "نام خانوادگی"
 
-#: .\apps\account\models.py:59
+#: .\apps\account\models.py:74
 msgid "Gender"
 msgstr "جنسیت"
 
-#: .\apps\account\models.py:60
+#: .\apps\account\models.py:75
 msgid "Melli code"
 msgstr "کد ملی"
 
-#: .\apps\account\models.py:63
+#: .\apps\account\models.py:78
 msgid "I'm foreign citizen"
 msgstr "تبعه خارجی هستم"
 
-#: .\apps\account\models.py:64
+#: .\apps\account\models.py:79
 msgid "Subscribe"
 msgstr "مشترک خبرنامه"
 
-#: .\apps\account\models.py:67
+#: .\apps\account\models.py:82
 msgid "Date of birth"
 msgstr "تاریخ تولد"
 
-#: .\apps\account\models.py:68
+#: .\apps\account\models.py:83
 msgid "Profile image"
 msgstr "تصویر پروفایل"
 
-#: .\apps\account\models.py:71 .\apps\product\models.py:67
+#: .\apps\account\models.py:86 .\apps\product\models.py:67
 msgid "Created time"
 msgstr "تاریخ ایجاد"
 
-#: .\apps\account\models.py:72
+#: .\apps\account\models.py:87
 msgid "Updated time"
 msgstr "تاریخ تغییر"
 
-#: .\apps\account\models.py:75
+#: .\apps\account\models.py:90
 msgid "User profile"
 msgstr "پروفایل کاربر"
 
-#: .\apps\account\models.py:76
+#: .\apps\account\models.py:91
 msgid "Users profiles"
 msgstr "پروفایل های کاربران"
+
+#: .\apps\account\models.py:99
+msgid "Token"
+msgstr ""
+
+#: .\apps\account\models.py:100
+#| msgid "Mobile number"
+msgid "Mobile"
+msgstr "موبایل"
+
+#: .\apps\account\models.py:101
+msgid "One time password"
+msgstr "گذرواژه یکبار مصرف"
+
+#: .\apps\account\models.py:102 .\apps\address\models.py:48
+#: .\apps\order\models.py:26
+msgid "Create time"
+msgstr "تاریخ ایجاد"
 
 #: .\apps\account\validators.py:12 .\apps\address\validators.py:11
 msgid "Invalid input"
 msgstr "اطلاعات نادرست"
 
-#: .\apps\account\views.py:123
-msgid "Entered otp is not correct"
-msgstr "کد وارد شده صحیح نمی باشد"
+#: .\apps\account\views.py:115
+msgid "Invalid code"
+msgstr "کد نامعتبر"
 
 #: .\apps\address\apps.py:8
 msgid "Address Section"
@@ -277,10 +313,6 @@ msgstr "نشانی"
 #: .\apps\address\models.py:44
 msgid "Postal_code"
 msgstr "کد پستی"
-
-#: .\apps\address\models.py:48 .\apps\order\models.py:26
-msgid "Create time"
-msgstr "تاریخ ایجاد"
 
 #: .\apps\address\models.py:49
 msgid "Update time"
@@ -547,7 +579,7 @@ msgstr "تصاویر"
 msgid "Product detail"
 msgstr "جزئیات محصول"
 
-#: .\didikala\settings.py:140
+#: .\didikala\settings.py:145
 msgid "Persian"
 msgstr "فارسی"
 
@@ -904,118 +936,118 @@ msgstr ""
 msgid "Decimal number"
 msgstr ""
 
-#: .\venv\Lib\site-packages\django\db\models\fields\__init__.py:1791
+#: .\venv\Lib\site-packages\django\db\models\fields\__init__.py:1789
 #, python-format
 msgid ""
 "“%(value)s” value has an invalid format. It must be in [DD] [[HH:]MM:]ss[."
 "uuuuuu] format."
 msgstr ""
 
-#: .\venv\Lib\site-packages\django\db\models\fields\__init__.py:1795
+#: .\venv\Lib\site-packages\django\db\models\fields\__init__.py:1793
 msgid "Duration"
 msgstr ""
 
-#: .\venv\Lib\site-packages\django\db\models\fields\__init__.py:1872
+#: .\venv\Lib\site-packages\django\db\models\fields\__init__.py:1870
 msgid "File path"
 msgstr ""
 
-#: .\venv\Lib\site-packages\django\db\models\fields\__init__.py:1950
+#: .\venv\Lib\site-packages\django\db\models\fields\__init__.py:1948
 #, python-format
 msgid "“%(value)s” value must be a float."
 msgstr ""
 
-#: .\venv\Lib\site-packages\django\db\models\fields\__init__.py:1952
+#: .\venv\Lib\site-packages\django\db\models\fields\__init__.py:1950
 msgid "Floating point number"
 msgstr ""
 
-#: .\venv\Lib\site-packages\django\db\models\fields\__init__.py:1992
+#: .\venv\Lib\site-packages\django\db\models\fields\__init__.py:1990
 #, python-format
 msgid "“%(value)s” value must be an integer."
 msgstr ""
 
-#: .\venv\Lib\site-packages\django\db\models\fields\__init__.py:1994
+#: .\venv\Lib\site-packages\django\db\models\fields\__init__.py:1992
 msgid "Integer"
 msgstr ""
 
-#: .\venv\Lib\site-packages\django\db\models\fields\__init__.py:2090
+#: .\venv\Lib\site-packages\django\db\models\fields\__init__.py:2088
 msgid "Big (8 byte) integer"
 msgstr ""
 
-#: .\venv\Lib\site-packages\django\db\models\fields\__init__.py:2107
+#: .\venv\Lib\site-packages\django\db\models\fields\__init__.py:2105
 msgid "Small integer"
 msgstr ""
 
-#: .\venv\Lib\site-packages\django\db\models\fields\__init__.py:2115
+#: .\venv\Lib\site-packages\django\db\models\fields\__init__.py:2113
 msgid "IPv4 address"
 msgstr ""
 
-#: .\venv\Lib\site-packages\django\db\models\fields\__init__.py:2146
+#: .\venv\Lib\site-packages\django\db\models\fields\__init__.py:2144
 msgid "IP address"
 msgstr ""
 
-#: .\venv\Lib\site-packages\django\db\models\fields\__init__.py:2239
-#: .\venv\Lib\site-packages\django\db\models\fields\__init__.py:2240
+#: .\venv\Lib\site-packages\django\db\models\fields\__init__.py:2237
+#: .\venv\Lib\site-packages\django\db\models\fields\__init__.py:2238
 #, python-format
 msgid "“%(value)s” value must be either None, True or False."
 msgstr ""
 
-#: .\venv\Lib\site-packages\django\db\models\fields\__init__.py:2242
+#: .\venv\Lib\site-packages\django\db\models\fields\__init__.py:2240
 msgid "Boolean (Either True, False or None)"
 msgstr ""
 
-#: .\venv\Lib\site-packages\django\db\models\fields\__init__.py:2293
+#: .\venv\Lib\site-packages\django\db\models\fields\__init__.py:2291
 msgid "Positive big integer"
 msgstr ""
 
-#: .\venv\Lib\site-packages\django\db\models\fields\__init__.py:2308
+#: .\venv\Lib\site-packages\django\db\models\fields\__init__.py:2306
 msgid "Positive integer"
 msgstr ""
 
-#: .\venv\Lib\site-packages\django\db\models\fields\__init__.py:2323
+#: .\venv\Lib\site-packages\django\db\models\fields\__init__.py:2321
 msgid "Positive small integer"
 msgstr ""
 
-#: .\venv\Lib\site-packages\django\db\models\fields\__init__.py:2339
+#: .\venv\Lib\site-packages\django\db\models\fields\__init__.py:2337
 #, python-format
 msgid "Slug (up to %(max_length)s)"
 msgstr ""
 
-#: .\venv\Lib\site-packages\django\db\models\fields\__init__.py:2375
+#: .\venv\Lib\site-packages\django\db\models\fields\__init__.py:2373
 msgid "Text"
 msgstr ""
 
-#: .\venv\Lib\site-packages\django\db\models\fields\__init__.py:2450
+#: .\venv\Lib\site-packages\django\db\models\fields\__init__.py:2448
 #, python-format
 msgid ""
 "“%(value)s” value has an invalid format. It must be in HH:MM[:ss[.uuuuuu]] "
 "format."
 msgstr ""
 
-#: .\venv\Lib\site-packages\django\db\models\fields\__init__.py:2454
+#: .\venv\Lib\site-packages\django\db\models\fields\__init__.py:2452
 #, python-format
 msgid ""
 "“%(value)s” value has the correct format (HH:MM[:ss[.uuuuuu]]) but it is an "
 "invalid time."
 msgstr ""
 
-#: .\venv\Lib\site-packages\django\db\models\fields\__init__.py:2458
+#: .\venv\Lib\site-packages\django\db\models\fields\__init__.py:2456
 msgid "Time"
 msgstr ""
 
-#: .\venv\Lib\site-packages\django\db\models\fields\__init__.py:2566
+#: .\venv\Lib\site-packages\django\db\models\fields\__init__.py:2564
 msgid "URL"
 msgstr ""
 
-#: .\venv\Lib\site-packages\django\db\models\fields\__init__.py:2590
+#: .\venv\Lib\site-packages\django\db\models\fields\__init__.py:2588
 msgid "Raw binary data"
 msgstr ""
 
-#: .\venv\Lib\site-packages\django\db\models\fields\__init__.py:2655
+#: .\venv\Lib\site-packages\django\db\models\fields\__init__.py:2653
 #, python-format
 msgid "“%(value)s” is not a valid UUID."
 msgstr ""
 
-#: .\venv\Lib\site-packages\django\db\models\fields\__init__.py:2657
+#: .\venv\Lib\site-packages\django\db\models\fields\__init__.py:2655
 msgid "Universally unique identifier"
 msgstr ""
 
@@ -1229,27 +1261,27 @@ msgid ""
 "may be ambiguous or it may not exist."
 msgstr ""
 
-#: .\venv\Lib\site-packages\django\forms\widgets.py:439
+#: .\venv\Lib\site-packages\django\forms\widgets.py:463
 msgid "Clear"
 msgstr ""
 
-#: .\venv\Lib\site-packages\django\forms\widgets.py:440
+#: .\venv\Lib\site-packages\django\forms\widgets.py:464
 msgid "Currently"
 msgstr ""
 
-#: .\venv\Lib\site-packages\django\forms\widgets.py:441
+#: .\venv\Lib\site-packages\django\forms\widgets.py:465
 msgid "Change"
 msgstr ""
 
-#: .\venv\Lib\site-packages\django\forms\widgets.py:770
+#: .\venv\Lib\site-packages\django\forms\widgets.py:794
 msgid "Unknown"
 msgstr ""
 
-#: .\venv\Lib\site-packages\django\forms\widgets.py:771
+#: .\venv\Lib\site-packages\django\forms\widgets.py:795
 msgid "Yes"
 msgstr ""
 
-#: .\venv\Lib\site-packages\django\forms\widgets.py:772
+#: .\venv\Lib\site-packages\django\forms\widgets.py:796
 msgid "No"
 msgstr ""
 
@@ -1603,7 +1635,7 @@ msgstr ""
 
 #. Translators: This string is used as a separator between list elements
 #: .\venv\Lib\site-packages\django\utils\text.py:273
-#: .\venv\Lib\site-packages\django\utils\timesince.py:131
+#: .\venv\Lib\site-packages\django\utils\timesince.py:135
 msgid ", "
 msgstr ""
 
@@ -1772,18 +1804,18 @@ msgid "Index of %(directory)s"
 msgstr ""
 
 #: .\venv\Lib\site-packages\django\views\templates\default_urlconf.html:7
-#: .\venv\Lib\site-packages\django\views\templates\default_urlconf.html:221
+#: .\venv\Lib\site-packages\django\views\templates\default_urlconf.html:220
 msgid "The install worked successfully! Congratulations!"
 msgstr ""
 
-#: .\venv\Lib\site-packages\django\views\templates\default_urlconf.html:207
+#: .\venv\Lib\site-packages\django\views\templates\default_urlconf.html:206
 #, python-format
 msgid ""
 "View <a href=\"https://docs.djangoproject.com/en/%(version)s/releases/\" "
 "target=\"_blank\" rel=\"noopener\">release notes</a> for Django %(version)s"
 msgstr ""
 
-#: .\venv\Lib\site-packages\django\views\templates\default_urlconf.html:222
+#: .\venv\Lib\site-packages\django\views\templates\default_urlconf.html:221
 #, python-format
 msgid ""
 "You are seeing this page because <a href=\"https://docs.djangoproject.com/en/"
@@ -1792,27 +1824,27 @@ msgid ""
 "URLs."
 msgstr ""
 
-#: .\venv\Lib\site-packages\django\views\templates\default_urlconf.html:230
+#: .\venv\Lib\site-packages\django\views\templates\default_urlconf.html:229
 msgid "Django Documentation"
 msgstr ""
 
-#: .\venv\Lib\site-packages\django\views\templates\default_urlconf.html:231
+#: .\venv\Lib\site-packages\django\views\templates\default_urlconf.html:230
 msgid "Topics, references, &amp; how-to’s"
 msgstr ""
 
-#: .\venv\Lib\site-packages\django\views\templates\default_urlconf.html:239
+#: .\venv\Lib\site-packages\django\views\templates\default_urlconf.html:238
 msgid "Tutorial: A Polling App"
 msgstr ""
 
-#: .\venv\Lib\site-packages\django\views\templates\default_urlconf.html:240
+#: .\venv\Lib\site-packages\django\views\templates\default_urlconf.html:239
 msgid "Get started with Django"
 msgstr ""
 
-#: .\venv\Lib\site-packages\django\views\templates\default_urlconf.html:248
+#: .\venv\Lib\site-packages\django\views\templates\default_urlconf.html:247
 msgid "Django Community"
 msgstr ""
 
-#: .\venv\Lib\site-packages\django\views\templates\default_urlconf.html:249
+#: .\venv\Lib\site-packages\django\views\templates\default_urlconf.html:248
 msgid "Connect, get help, or contribute"
 msgstr ""
 
@@ -1862,6 +1894,9 @@ msgstr ""
 msgid "Enter a valid date/time in YYYY-MM-DD HH:MM[:ss[.uuuuuu]] format."
 msgstr ""
 
+#~ msgid "Entered otp is not correct"
+#~ msgstr "کد وارد شده صحیح نمی باشد"
+
 #~ msgid "Enter a valid mobile number"
 #~ msgstr "لطفا یک شماره موبایل معتبر وارد کنید"
 
@@ -1883,9 +1918,6 @@ msgstr ""
 
 #~ msgid "Mobile number is incorrect"
 #~ msgstr "شماره موبایل صحیح نمی باشد"
-
-#~ msgid "Invalid melli code"
-#~ msgstr "کد ملی نامعتبر"
 
 #~ msgid "Only displayed"
 #~ msgstr "مشخصات ثبت"

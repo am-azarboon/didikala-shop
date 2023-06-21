@@ -125,17 +125,5 @@ class MobileForm(forms.Form):
 
 # OtpCheck form
 class OtpCheckForm(forms.Form):
-    number_one = forms.CharField(max_length=1, required=True, validators=[arithmetic_numbers], widget=forms.TextInput(attrs={"class": "line-number"}))
-    number_two = forms.CharField(max_length=1, required=True, validators=[arithmetic_numbers], widget=forms.TextInput(attrs={"class": "line-number"}))
-    number_three = forms.CharField(max_length=1, required=True, validators=[arithmetic_numbers], widget=forms.TextInput(attrs={"class": "line-number"}))
-    number_four = forms.CharField(max_length=1, required=True, validators=[arithmetic_numbers], widget=forms.TextInput(attrs={"class": "line-number"}))
-    number_five = forms.CharField(max_length=1, required=True, validators=[arithmetic_numbers], widget=forms.TextInput(attrs={"class": "line-number"}))
-
-    def clean(self):
-        cleaned_data = self.cleaned_data
-
-        # Concatenate numbers
-        otp_code = cleaned_data["number_one"] + cleaned_data["number_two"] + cleaned_data["number_three"] + \
-            cleaned_data["number_four"] + cleaned_data["number_five"]
-
-        return otp_code
+    otp_number = forms.CharField(max_length=5, required=True, validators=[arithmetic_numbers],
+                                 widget=forms.TextInput(attrs={"class": "input-ui pr-2 float-end text-end"}))

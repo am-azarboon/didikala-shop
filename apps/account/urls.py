@@ -10,6 +10,6 @@ urlpatterns = [
     path('register', views.RegisterView.as_view(), name="register"),
     path('mobile', views.MobileFormView.as_view(), name="mobile"),
     path('otp-check', views.OtpCheckView.as_view(), name="otp_check"),
-    # path('otp-send', views.otp_send_view, name="otp_send"),
+    path('otp-send', views.ResendOtpView.as_view(), name="otp_send"),
     path('logout', views.logout_view, name="logout"),
 ]
