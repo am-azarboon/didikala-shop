@@ -1,8 +1,8 @@
 from .mixins import LogoutRequiredMixin, ViewRedirectMixin
-from django.contrib.auth import authenticate, login, logout
-from django.views.generic import FormView, View
 from django.utils.translation import gettext_lazy as _
-from django.shortcuts import redirect, reverse, render
+from django.views.generic import FormView, View
+from django.contrib.auth import login, logout
+from django.shortcuts import redirect, reverse
 from django.urls import reverse_lazy
 from django.http import JsonResponse
 from .models import User, Profile

@@ -102,8 +102,8 @@ class Otp(models.Model):
     created_at = models.DateTimeField(_("Create time"), auto_now_add=True, editable=True)
 
     class Meta:
-        verbose_name = "One time password"
-        verbose_name_plural = "One time passwords"
+        verbose_name = _("One time password")
+        verbose_name_plural = _("One time passwords")
 
     def __str__(self):
         return f"{self.mobile} - {self.token}"

@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2023-06-21 21:32+0330\n"
+"POT-Creation-Date: 2023-06-22 00:09+0330\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -39,8 +39,8 @@ msgid "Permissions"
 msgstr "مجوزها"
 
 #: .\apps\account\apps.py:8
-msgid "Accounts Section"
-msgstr "بخش حساب های کاربری"
+msgid "Accounts"
+msgstr "حساب های کاربری"
 
 #: .\apps\account\enums.py:7 .\apps\account\models.py:71
 #: .\apps\address\models.py:38 .\apps\cart\models.py:9
@@ -164,22 +164,16 @@ msgid "Users accounts"
 msgstr "حساب های کاربران"
 
 #: .\apps\account\models.py:33
-#, fuzzy
-#| msgid "Manager"
 msgid "Is_manager"
-msgstr "مدیر است؟"
+msgstr "مدیر"
 
 #: .\apps\account\models.py:34
-#, fuzzy
-#| msgid "Seller"
 msgid "Is_seller"
-msgstr "فروشنده است؟"
+msgstr "فروشنده"
 
 #: .\apps\account\models.py:35
-#, fuzzy
-#| msgid "Creator"
 msgid "Is_creator"
-msgstr "سازنده محتوا است؟"
+msgstr "سازنده محتوا"
 
 #: .\apps\account\models.py:72
 msgid "First name"
@@ -231,21 +225,24 @@ msgstr "پروفایل های کاربران"
 
 #: .\apps\account\models.py:99
 msgid "Token"
-msgstr ""
+msgstr "نشانه"
 
 #: .\apps\account\models.py:100
-#| msgid "Mobile number"
 msgid "Mobile"
 msgstr "موبایل"
 
-#: .\apps\account\models.py:101
+#: .\apps\account\models.py:101 .\apps\account\models.py:105
 msgid "One time password"
-msgstr "گذرواژه یکبار مصرف"
+msgstr "کد یکبار مصرف"
 
 #: .\apps\account\models.py:102 .\apps\address\models.py:48
 #: .\apps\order\models.py:26
 msgid "Create time"
 msgstr "تاریخ ایجاد"
+
+#: .\apps\account\models.py:106
+msgid "One time passwords"
+msgstr "کدهای یکبار مصرف"
 
 #: .\apps\account\validators.py:12 .\apps\address\validators.py:11
 msgid "Invalid input"
@@ -256,8 +253,8 @@ msgid "Invalid code"
 msgstr "کد نامعتبر"
 
 #: .\apps\address\apps.py:8
-msgid "Address Section"
-msgstr "بخش نشانی ها"
+msgid "Addresses"
+msgstr "نشانی ها"
 
 #: .\apps\address\forms.py:16
 msgid "Enter your name"
@@ -327,8 +324,8 @@ msgid "User addresses"
 msgstr "نشانی های کاربران"
 
 #: .\apps\cart\apps.py:8
-msgid "Cart Section"
-msgstr "بخش سبد خرید"
+msgid "Carts"
+msgstr "سبدهای خرید"
 
 #: .\apps\cart\models.py:10 .\apps\cart\models.py:26 .\apps\order\models.py:39
 msgid "Total price"
@@ -347,7 +344,7 @@ msgid "Cart items"
 msgstr "کالاهای سبد خرید"
 
 #: .\apps\cart\models.py:22 .\apps\order\models.py:37
-#: .\apps\product\models.py:45 .\apps\product\models.py:88
+#: .\apps\product\models.py:45 .\apps\product\models.py:90
 msgid "Product"
 msgstr "محصول"
 
@@ -372,9 +369,9 @@ msgstr "کالای سبد خرید"
 msgid "Online Shop Didikala"
 msgstr "فروشگاه اینترنتی دیدیکالا"
 
-#: .\apps\order\apps.py:8
-msgid "Order section"
-msgstr "بخش سفارشات"
+#: .\apps\order\apps.py:8 .\apps\order\models.py:30
+msgid "Orders"
+msgstr "سفارشات"
 
 #: .\apps\order\enums.py:7
 msgid "Unsuccessful"
@@ -454,10 +451,6 @@ msgstr "پرداخت شده"
 msgid "Order"
 msgstr "سفارش"
 
-#: .\apps\order\models.py:30
-msgid "Orders"
-msgstr "سفارشات"
-
 #: .\apps\order\models.py:38
 msgid "Quantity purchased"
 msgstr "تعداد خریداری شده"
@@ -470,9 +463,9 @@ msgstr "کالای سفارش"
 msgid "Order items"
 msgstr "کالاهای سفارش"
 
-#: .\apps\product\apps.py:8
-msgid "Products Section"
-msgstr "بخش محصولات"
+#: .\apps\product\apps.py:8 .\apps\product\models.py:46
+msgid "Products"
+msgstr "محصولات"
 
 #: .\apps\product\models.py:11
 msgid "Title Fa"
@@ -526,10 +519,6 @@ msgstr "توضیحات"
 msgid "Selling counts"
 msgstr "تعداد فروش"
 
-#: .\apps\product\models.py:46
-msgid "Products"
-msgstr "محصولات"
-
 #: .\apps\product\models.py:56
 msgid "Main product"
 msgstr "محصول اصلی"
@@ -562,16 +551,16 @@ msgstr "محصول کاستوم"
 msgid "Custom products"
 msgstr "محصولات کاستوم"
 
-#: .\apps\product\models.py:89 .\apps\product\models.py:93
+#: .\apps\product\models.py:91 .\apps\product\models.py:95
 #: .\venv\Lib\site-packages\django\db\models\fields\files.py:393
 msgid "Image"
 msgstr "تصویر"
 
-#: .\apps\product\models.py:90
+#: .\apps\product\models.py:92
 msgid "Short Description"
 msgstr "توضیح کوتاه"
 
-#: .\apps\product\models.py:94
+#: .\apps\product\models.py:96
 msgid "Images"
 msgstr "تصاویر"
 
@@ -579,9 +568,17 @@ msgstr "تصاویر"
 msgid "Product detail"
 msgstr "جزئیات محصول"
 
-#: .\didikala\settings.py:145
+#: .\didikala\settings.py:127
 msgid "Persian"
 msgstr "فارسی"
+
+#: .\didikala\settings.py:181
+msgid "Bank gateway section"
+msgstr "بخش درگاه بانکی"
+
+#: .\didikala\settings.py:183
+msgid "Transactions"
+msgstr "تراکنش ها"
 
 #: .\didikala\urls.py:9 .\didikala\urls.py:10
 msgid "Shop Management"
@@ -1894,6 +1891,21 @@ msgstr ""
 msgid "Enter a valid date/time in YYYY-MM-DD HH:MM[:ss[.uuuuuu]] format."
 msgstr ""
 
+#~ msgid "Accounts Section"
+#~ msgstr "بخش حساب های کاربری"
+
+#~ msgid "Address Section"
+#~ msgstr "بخش نشانی ها"
+
+#~ msgid "Cart Section"
+#~ msgstr "بخش سبد خرید"
+
+#~ msgid "Order section"
+#~ msgstr "بخش سفارشات"
+
+#~ msgid "Products Section"
+#~ msgstr "بخش محصولات"
+
 #~ msgid "Entered otp is not correct"
 #~ msgstr "کد وارد شده صحیح نمی باشد"
 
@@ -1906,9 +1918,6 @@ msgstr ""
 #~| msgid "Title Fa"
 #~ msgid "Title fa"
 #~ msgstr "عنوان فارسی"
-
-#~ msgid "Counts"
-#~ msgstr "تعداد"
 
 #~ msgid "didikala"
 #~ msgstr "دیدیکالا"

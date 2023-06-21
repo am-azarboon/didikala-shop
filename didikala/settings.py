@@ -41,6 +41,7 @@ INSTALLED_APPS = [
     'azbankgateways',
     'django_jalali',
     'widget_tweaks',
+    "admin_reorder",
     'ckeditor',
 ]
 
@@ -53,6 +54,7 @@ MIDDLEWARE = [
     "django.contrib.auth.middleware.AuthenticationMiddleware",
     "django.contrib.messages.middleware.MessageMiddleware",
     "django.middleware.clickjacking.XFrameOptionsMiddleware",
+    "admin_reorder.middleware.ModelAdminReorder",
 ]
 
 ROOT_URLCONF = "didikala.urls"
@@ -120,6 +122,14 @@ USE_L10N = True
 
 USE_TZ = True
 
+# Add farsi language for Internationalization
+LANGUAGES = [
+    ('fa', _('Persian')),
+
+]
+
+LOCALE_PATHS = [os.path.join(BASE_DIR, 'locale')]
+
 # Static files (CSS, JavaScript, Images)
 STATIC_URL = "static/"
 STATIC_ROOT = os.path.join(BASE_DIR, "static")
@@ -139,13 +149,6 @@ AUTH_USER_MODEL = 'account.User'
 
 # Django auth backends
 AUTHENTICATION_BACKENDS = ['django.contrib.auth.backends.ModelBackend', 'apps.account.auth.EmailAuthenticationBackend', ]
-
-# Add farsi language for Internationalization
-LANGUAGES = (
-    ('fa', _('Persian')),
-)
-
-LOCALE_PATHS = [os.path.join(BASE_DIR, 'locale')]
 
 # BankGateways settings
 AZ_IRANIAN_BANK_GATEWAYS = {
@@ -168,3 +171,18 @@ AZ_IRANIAN_BANK_GATEWAYS = {
    'SETTING_VALUE_READER_CLASS': 'azbankgateways.readers.DefaultReader',  # Optional
    'BANK_PRIORITIES': ['ZARINPAL', 'IDPAY']
 }
+
+# Admin reorder settings
+ADMIN_REORDER = (
+    "account",
+    "cart",
+    "order",
+    "product",
+
+    {"app": "azbankgateways", "label": _("Bank gateway section"),
+     "models": (
+        {"model": "azbankgateways.Bank", "label": _("Transactions")},
+    )},
+
+    {"app": "address", "models": ("address.Address", "address.Province", "address.City")},
+)

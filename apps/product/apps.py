@@ -5,7 +5,7 @@ from django.apps import AppConfig
 class ProductConfig(AppConfig):
     default_auto_field = "django.db.models.BigAutoField"
     name = "apps.product"
-    verbose_name = _('Products Section')
+    verbose_name = _('Products')
 
     def ready(self):
-        pass
+        import apps.product.signals

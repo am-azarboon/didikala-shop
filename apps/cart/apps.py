@@ -5,4 +5,4 @@ from django.apps import AppConfig
 class CartConfig(AppConfig):
     default_auto_field = "django.db.models.BigAutoField"
     name = "apps.cart"
-    verbose_name = _('Cart Section')
+    verbose_name = _('Carts')
