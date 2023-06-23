@@ -12,6 +12,7 @@
     <!-- Start main-content -->
     <main class="main-content dt-sl mb-3">
         <div class="container main-container">
+
             <!-- Start title - breadcrumb -->
             <div class="title-breadcrumb-special dt-sl mb-3">
                 <div class="breadcrumb dt-sl">
@@ -23,6 +24,7 @@
                 </div>
             </div>
             <!-- End title - breadcrumb -->
+
             <!-- Start Product -->
             <div class="dt-sn mb-5 dt-sl">
                 <div class="row">
@@ -254,19 +256,19 @@
                                                 {% if product.discount != 0 %}
                                                     <div class="product-seller-price-info">
                                                         <div class="product-seller-price-prev">
-                                                            {{ product.base_price|changing }}
+                                                            {{ product.base_price|change_rials }}
                                                         </div>
                                                         <div class="product-seller-price-off">
                                                             {{ product.discount }}%
                                                         </div>
                                                     </div>
                                                     <div class="product-seller-price-real">
-                                                        <div class="product-seller-price-raw">{{ product.selling_price|changing|intcomma }}</div>
+                                                        <div class="product-seller-price-raw">{{ product.selling_price|change_rials|intcomma }}</div>
                                                         تومان
                                                     </div>
                                                 {% else %}
                                                     <div class="product-seller-price-real">
-                                                        <div class="product-seller-price-raw">{{ product.selling_price|changing|intcomma }}</div>
+                                                        <div class="product-seller-price-raw">{{ product.selling_price|change_rials|intcomma }}</div>
                                                         تومان
                                                     </div>
                                                 {% endif %}

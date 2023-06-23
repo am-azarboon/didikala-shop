@@ -251,7 +251,7 @@
                     <div class="dt-sn dt-sn--box border mb-2">
                         <ul class="checkout-summary-summary">
                             <li>
-                                <span>مبلغ کل ({{ cart.cart.cart_item.all.count }} کالا)</span><span>{{ cart.total_price|changing|intcomma }} تومان</span>
+                                <span>مبلغ کل ({{ cart.cart.cart_item.all.count }} کالا)</span><span>{{ cart.total_price|change_rials|intcomma }} تومان</span>
                             </li>
                             <li>
                                 <span>هزینه ارسال<span class="help-sn" data-toggle="tooltip" data-html="true"
@@ -259,7 +259,7 @@
                                                        title="<div class='help-container is-right'><div class='help-arrow'></div><p class='help-text'>هزینه ارسال مرسولات می‌تواند وابسته به شهر و آدرس گیرنده متفاوت باشد. در صورتی که هر یک از مرسولات حداقل ارزشی برابر با ۱۵۰هزار تومان داشته باشد، آن مرسوله بصورت رایگان ارسال می‌شود.<br>'حداقل ارزش هر مرسوله برای ارسال رایگان، می تواند متغیر باشد.'</p></div>">
                                         <span class="mdi mdi-information-outline"></span>
                                     </span></span>
-                                {% if delivery_type == 'N' %}
+                                {% if delivery_type == "N" %}
                                     <span>۱۵,۰۰۰ تومان</span>
                                 {% else %}
                                     <span>۳۵,۰۰۰ تومان</span>
@@ -272,11 +272,11 @@
                         <div class="checkout-summary-content">
                             <div class="checkout-summary-price-title">مبلغ قابل پرداخت:</div>
                             <div class="checkout-summary-price-value">
-                                {% if delivery_type == 'N' %}
-                                    <span class="checkout-summary-price-value-amount">{{ cart.total_price|add:150000|changing|intcomma }}</span>
+                                {% if delivery_type == "N" %}
+                                    <span class="checkout-summary-price-value-amount">{{ cart.total_price|add:150000|change_rials|intcomma }}</span>
                                     تومان
                                 {% else %}
-                                    <span class="checkout-summary-price-value-amount">{{ cart.total_price|add:350000|changing|intcomma }}</span>
+                                    <span class="checkout-summary-price-value-amount">{{ cart.total_price|add:350000|change_rials|intcomma }}</span>
                                     تومان
                                 {% endif %}
                             </div>

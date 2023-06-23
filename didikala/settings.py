@@ -37,12 +37,13 @@ INSTALLED_APPS = [
     'apps.order.apps.OrderConfig',
 
     # Django modules
-    'django_cleanup',
-    'azbankgateways',
-    'django_jalali',
-    'widget_tweaks',
+    "django_render_partial",
+    "django_cleanup",
+    "azbankgateways",
+    "django_jalali",
+    "widget_tweaks",
     "admin_reorder",
-    'ckeditor',
+    "ckeditor",
 ]
 
 MIDDLEWARE = [

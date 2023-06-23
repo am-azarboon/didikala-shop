@@ -140,10 +140,10 @@
                                                 <div class="col-md-6 col-sm-12">
                                                     <p>
                                                         روش پرداخت:
-                                                        {% if order.payment_method == 'BA' %}
+                                                        {% if order.payment_method == "BA" %}
                                                             <span>
                                                                 پرداخت اینترنتی
-                                                                {% if order.status == 'successful' %}
+                                                                {% if order.status == "successful" %}
                                                                     <span class="green">
                                                                         (موفق)
                                                                     </span>
@@ -152,7 +152,7 @@
                                                         {% else %}
                                                             <span>
                                                                 پرداخت با کارت دیدی‌پی
-                                                                {% if order.status == 'successful' %}
+                                                                {% if order.status == "successful" %}
                                                                     <span class="green">
                                                                         (موفق)
                                                                     </span>
@@ -164,15 +164,15 @@
                                                 <div class="col-md-6 col-sm-12">
                                                     <p>
                                                         وضعیت سفارش:
-                                                        {% if order.status == 'succesful' %}
+                                                        {% if order.status == "succesful" %}
                                                             <span>
                                                                 پرداخت شد
                                                             </span>
-                                                        {% elif order.status == 'unsuccessful' %}
+                                                        {% elif order.status == "unsuccessful" %}
                                                             <span>
                                                                 پرداخت ناموفق
                                                             </span>
-                                                        {% elif order.status == 'pending' %}
+                                                        {% elif order.status == "pending" %}
                                                             <span>
                                                                 درحال پردازش
                                                             </span>
@@ -224,7 +224,7 @@
                                                 </div>
                                             </div>
                                             <a class="product-thumb" href="shop-single.html">
-                                                <img src="{% static 'img/products/07.jpg' %}" alt="Product Thumbnail">
+                                                <img src="{% static "img/products/07.jpg" %}" alt="Product Thumbnail">
                                             </a>
                                             <div class="product-card-body">
                                                 <h5 class="product-title">
@@ -247,7 +247,7 @@
                                                 </div>
                                             </div>
                                             <a class="product-thumb" href="shop-single.html">
-                                                <img src="{% static 'img/products/017.jpg' %}" alt="Product Thumbnail">
+                                                <img src="{% static "img/products/017.jpg" %}" alt="Product Thumbnail">
                                             </a>
                                             <div class="product-card-body">
                                                 <h5 class="product-title">
@@ -270,7 +270,7 @@
                                                 </div>
                                             </div>
                                             <a class="product-thumb" href="shop-single.html">
-                                                <img src="{% static 'img/products/013.jpg' %}" alt="Product Thumbnail">
+                                                <img src="{% static "img/products/013.jpg" %}" alt="Product Thumbnail">
                                             </a>
                                             <div class="product-card-body">
                                                 <h5 class="product-title">
@@ -293,7 +293,7 @@
                                                 </div>
                                             </div>
                                             <a class="product-thumb" href="shop-single.html">
-                                                <img src="{% static 'img/products/09.jpg' %}" alt="Product Thumbnail">
+                                                <img src="{% static "img/products/09.jpg" %}" alt="Product Thumbnail">
                                             </a>
                                             <div class="product-card-body">
                                                 <h5 class="product-title">
@@ -316,7 +316,7 @@
                                                 </div>
                                             </div>
                                             <a class="product-thumb" href="shop-single.html">
-                                                <img src="{% static 'img/products/010.jpg' %}" alt="Product Thumbnail">
+                                                <img src="{% static "img/products/010.jpg" %}" alt="Product Thumbnail">
                                             </a>
                                             <div class="product-card-body">
                                                 <h5 class="product-title">
@@ -342,7 +342,7 @@
                                                 </div>
                                             </div>
                                             <a class="product-thumb" href="shop-single.html">
-                                                <img src="{% static 'img/products/011.jpg' %}" alt="Product Thumbnail">
+                                                <img src="{% static "img/products/011.jpg" %}" alt="Product Thumbnail">
                                             </a>
                                             <div class="product-card-body">
                                                 <h5 class="product-title">
@@ -365,7 +365,7 @@
                                                 </div>
                                             </div>
                                             <a class="product-thumb" href="shop-single.html">
-                                                <img src="{% static 'img/products/019.jpg' %}" alt="Product Thumbnail">
+                                                <img src="{% static "img/products/019.jpg" %}" alt="Product Thumbnail">
                                             </a>
                                             <div class="product-card-body">
                                                 <h5 class="product-title">
@@ -388,6 +388,7 @@
             </div>
         </main>
         <!-- End main-content -->
+
         <!-- Start mini-footer -->
         <footer class="mini-footer dt-sl">
             <div class="container main-container">
@@ -420,7 +421,7 @@
     </div>
 
     <!-- Core JS Files -->
-    {% include 'includes/footer_references.html' %}
+    {% include "includes/footer_references.html" %}
 </body>
 
 </html>

@@ -10,15 +10,15 @@ from django.contrib import admin
 # Register the Profile model with custom ProfileAdmin to admin site
 @admin.register(Profile)
 class ProfileAdmin(admin.ModelAdmin):
-    list_filter = (('date_of_birth', JDateFieldListFilter), 'created_at',)
-    readonly_fields = ('created_at', 'updated_at',)
-    list_display = ('user', 'firstname', 'lastname', 'melli_code', 'date_of_birth',)
-    list_display_links = ('user', 'firstname', 'lastname',)
+    list_filter = (("date_of_birth", JDateFieldListFilter), "created_at",)
+    readonly_fields = ("created_at", "updated_at",)
+    list_display = ("user", "firstname", "lastname", "melli_code", "date_of_birth",)
+    list_display_links = ("user", "firstname", "lastname",)
     fieldsets = (
-        (None, {'fields': ('user', 'firstname', 'lastname', 'melli_code', 'gender',)}),
-        (_('Additional info'), {'fields': ('date_of_birth', 'profile_image',)}),
-        (_('Confirmations'), {'fields': ('is_foreign_citizen', 'is_subscriber',)}),
-        (_('Register info'), {'fields': ('created_at', 'updated_at',)})
+        (None, {"fields": ("user", "firstname", "lastname", "melli_code", "gender",)}),
+        (_("Additional info"), {"fields": ("date_of_birth", "profile_image",)}),
+        (_("Confirmations"), {"fields": ("is_foreign_citizen", "is_subscriber",)}),
+        (_("Register info"), {"fields": ("created_at", "updated_at",)})
     )
 
 
@@ -31,25 +31,26 @@ class UserAdmin(BaseUserAdmin):
     # The fields to be used in displaying the User model.
     # These override the definitions on the base UserAdmin
     # that reference specific fields on auth.User.
-    list_display = ('mobile', 'email', 'access_level', 'is_active', 'verified',)
+    list_display = ("mobile", "email", "access_level", "is_active", "verified",)
     list_display_links = ('email', 'mobile',)
-    list_filter = ('is_active', 'access_level', 'verified',)
+    list_filter = ("is_active", "access_level", "verified",)
     fieldsets = (
-        (None, {'fields': ('email', 'password',)}),
-        (_('Personal info'), {'fields': ('mobile',)}),
-        (_('Permissions'), {'fields': ('access_level', 'is_admin', 'is_active',)}),
+        (None, {"fields": ("mobile", "password",)}),
+        (_("Personal info"), {"fields": ("email",)}),
+        (_("Permissions"), {"fields": ("access_level", "is_admin", "is_active",)}),
     )
+    radio_fields = {"access_level": admin.HORIZONTAL}
     # add_fieldsets is not a standard ModelAdmin attribute. UserAdmin
     # overrides get_fieldsets to use this attribute when creating a user.
     add_fieldsets = (
         (None, {
-            'classes': ('wide',),
-            'fields': ('mobile', 'email', 'password1', 'password2'),
+            "classes": ("wide",),
+            "fields": ("mobile", "email", "password1", "password2"),
         }),
     )
     # Add search fields and ordering fields
-    search_fields = ('mobile', 'email')
-    ordering = ('mobile',)
+    search_fields = ("mobile", "email")
+    ordering = ("mobile",)
     filter_horizontal = ()
 
 

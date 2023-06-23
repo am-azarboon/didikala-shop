@@ -32,14 +32,28 @@ class Size(models.Model):
         return self.title
 
 
+class Category(models.Model):
+    parent = models.ForeignKey("self", verbose_name=_("Parent Category"), on_delete=models.CASCADE, null=True, blank=True)
+    title = models.CharField(_("Category Title"), max_length=64)
+    slug = models.SlugField(_("Slug"), allow_unicode=True)
+
+    class Meta:
+        verbose_name = _("Category")
+        verbose_name_plural = _("Categories")
+
+    def __str__(self):
+        return f"{self.title}"
+
+
 # Product model
 class Product(models.Model):
     idk = models.BigAutoField(primary_key=True)
     title = models.CharField(_("Product Title"), max_length=128)
     videos = models.FileField(_("Product Video"), upload_to="video/products", null=True, blank=True)
+    category = models.ManyToManyField(Category, verbose_name=_("Categories"), blank=True)
     is_active = models.BooleanField(_("Active"), default=True)
     description = RichTextField(_("Description"), null=True, blank=True)
-    selling_counts = models.PositiveIntegerField(_("Selling counts"), default=0, null=True, editable=True)
+    selling_counts = models.PositiveIntegerField(_("Selling counts"), default=0, null=True, editable=False)
 
     class Meta:
         verbose_name = _("Product")
@@ -71,7 +85,7 @@ class ProductCustom(models.Model):
         verbose_name_plural = _("Custom products")
         ordering = ("idkc",)
 
-    def save(self, force_insert=False, force_update=False, using=None, update_fields=None):
+    def save(self, **kwargs):
         slug = self.product.title + "-" + self.color.title_fa
         self.slug = slugify(slug, allow_unicode=True)
 

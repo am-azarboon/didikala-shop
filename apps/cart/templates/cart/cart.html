@@ -1,4 +1,4 @@
-{% extends 'base.html' %}
+{% extends "base.html" %}
 {% load filters %}
 {% load static %}
 
@@ -95,7 +95,7 @@
                                                                         </button>
                                                                     </div>
                                                                     <div style="background-color: #d0d0d0; border-radius: 0.5vw; padding: 5px;"
-                                                                         class="item-price ml-4">{{ item.total_price|changing|intcomma }}<span
+                                                                         class="item-price ml-4">{{ item.total_price|change_rials|intcomma }}<span
                                                                             class="text-sm mr-1">تومان</span>
                                                                     </div>
                                                                 </div>
@@ -134,7 +134,7 @@
                                         <div class="checkout-summary-content">
                                             <div class="checkout-summary-price-title">مبلغ قابل پرداخت:</div>
                                             <div class="checkout-summary-price-value">
-                                                <span class="checkout-summary-price-value-amount">{{ cart.total_price|changing|intcomma }}</span>
+                                                <span class="checkout-summary-price-value-amount">{{ cart.total_price|change_rials|intcomma }}</span>
                                                 تومان
                                             </div>
                                             <a href="{% url 'order:shopping' %}" class="mb-2 d-block">

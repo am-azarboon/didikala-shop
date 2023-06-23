@@ -7,7 +7,7 @@ register = template.Library()
 
 # Changing price(Rials to Tooman)
 @register.filter
-def changing(value):
+def change_rials(value):
     value = str(value)
     return int(value[:-1])
 
