@@ -36,10 +36,16 @@ class Category(models.Model):
     parent = models.ForeignKey("self", verbose_name=_("Parent Category"), on_delete=models.CASCADE, null=True, blank=True)
     title = models.CharField(_("Category Title"), max_length=64)
     slug = models.SlugField(_("Slug"), allow_unicode=True)
+    is_first = models.BooleanField(_("First category"), default=False, editable=False)
 
     class Meta:
         verbose_name = _("Category")
         verbose_name_plural = _("Categories")
+
+    def save(self, **kwargs):
+        if not self.parent:
+            self.is_first = True
+        super(Category, self).save()
 
     def __str__(self):
         return f"{self.title}"

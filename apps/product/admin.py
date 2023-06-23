@@ -55,8 +55,10 @@ class ProductAdmin(admin.ModelAdmin):
     }
 
 
+@admin.register(models.Category)
 class CategoryAdmin(admin.ModelAdmin):
     list_display = ("title", "slug", "parent")
     list_display_links = ("title", "slug")
+    list_filter = ("is_first",)
     search_fields = ("title", "parent")
     prepopulated_fields = {"slug": ("title",)}

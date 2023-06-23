@@ -136,11 +136,10 @@ USE_TZ = True
 
 # Add farsi language for Internationalization
 LANGUAGES = [
-    ('fa', _('Persian')),
-
+    ("fa", _("Persian")),
 ]
 
-LOCALE_PATHS = [os.path.join(BASE_DIR, 'locale')]
+LOCALE_PATHS = [os.path.join(BASE_DIR, "locale")]
 
 # Static files (CSS, JavaScript, Images)
 STATIC_URL = "static/"
@@ -187,14 +186,16 @@ AZ_IRANIAN_BANK_GATEWAYS = {
 # Admin reorder settings
 ADMIN_REORDER = (
     "account",
+
+    {"app": "address", "models": ("address.Address", "address.Province", "address.City")},
+
+    {"app": "product", "models": ("product.Category", "product.Product", "product.Image", "product.Size", "product.Color")},
+
     "cart",
     "order",
-    "product",
 
-    {"app": "azbankgateways", "label": _("Bank gateway section"),
+    {"app": "azbankgateways", "label": _("Bank gateway"),
      "models": (
         {"model": "azbankgateways.Bank", "label": _("Transactions")},
     )},
-
-    {"app": "address", "models": ("address.Address", "address.Province", "address.City")},
 )

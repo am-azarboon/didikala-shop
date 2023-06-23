@@ -1,14 +1,8 @@
-from django.utils.translation import gettext_lazy as _
 from azbankgateways.urls import az_bank_gateways_urls
 from django.conf.urls.static import static
 from django.urls import path, include
 from django.contrib import admin
 from . import settings
-
-
-admin.site.site_header = _("Shop Management")
-admin.site.site_title = _("Shop Management")
-admin.site.index_title = _("Admin Panel")
 
 
 urlpatterns = [
