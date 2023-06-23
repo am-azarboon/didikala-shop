@@ -35,7 +35,7 @@ class Order(models.Model):
 class OrderItem(models.Model):
     order = models.ForeignKey(Order, verbose_name=_('Order'), on_delete=models.CASCADE, related_name='order_item')
     product = models.ForeignKey(ProductCustom, verbose_name=_('Product'), on_delete=models.DO_NOTHING, related_name='order_item')
-    quantity = models.PositiveIntegerField(_('Quantity purchased'), default=0)
+    quantity = models.PositiveIntegerField(_('Purchased Quantity'), default=0)
     total_price = models.IntegerField(_('Total price'), default=0)
 
     class Meta:

@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2023-06-23 21:29+0330\n"
+"POT-Creation-Date: 2023-06-23 23:52+0330\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -365,6 +365,18 @@ msgstr "قیمت کل پایه"
 msgid "Cart item"
 msgstr "کالای سبد خرید"
 
+#: .\apps\main\admin.py:11 .\apps\main\admin.py:12
+msgid "Shop Management"
+msgstr "مدیریت فروشگاه"
+
+#: .\apps\main\admin.py:13
+msgid "Admin Panel"
+msgstr "پنل ادمین"
+
+#: .\apps\main\admin.py:21
+msgid "Delete selected items"
+msgstr "حذف موارد انتخاب شده"
+
 #: .\apps\main\templates\main\index.html:6
 msgid "Online Shop Didikala"
 msgstr "فروشگاه اینترنتی دیدیکالا"
@@ -452,7 +464,7 @@ msgid "Order"
 msgstr "سفارش"
 
 #: .\apps\order\models.py:38
-msgid "Quantity purchased"
+msgid "Purchased Quantity"
 msgstr "تعداد خریداری شده"
 
 #: .\apps\order\models.py:42
@@ -592,21 +604,13 @@ msgstr "جزئیات محصول"
 msgid "Persian"
 msgstr "فارسی"
 
-#: .\didikala\settings.py:195
+#: .\didikala\settings.py:197
 msgid "Bank gateway"
 msgstr "درگاه بانکی"
 
-#: .\didikala\settings.py:197
+#: .\didikala\settings.py:199
 msgid "Transactions"
 msgstr "تراکنش ها"
-
-#: .\didikala\urls.py:9 .\didikala\urls.py:10
-msgid "Shop Management"
-msgstr "مدیریت فروشگاه"
-
-#: .\didikala\urls.py:11
-msgid "Admin Panel"
-msgstr "پنل ادمین"
 
 #: .\templates\admin\base_site.html:5
 msgid "Admin Site"
@@ -1910,6 +1914,9 @@ msgstr ""
 #: .\venv\Lib\site-packages\django_jalali\db\models.py:230
 msgid "Enter a valid date/time in YYYY-MM-DD HH:MM[:ss[.uuuuuu]] format."
 msgstr ""
+
+#~ msgid "Quantity purchased"
+#~ msgstr "تعداد خریداری شده"
 
 #~ msgid "Accounts Section"
 #~ msgstr "بخش حساب های کاربری"

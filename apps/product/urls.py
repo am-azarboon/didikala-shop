@@ -3,7 +3,7 @@ from . import views
 
 
 # urlpatterns' name
-app_name = 'product'
+app_name = "product"
 
 urlpatterns = [
     path('<int:pk>', views.ProductDetailView.as_view(), name="detail"),
