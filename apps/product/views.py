@@ -1,6 +1,6 @@
-from django.views.generic import DetailView, TemplateView
+from django.views.generic import DetailView, TemplateView, ListView
 from apps.cart.cart import SessionCart, ModelCart
-from .models import ProductCustom
+from .models import Product, ProductCustom, Category
 from apps.cart.models import CartItem
 
 
@@ -31,6 +31,28 @@ class ProductDetailView(DetailView):
         return context
 
 
+class CategorySearch(ListView):
+    template_name = "product/products.html"
+    context_object_name = "products"
+    model = Product
+    paginate_by = 10
+
+    def get_queryset(self):
+        slug = self.kwargs["slug"]
+        category = Category.objects.get(slug=slug)
+
+        if category.sub_categories.all():
+            return Product.objects.filter(category__parent__slug=slug)
+
+        return Product.objects.filter(category__slug=slug)
+
+
 # Render Navbar Menu
 class NavbarMenuView(TemplateView):
     template_name = "includes/navbar_menu.html"
+
+    def get_context_data(self, **kwargs):
+        context = super(NavbarMenuView, self).get_context_data(**kwargs)
+        context["categories"] = Category.objects.all()
+
+        return context

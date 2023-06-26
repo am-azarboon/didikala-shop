@@ -33,9 +33,10 @@ class Size(models.Model):
 
 
 class Category(models.Model):
-    parent = models.ForeignKey("self", verbose_name=_("Parent Category"), on_delete=models.CASCADE, null=True, blank=True)
-    title = models.CharField(_("Category Title"), max_length=64)
-    slug = models.SlugField(_("Slug"), allow_unicode=True)
+    parent = models.ForeignKey("self", verbose_name=_("Parent Category"), on_delete=models.CASCADE, null=True, blank=True, related_name="sub_categories")
+    title = models.CharField(_("Title Fa"), max_length=64)
+    title_en = models.CharField(_("Title En"), max_length=64, null=True)
+    slug = models.SlugField(_("Slug"), max_length=64, allow_unicode=True)
     is_first = models.BooleanField(_("First category"), default=False, editable=False)
 
     class Meta:
@@ -43,8 +44,11 @@ class Category(models.Model):
         verbose_name_plural = _("Categories")
 
     def save(self, **kwargs):
+        self.is_first = False
         if not self.parent:
             self.is_first = True
+
+        self.slug = slugify(self.title_en, allow_unicode=True)
         super(Category, self).save()
 
     def __str__(self):
