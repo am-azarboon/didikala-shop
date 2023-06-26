@@ -35,8 +35,9 @@ class Size(models.Model):
 class Category(models.Model):
     parent = models.ForeignKey("self", verbose_name=_("Parent Category"), on_delete=models.CASCADE, null=True, blank=True, related_name="sub_categories")
     title = models.CharField(_("Title Fa"), max_length=64)
-    title_en = models.CharField(_("Title En"), max_length=64, null=True)
+    title_en = models.CharField(_("Title En"), max_length=64)
     slug = models.SlugField(_("Slug"), max_length=64, allow_unicode=True)
+    image = models.ImageField(_("Image"), help_text=_("Small image(120x120)"), null=True, blank=True, upload_to="images/category")
     is_first = models.BooleanField(_("First category"), default=False, editable=False)
 
     class Meta:
@@ -59,11 +60,12 @@ class Category(models.Model):
 class Product(models.Model):
     idk = models.BigAutoField(primary_key=True)
     title = models.CharField(_("Product Title"), max_length=128)
-    videos = models.FileField(_("Product Video"), upload_to="video/products", null=True, blank=True)
-    category = models.ManyToManyField(Category, verbose_name=_("Categories"), blank=True)
+    category = models.ManyToManyField(Category, verbose_name=_("Categories"))
     is_active = models.BooleanField(_("Active"), default=True)
     description = RichTextField(_("Description"), null=True, blank=True)
     selling_counts = models.PositiveIntegerField(_("Selling counts"), default=0, null=True, editable=False)
+    cover_image = models.ImageField(_("Cover image"), help_text=_("Main image"), upload_to="images/products/cover")
+    video = models.FileField(_("Product Video"), upload_to="video/products", null=True, blank=True)
 
     class Meta:
         verbose_name = _("Product")
@@ -82,7 +84,7 @@ class ProductCustom(models.Model):
     discount = models.PositiveIntegerField(_("Discount"), help_text=_("Percentage(%)"), default=0)
     selling_price = models.IntegerField(_("Selling price"), null=True, editable=False, default=0)
     quantity = models.PositiveIntegerField(_("Quantity"), default=0)
-    slug = models.SlugField(_("Slug"), allow_unicode=True, null=True, blank=True)
+    slug = models.SlugField(_("Slug"), max_length=256, allow_unicode=True, null=True, blank=True)
 
     color = models.ForeignKey(Color, verbose_name=_("Color"), null=True, blank=True, on_delete=models.DO_NOTHING, related_name="product_custom")
     size = models.ForeignKey(Size, verbose_name=_("Size"), null=True, blank=True, on_delete=models.DO_NOTHING, related_name="product_custom")
@@ -96,8 +98,8 @@ class ProductCustom(models.Model):
         ordering = ("idkc",)
 
     def save(self, **kwargs):
-        slug = self.product.title + "-" + self.color.title_fa
-        self.slug = slugify(slug, allow_unicode=True)
+        slug = self.product.title + "-" + self.color.title_fa  # Create slug with title and color
+        self.slug = slugify(slug, allow_unicode=True)  # Save new slug
 
         self.selling_price = int(self.base_price - ((self.discount / 100) * self.base_price))  # Save selling_price after discount
         super(ProductCustom, self).save()

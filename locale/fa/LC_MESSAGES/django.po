@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2023-06-26 15:05+0330\n"
+"POT-Creation-Date: 2023-06-26 20:15+0330\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -139,7 +139,7 @@ msgid "Email address"
 msgstr "آدرس ایمیل"
 
 #: .\apps\account\models.py:17 .\apps\address\models.py:45
-#: .\apps\product\models.py:64 .\apps\product\models.py:90
+#: .\apps\product\models.py:64 .\apps\product\models.py:91
 msgid "Active"
 msgstr "فعال"
 
@@ -207,7 +207,7 @@ msgstr "تاریخ تولد"
 msgid "Profile image"
 msgstr "تصویر پروفایل"
 
-#: .\apps\account\models.py:86 .\apps\product\models.py:91
+#: .\apps\account\models.py:86 .\apps\product\models.py:92
 msgid "Created time"
 msgstr "تاریخ ایجاد"
 
@@ -278,7 +278,7 @@ msgid "Title"
 msgstr "عنوان"
 
 #: .\apps\address\models.py:11 .\apps\address\models.py:26
-#: .\apps\product\models.py:39 .\apps\product\models.py:85
+#: .\apps\product\models.py:39 .\apps\product\models.py:86
 msgid "Slug"
 msgstr "اسلاگ"
 
@@ -344,7 +344,7 @@ msgid "Cart items"
 msgstr "کالاهای سبد خرید"
 
 #: .\apps\cart\models.py:22 .\apps\order\models.py:37
-#: .\apps\product\models.py:69 .\apps\product\models.py:114
+#: .\apps\product\models.py:70 .\apps\product\models.py:115
 msgid "Product"
 msgstr "محصول"
 
@@ -353,7 +353,7 @@ msgid "idkc"
 msgstr "شناسه محصول"
 
 #: .\apps\cart\models.py:24 .\apps\order\models.py:16
-#: .\apps\product\models.py:84
+#: .\apps\product\models.py:85
 msgid "Quantity"
 msgstr "تعداد"
 
@@ -475,7 +475,7 @@ msgstr "کالای سفارش"
 msgid "Order items"
 msgstr "کالاهای سفارش"
 
-#: .\apps\product\apps.py:8 .\apps\product\models.py:70
+#: .\apps\product\apps.py:8 .\apps\product\models.py:71
 msgid "Products"
 msgstr "محصولات"
 
@@ -495,7 +495,7 @@ msgstr "کد رنگی"
 msgid "Example (001100)"
 msgstr "مثال (001100)"
 
-#: .\apps\product\models.py:16 .\apps\product\models.py:87
+#: .\apps\product\models.py:16 .\apps\product\models.py:88
 msgid "Color"
 msgstr "رنگ"
 
@@ -507,7 +507,7 @@ msgstr "رنگ ها"
 msgid "Example (XL)"
 msgstr "مثال (XL)"
 
-#: .\apps\product\models.py:28 .\apps\product\models.py:88
+#: .\apps\product\models.py:28 .\apps\product\models.py:89
 msgid "Size"
 msgstr "اندازه"
 
@@ -547,48 +547,56 @@ msgstr "توضیحات"
 msgid "Selling counts"
 msgstr "تعداد فروش"
 
-#: .\apps\product\models.py:80
+#: .\apps\product\models.py:67
+msgid "Cover image"
+msgstr "تصویر کاور"
+
+#: .\apps\product\models.py:67
+msgid "Main image"
+msgstr "تصویر اصلی"
+
+#: .\apps\product\models.py:81
 msgid "Main product"
 msgstr "محصول اصلی"
 
-#: .\apps\product\models.py:81
+#: .\apps\product\models.py:82
 msgid "Price"
 msgstr "قیمت"
 
-#: .\apps\product\models.py:81
+#: .\apps\product\models.py:82
 msgid "Rials"
 msgstr "ریال"
 
-#: .\apps\product\models.py:82
+#: .\apps\product\models.py:83
 msgid "Discount"
 msgstr "تخفیف"
 
-#: .\apps\product\models.py:82
+#: .\apps\product\models.py:83
 msgid "Percentage(%)"
 msgstr "درصد(%)"
 
-#: .\apps\product\models.py:83
+#: .\apps\product\models.py:84
 msgid "Selling price"
 msgstr "قیمت فروش"
 
-#: .\apps\product\models.py:94
+#: .\apps\product\models.py:95
 msgid "Custom product"
 msgstr "محصول کاستوم"
 
-#: .\apps\product\models.py:95
+#: .\apps\product\models.py:96
 msgid "Custom products"
 msgstr "محصولات کاستوم"
 
-#: .\apps\product\models.py:115 .\apps\product\models.py:119
+#: .\apps\product\models.py:116 .\apps\product\models.py:120
 #: .\venv\Lib\site-packages\django\db\models\fields\files.py:393
 msgid "Image"
 msgstr "تصویر"
 
-#: .\apps\product\models.py:116
+#: .\apps\product\models.py:117
 msgid "Short Description"
 msgstr "توضیح کوتاه"
 
-#: .\apps\product\models.py:120
+#: .\apps\product\models.py:121
 msgid "Images"
 msgstr "تصاویر"
 

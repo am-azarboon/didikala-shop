@@ -1,0 +1,56 @@
+{% extends "base.html" %}
+{% load filters %}
+{% load static %}
+
+
+{% block title %} {{ categories.first.title }} {% endblock %}
+
+{% block content %}
+    <!-- Start main-content -->
+    <main class="main-content dt-sl mb-3">
+        <div class="container main-container">
+            <div class="row">
+
+                <!-- Start Content -->
+                <div class="col-lg-9 col-md-12 col-sm-12 search-card-res">
+                    <div class="dt-sl dt-sn px-0 search-amazing-tab">
+                        <div class="ah-tab-content-wrapper dt-sl px-res-0">
+                            <div class="ah-tab-content dt-sl" data-ah-tab-active="true">
+                                <div class="row mb-3 mx-0 px-res-0">
+                                    <div class="d-flex flex-nowrap overflow-x-auto d-grid-lg grid-cols-8-lg place-ai-stretch-lg gap-3">
+                                        {% for category in categories %}
+                                            <a class="flex-column ai-center jc-between p-4 bg-100 radius-md categoryCard_categoryCard__qRdFG"
+                                               data-cro-id="plp-shortcut-category" href="{% url "product:category_search" category.slug %}">
+                                                <div title="" class="categoryCard_categoryCard__image__UQ0F7">
+                                                    {% if category.image.url %}
+                                                         <img class="w-100 d-inline-block lazyloaded"
+                                                         data-src="{{ category.image.url }}"
+                                                         width="85px" height="85px" alt="{{ category.title }}"
+                                                         style="object-fit: contain;"
+                                                         src="{{ category.image.url }}">
+                                                    {% else %}
+                                                        <img class="w-100 d-inline-block lazyloaded"
+                                                         data-src="{% static "img/didikala-seeklogo.com.svg" %}"
+                                                         width="85px" height="85px" alt="{{ category.title }}"
+                                                         style="object-fit: contain;"
+                                                         src="{% static "img/didikala-seeklogo.com.svg" %}">
+                                                    {% endif %}
+                                                </div>
+                                                <div class="w-full text-caption-strong color-700 grow-1 d-flex ai-center jc-center align-center ellipsis-2">
+                                                    {{ category.title }}
+                                                </div>
+                                            </a>
+                                        {% endfor %}
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <!-- End Content -->
+
+        </div>
+        </div>
+    </main>
+{% endblock %}

@@ -17,7 +17,7 @@ class User(AbstractBaseUser):
     is_active = models.BooleanField(_("Active"), default=True)
     is_admin = models.BooleanField(_("Admin"), default=False)
     verified = models.BooleanField(_("Verified"), editable=False, default=False)
-    access_level = models.CharField(_("Access level"), max_length=32, choices=AccessLevel.choices, default=AccessLevel.choices[0])
+    access_level = models.CharField(_("Access level"), max_length=32, choices=AccessLevel.choices, default=AccessLevel.USER)
 
     objects = UserManager()  # Set UserManager as model object manager
 
@@ -80,7 +80,7 @@ class Profile(models.Model):
 
     # Additional info
     date_of_birth = jmodels.jDateField(_("Date of birth"), null=True, blank=True)
-    profile_image = models.ImageField(_("Profile image"), null=True, blank=True, upload_to="image/profiles")
+    profile_image = models.ImageField(_("Profile image"), null=True, blank=True, upload_to="images/profiles")
 
     # Create/update time
     created_at = models.DateTimeField(_("Created time"), auto_now_add=True)

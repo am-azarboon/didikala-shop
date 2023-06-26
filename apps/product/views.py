@@ -31,20 +31,30 @@ class ProductDetailView(DetailView):
         return context
 
 
-class CategorySearch(ListView):
+# Render CategoryMainView
+class CategoryMainView(ListView):
+    template_name = "product/main_category.html"
+    context_object_name = "categories"
+    model = Category
+
+    def get_queryset(self):
+        return Category.objects.filter(parent__slug=self.kwargs["slug"])
+
+
+# Render CategorySearchView
+class CategorySearchView(ListView):
     template_name = "product/products.html"
     context_object_name = "products"
     model = Product
     paginate_by = 10
 
     def get_queryset(self):
-        slug = self.kwargs["slug"]
-        category = Category.objects.get(slug=slug)
+        category = Category.objects.get(slug=self.kwargs["slug"])
 
         if category.sub_categories.all():
-            return Product.objects.filter(category__parent__slug=slug)
+            return Product.objects.filter(category__parent__slug=self.kwargs["slug"])
 
-        return Product.objects.filter(category__slug=slug)
+        return Product.objects.filter(category__slug=self.kwargs["slug"])
 
 
 # Render Navbar Menu
