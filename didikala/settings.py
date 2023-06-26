@@ -1,6 +1,5 @@
 from django.utils.translation import gettext_lazy as _
 from pathlib import Path
-import gettext
 import os
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
@@ -29,12 +28,12 @@ INSTALLED_APPS = [
     "django.contrib.humanize",
 
     # Created apps
-    'apps.main.apps.MainConfig',
-    'apps.account.apps.AccountConfig',
-    'apps.address.apps.AddressConfig',
-    'apps.product.apps.ProductConfig',
-    'apps.cart.apps.CartConfig',
-    'apps.order.apps.OrderConfig',
+    "apps.main.apps.MainConfig",
+    "apps.account.apps.AccountConfig",
+    "apps.address.apps.AddressConfig",
+    "apps.product.apps.ProductConfig",
+    "apps.cart.apps.CartConfig",
+    "apps.order.apps.OrderConfig",
 
     # Django modules
     "django_render_partial",
@@ -146,10 +145,10 @@ MEDIA_ROOT = os.path.join(BASE_DIR, "media")
 DEFAULT_AUTO_FIELD = "django.db.models.BigAutoField"
 
 # Custom user model
-AUTH_USER_MODEL = 'account.User'
+AUTH_USER_MODEL = "account.User"
 
 # Django auth backends
-AUTHENTICATION_BACKENDS = ['django.contrib.auth.backends.ModelBackend', 'apps.account.auth.EmailAuthenticationBackend', ]
+AUTHENTICATION_BACKENDS = ["django.contrib.auth.backends.ModelBackend", "apps.account.auth.EmailAuthenticationBackend"]
 
 # BankGateways settings
 AZ_IRANIAN_BANK_GATEWAYS = {
