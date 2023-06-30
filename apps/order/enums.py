@@ -17,7 +17,7 @@ class DeliveryType(TextChoices):
     QUICK = 'Q', _('Quick')
 
 
-# OrderPaymentMethod
+# OrderPaymentMethod Choices
 class PaymentMethod(TextChoices):
     BANK = 'BA', _('Bank')
     DIDIPAY = 'DD', _('Didipay')

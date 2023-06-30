@@ -46,17 +46,17 @@
         {% for category in categories %}
             <li class="sub-menu">
                 {% if not category.parent %}
-                    <a href="{% url "product:category_main" category.slug %}">{{ category.title }}</a>
+                    <a href="{{ category.get_absolute_url }}">{{ category.title }}</a>
                     {% if category.sub_categories.all %}
                         <ul>
                             {% for sub in category.sub_categories.all %}
                                 <li class="sub-menu">
-                                    <a href="{% url "product:category_search" sub.slug %}">{{ sub.title }}</a>
+                                    <a href="{{ sub.get_absolute_url }}">{{ sub.title }}</a>
                                     {% if sub.sub_categories.all %}
                                         <ul>
                                             {% for sub_item in sub.sub_categories.all %}
                                                 <li>
-                                                    <a href="{% url "product:category_search" sub_item.slug %}">{{ sub_item.title }}</a>
+                                                    <a href="{{ sub_item.get_absolute_url }}">{{ sub_item.title }}</a>
                                                 </li>
                                             {% endfor %}
                                         </ul>

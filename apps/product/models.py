@@ -37,12 +37,17 @@ class Category(models.Model):
     title = models.CharField(_("Title Fa"), max_length=64)
     title_en = models.CharField(_("Title En"), max_length=64)
     slug = models.SlugField(_("Slug"), max_length=64, allow_unicode=True)
-    image = models.ImageField(_("Image"), help_text=_("Small image(120x120)"), null=True, blank=True, upload_to="images/category")
+    image = models.ImageField(_("Image"), help_text=_("Small image(120x120)"), null=True, blank=True, upload_to="img/category")
     is_first = models.BooleanField(_("First category"), default=False, editable=False)
 
     class Meta:
         verbose_name = _("Category")
         verbose_name_plural = _("Categories")
+
+    def get_absolute_url(self):
+        if self.is_first:
+            return reverse("product:category_main", args=[self.slug])
+        return reverse("product:category_search", args=[self.slug])
 
     def save(self, **kwargs):
         self.is_first = False
@@ -64,7 +69,7 @@ class Product(models.Model):
     is_active = models.BooleanField(_("Active"), default=True)
     description = RichTextField(_("Description"), null=True, blank=True)
     selling_counts = models.PositiveIntegerField(_("Selling counts"), default=0, null=True, editable=False)
-    cover_image = models.ImageField(_("Cover image"), help_text=_("Main image"), upload_to="images/products/cover")
+    cover_image = models.ImageField(_("Cover image"), help_text=_("Main image"), upload_to="img/products/cover")
     video = models.FileField(_("Product Video"), upload_to="video/products", null=True, blank=True)
 
     class Meta:
@@ -114,7 +119,7 @@ class ProductCustom(models.Model):
 # ProductImage model
 class ProductImage(models.Model):
     product = models.ForeignKey(Product, verbose_name=_("Product"), on_delete=models.CASCADE, related_name="product_image")
-    image = models.ImageField(_("Image"), upload_to="image/products")
+    image = models.ImageField(_("Image"), upload_to="img/products")
     alt = models.CharField(_("Short Description"), max_length=32)
 
     class Meta:
@@ -122,7 +127,7 @@ class ProductImage(models.Model):
         verbose_name_plural = _("Images")
 
     def show_image(self):
-        return format_html(f'<img src="{self.image.url}" width="78px" height="42px" alt="none">')
+        return format_html(f'<img src="{self.image.url}" width="78px" height="42px" alt="{self.alt}">')
 
     def __str__(self):
         return self.alt

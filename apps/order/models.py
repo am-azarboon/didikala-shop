@@ -17,10 +17,10 @@ class Order(models.Model):
     payable_price = models.IntegerField(_('Payable price'), default=0)
     discount_price = models.IntegerField(_('Discount price'), default=0)
     address_info = models.TextField(_('Address info'), max_length=256, null=True, blank=True)
-    delivery_type = models.CharField(_('Delivery type'), max_length=32, choices=DeliveryType.choices, default=DeliveryType.choices[0])
-    payment_method = models.CharField(_('Payment method'), max_length=32, choices=PaymentMethod.choices, default=DeliveryType.choices[0])
+    delivery_type = models.CharField(_('Delivery type'), max_length=32, choices=DeliveryType.choices, default=DeliveryType.NORMAL)
+    payment_method = models.CharField(_('Payment method'), max_length=32, choices=PaymentMethod.choices, default=PaymentMethod.BANK)
     bank_tracking_code = models.CharField(_('Bank tracking code'), max_length=16, null=True, blank=True)
-    status = models.CharField(_('Status'), max_length=32, choices=Status.choices, default='unsuccessful')
+    status = models.CharField(_('Status'), max_length=32, choices=Status.choices, default=Status.UNSUCCESSFUL)
     is_paid = models.BooleanField(_('Is paid'), default=False)
 
     created_at = models.DateTimeField(_('Create time'), auto_now_add=True)

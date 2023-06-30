@@ -14,6 +14,7 @@ class ProfileAdmin(admin.ModelAdmin):
     readonly_fields = ("created_at", "updated_at",)
     list_display = ("user", "firstname", "lastname", "melli_code", "date_of_birth",)
     list_display_links = ("user", "firstname", "lastname",)
+    radio_fields = {"gender": admin.HORIZONTAL}
     fieldsets = (
         (None, {"fields": ("user", "firstname", "lastname", "melli_code", "gender",)}),
         (_("Additional info"), {"fields": ("date_of_birth", "profile_image",)}),

@@ -128,7 +128,10 @@ LANGUAGES = [
     ("fa", _("Persian")),
 ]
 
-LOCALE_PATHS = [os.path.join(BASE_DIR, "locale")]
+LOCALE_PATHS = [
+    os.path.join(BASE_DIR, "locale"),
+    os.path.join(BASE_DIR, "locale/az_bank_locale")
+]
 
 # Static files (CSS, JavaScript, Images)
 STATIC_URL = "static/"
@@ -178,13 +181,13 @@ ADMIN_REORDER = (
 
     {"app": "address", "models": ("address.Address", "address.Province", "address.City")},
 
-    {"app": "product", "models": ("product.Category", "product.Product", "product.Image", "product.Size", "product.Color")},
+    {"app": "product", "models": ("product.Category", "product.Product", "product.Size", "product.Color", "product.ProductImage")},
 
     "cart",
     "order",
-
-    {"app": "azbankgateways", "label": _("Bank gateway"),
-     "models": (
-        {"model": "azbankgateways.Bank", "label": _("Transactions")},
-    )},
+    "azbankgateways",
+    # {"app": "azbankgateways", "label": _("Bank gateway"),
+    #  "models": (
+    #     {"model": "azbankgateways.Bank", "label": _("Transactions")},
+    # )},
 )

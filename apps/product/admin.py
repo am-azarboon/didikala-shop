@@ -47,6 +47,7 @@ class ProductAdmin(admin.ModelAdmin):
     list_display = ("idk", "title", "selling_counts", "is_active")
     list_display_links = ("idk", "title")
     search_fields = ("idk", "title")
+    autocomplete_fields = ["category"]
     inlines = (ProductImageInline, ProductCustomInline)
 
     # Change formField attributes(size)
@@ -60,5 +61,7 @@ class CategoryAdmin(admin.ModelAdmin):
     list_display = ("title", "title_en", "slug", "parent")
     list_display_links = ("title", "title_en")
     list_filter = ("is_first",)
-    search_fields = ("title", "parent")
+    search_fields = ["title"]
+    autocomplete_fields = ["parent"]
     prepopulated_fields = {"slug": ("title_en",)}
+    ordering = ("is_first", "title")
