@@ -24,8 +24,6 @@ pip install -r requirements.txt
 ### Run the following commands to get started:
 
 ```
-python manage.py makemigrations
 python manage.py migrate
-python manage.py collectstatic
 python manage.py runserver
 ```
